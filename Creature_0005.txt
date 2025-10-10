@@ -1,0 +1,12 @@
+Creature category: Beast
+Creature subcategory: Earthbound
+Creature prompt: Ant/Centipede/Scorpion
+
+Group size: Group: 1d6+2 per wave
+Individual size: Medium-sized
+6 HP (0 armor: Cloth or flesh)
+1d8 damage (close, choking/asphyxiating)
+Tags: terrifying
+Alignment: neutral
+Disposition: hostile/aggressive
+

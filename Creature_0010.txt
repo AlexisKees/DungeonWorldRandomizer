@@ -1,0 +1,12 @@
+Creature category: Monster
+Creature subcategory: Extraplanar
+Creature prompt: Element: void elemental
+
+Group size: horde (4d6 per wave)
+Individual size: Medium-sized
+3 HP (0 armor: Cloth or flesh)
+1d6 damage (close, pointed/piercing)
+Tags: terrifying
+Alignment: evil
+Disposition: friendly
+
