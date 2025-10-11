@@ -1,7 +1,6 @@
 package data;
 
 public class NPCArrays {
-    public class NpcOccupation {
 
         public static final String[] CATEGORY ={
                 "Outsider",
@@ -291,7 +290,7 @@ public class NPCArrays {
                 "9 HP, d8"      // 11
         };
 
-    }
+
 
 }
 

@@ -1,4 +1,4 @@
-package service;
+package domain.util;
 
 
 import java.util.Random;
@@ -21,4 +21,6 @@ public class Rolls {
         int resultado = azar.nextInt(10);
         return resultado;
     }
+
+
 }

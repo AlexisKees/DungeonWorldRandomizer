@@ -30,7 +30,7 @@ public class Main {
         try {
             int option;
             do {
-                                System.out.println("""
+                                System.out.print("""
                         Chose what you'd like to generate:
                         1) Generate random Quest
                         2) Generate random NPC

@@ -21,8 +21,8 @@ public class CreatureArrays {
     public static final String[] PROMPTS_BEAST_AIRBORNE = new String[]{"Pteranodon","Condor","Eagle/Owl","Hawk/Falcon","Heron/Crane/Stork","Crow/Raven","Gull/Waterbird","Songbird/Parrot","Chicken/Duck/Goose","Bee/Wasp","Locust/Dragonfly/Moth","Mosquito/Gnat/Firefly"};
     public static final String[] PROMPTS_BEAST_EARTHBOUND = new String[]{"Mammoth/Dinosaur","Ox/Rhino","Bear/Ape/Gorilla","Deer/Horse/Camel","Cat/Lion/Panther","Boar/Pig","Dog/Fox/Wolf","Vole/Rat/Weasel","Snake/Lizard","Ant/Centipede/Scorpion","Snail/Slug/Worm","Termite/Tick/Louse"};
 
-    public static final String[] PROMPTS_HUMANOID_RARE = new String[]{"Elf","Elf","Elf","Elf","Elf","Elf","Elf","Elf","Elf","Elf","Elf","Elf"};
-    public static final String[] PROMPTS_HUMANOID_UNCOMMON = new String[]{"Human + Beast","Human + Beast","Human + Beast","Dwarf","Dwarf","Dwarf","Dwarf","Halfling","Halfling","Halfling","Halfling","Halfling"};
-    public static final String[] PROMPTS_HUMANOID_COMMON = new String[]{"Mixed race humanoid","Mixed race humanoid","Mixed race humanoid","Human","Human","Human","Human","Human","Human","Human","Human","Human"};
+    public static final String[] PROMPTS_HUMANOID_RARE = new String[]{"Clank", "Drakona","Infernis","Infernis"};
+    public static final String[] PROMPTS_HUMANOID_UNCOMMON = new String[]{"Dwarf","Dwarf","Halfling","Halfling", "Elf", "Elf", "Faerie", "Fungril","Giant","Katari", "Ribbet"};
+    public static final String[] PROMPTS_HUMANOID_COMMON = new String[]{"Mixed race humanoid","Human","Faun","Firblog","Galapa","Goblin","Orc","Simiah"};
 
 }
