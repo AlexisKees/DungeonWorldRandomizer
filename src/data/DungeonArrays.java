@@ -99,13 +99,13 @@ public class DungeonArrays {
             "secrets/deception",
             "imitation/mimicry",
             "inversion/reversal",
-            "element [p55]",
+            "element",
             "transformation",
             "shadow/spirits",
             "cryptic knowledge",
             "divination/scrying",
             "madness",
-            "magic type [p55]"
+            "magic type"
     };
 
     /* ---- GRIM PROMPTS ---- */
@@ -144,18 +144,18 @@ public class DungeonArrays {
     /* ================== DUNGEON FORM (1 nivel) ================== */
 
     public static final String[] DUNGEON_FORM = {
-            "caves/caverns",
+            "cave/cavern",
+            "ruins of 1d8+3",
             "ruins of 1d8+3",
             "mine",
             "prison",
             "crypt/tomb/catacombs",
+            "crypt/tomb/catacombs",
             "stronghold/fortress/citadel",
             "temple/sanctuary",
             "tower/spire",
-            "roll 1d10, add oddity [p55]",
-            "ruins of steading [p50]",
-            "ruins of steading [p50]",
-            "ruins of steading [p50]" // expandido para 12
+            "roll 1d10, add oddity",
+            "ruins of steading",
     };
 
 
@@ -182,8 +182,8 @@ public class DungeonArrays {
             "blocked by obstacle/out of reach",
             "clear/obvious",
             "clear/obvious",
-            "multiple entrances; roll again 1d6+1 times using 1d10",
-            "multiple entrances; roll again 1d6+1 times using 1d10"
+            "multiple entrances",
+            "multiple entrances"
     };
 
 
@@ -358,7 +358,7 @@ public class DungeonArrays {
             "Beast vermin (rats, bats, etc.)"  // 12
     };
 
-    public static final String[] AREA = {
+    public static final String[] AREA_RARITY = {
             "common", // 1
             "common", // 2
             "common", // 3
@@ -371,5 +371,30 @@ public class DungeonArrays {
             "unique", // 10
             "unique", // 11
             "unique"  // 12
+    };
+
+    public static final String[] AREA_TYPE = {
+            "Armory",
+            "Barracks",
+            "Chapel",
+            "Kitchen",
+            "Library",
+            "Laboratory",
+            "Prison",
+            "Treasure Room",
+            "Throne Room",
+            "Hallway",
+            "Courtyard",
+            "Crypt",
+            "Storage",
+            "Workshop",
+            "Dining Hall",
+            "Guard Post",
+            "Shrine",
+            "Vault",
+            "Garden",
+            "Cellar",
+            "Exit",
+            "Entrance"
     };
 }

@@ -23,6 +23,6 @@ public class CreatureArrays {
 
     public static final String[] PROMPTS_HUMANOID_RARE = new String[]{"Clank", "Drakona","Infernis","Infernis"};
     public static final String[] PROMPTS_HUMANOID_UNCOMMON = new String[]{"Dwarf","Dwarf","Halfling","Halfling", "Elf", "Elf", "Faerie", "Fungril","Giant","Katari", "Ribbet"};
-    public static final String[] PROMPTS_HUMANOID_COMMON = new String[]{"Mixed race humanoid","Human","Faun","Firblog","Galapa","Goblin","Orc","Simiah"};
+    public static final String[] PROMPTS_HUMANOID_COMMON = new String[]{"Mixed race humanoid","Human","Human","Human","Faun","Firblog","Galapa","Goblin","Orc","Simiah"};
 
 }

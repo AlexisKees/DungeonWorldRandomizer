@@ -145,4 +145,32 @@ public class SteadingArrays {
             "Occupies a place of power: arcane, personage (watcher of the place of power), blight (arcane creatures)" // 11 (12)
     };
 
+    public static final String[] DANGER_LEVEL = {
+            "Perilous",
+            "Perilous",
+            "Unsafe",
+            "Unsafe",
+            "Unsafe",
+            "Unsafe",
+            "Unsafe",
+            "Unsafe",
+            "Safe",
+            "Safe",
+            "Safe",
+            "Safe",
+            "Safe",
+    };
+
+    public static final String[] TAGS = {
+            "Barren",
+            "Blighted",
+            "Civilized",
+            "Contested",
+            "Defensible",
+            "Difficult",
+            "Enchanted",
+            "Holy/Unholy",
+            "Property of ( ____ )",
+            "Resource ( ____ )"
+    };
 }

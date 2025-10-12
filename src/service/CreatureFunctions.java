@@ -151,7 +151,7 @@ public class CreatureFunctions {
 
 
 
-    public void rollAttributes(CreatureClass creature) {
+    public static void rollAttributes(CreatureClass creature) {
         //Se asigna tabla de categorías (siempre igual) y de ahí se toma para el length de universalRoll
         creature.setCategoryTable(CreatureArrays.CATEGORIES);
         int r1 = Rolls.UniversalRoll(creature.getCategoryTable());
@@ -186,7 +186,9 @@ public class CreatureFunctions {
         creature.printMonster();
     }
 
-    private void assignSubcategoryTable(CreatureClass creature){
+
+
+    private static void assignSubcategoryTable(CreatureClass creature){
         switch (creature.getCategory()) {
             case "Monster" -> creature.setSubcategoryTable(CreatureArrays.SUBCATEGORIES_MONSTER);
             case "Beast" -> creature.setSubcategoryTable(CreatureArrays.SUBCATEGORIES_BEAST);
@@ -195,7 +197,7 @@ public class CreatureFunctions {
 
     }
 
-    private void assignPromptTable(CreatureClass creature){
+    private static void assignPromptTable(CreatureClass creature){
         if (Arrays.equals(creature.getSubcategoryTable(), CreatureArrays.SUBCATEGORIES_MONSTER)) {
             switch (creature.getSubcategory()) {
                 case "Extraplanar" -> creature.setPromptTable(CreatureArrays.PROMPTS_MONSTER_EXTRAPLANAR);
@@ -224,7 +226,7 @@ public class CreatureFunctions {
         }
     }
 
-    public void reRollSubcategory(CreatureClass creature){
+    public static void reRollSubcategory(CreatureClass creature){
 
         int r1 = Rolls.UniversalRoll(creature.getSubcategoryTable());
 
@@ -275,7 +277,7 @@ public class CreatureFunctions {
 
     }
 
-    public void reRollPrompt(CreatureClass creature){
+    public static void reRollPrompt(CreatureClass creature){
 
         int r1 = Rolls.UniversalRoll(creature.getPromptTable());
 
@@ -293,7 +295,7 @@ public class CreatureFunctions {
 
     }
 
-    private void reviseRolls(CreatureClass creature){
+    private static void reviseRolls(CreatureClass creature){
         if (Arrays.equals(creature.getPromptTable(), CreatureArrays.PROMPTS_HUMANOID_UNCOMMON)){
             if (creature.getPrompt().equals("Human + Beast")){
                 creature.setPrompt(String.join(" ","Human", CreatureFunctions.rollBeast()));
@@ -333,7 +335,7 @@ public class CreatureFunctions {
         }
     }
 
-    public void rollStats(CreatureClass creature){
+    public static void rollStats(CreatureClass creature){
         rollGroupSize(creature);
         rollSize(creature);
         rollArmor(creature);
@@ -344,7 +346,7 @@ public class CreatureFunctions {
     }
 
 
-    private void addStatsToBlock(CreatureClass creature){
+    private static void addStatsToBlock(CreatureClass creature){
         String statsBlock = String.format("""
                 Group size: %s
                 Individual size: %s
@@ -359,7 +361,7 @@ public class CreatureFunctions {
         creature.setPrintableBlock(creature.getPrintableBlock()+statsBlock);
     }
 
-    private void rollGroupSize(CreatureClass creature){
+    private static void rollGroupSize(CreatureClass creature){
         int r1 = Rolls.UniversalRoll(DetailsArrays.NO_APPEARING);
         creature.setGroupSize(DetailsArrays.NO_APPEARING[r1]);
 
@@ -378,7 +380,7 @@ public class CreatureFunctions {
             }
         }
     }
-    private void rollSize(CreatureClass creature){
+    private static void rollSize(CreatureClass creature){
         int r1 = Rolls.UniversalRoll(DetailsArrays.SIZE);
         creature.setSize(DetailsArrays.SIZE[r1]);
         switch (creature.getSize()){
@@ -402,7 +404,7 @@ public class CreatureFunctions {
         }
 
     }
-    private void rollArmor(CreatureClass creature){
+    private static void rollArmor(CreatureClass creature){
         int r1 = Rolls.UniversalRoll(DetailsArrays.ARMOR);
         creature.setArmorType(DetailsArrays.ARMOR[r1]);
         switch (r1){
@@ -414,7 +416,7 @@ public class CreatureFunctions {
 
         }
     }
-    private void rollDamageType(CreatureClass creature){
+    private static void rollDamageType(CreatureClass creature){
         int r1 = Rolls.UniversalRoll(DetailsArrays.DAMAGE_TYPE);
         creature.setDamageType(DetailsArrays.DAMAGE_TYPE[r1]);
         switch (creature.getDamageType()){
@@ -433,7 +435,7 @@ public class CreatureFunctions {
             }
         }
     }
-    private void rollTags(CreatureClass creature){
+    private static void rollTags(CreatureClass creature){
         int r1 = Rolls.UniversalRoll(DetailsArrays.TAG);
         creature.setTags(DetailsArrays.TAG[r1]);
         switch (creature.getTags()){
@@ -446,11 +448,11 @@ public class CreatureFunctions {
         }
 
     }
-    private void rollAlignment(CreatureClass creature) {
+    private static void rollAlignment(CreatureClass creature) {
         int r1 = Rolls.UniversalRoll(DetailsArrays.ALIGNMENT);
         creature.setAlignment(DetailsArrays.ALIGNMENT[r1]);
     }
-    private void rollDisposition(CreatureClass creature) {
+    private static void rollDisposition(CreatureClass creature) {
         int r1 = Rolls.UniversalRoll(DetailsArrays.DISPOSITION);
         creature.setDisposition(DetailsArrays.DISPOSITION[r1]);
         switch (creature.getDisposition()){
@@ -463,7 +465,7 @@ public class CreatureFunctions {
     }
 
 
-    public void exportCreature(CreatureClass creature) throws IOException {
+    public static void exportCreature(CreatureClass creature) throws IOException {
         String prefix = "Creature_";
         int creatureNumber = 1;
         String fileName = String.format(prefix+"%04d.txt",creatureNumber);

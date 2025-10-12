@@ -9,7 +9,16 @@ public class Rolls {
      return (int) (Math.random()*a.length);
     }
 
-
+    public static int Roll1d4() {
+        Random azar = new Random();
+        int resultado = azar.nextInt(4);
+        return resultado;
+    }
+    public static int Roll1d6() {
+        Random azar = new Random();
+        int resultado = azar.nextInt(6);
+        return resultado;
+    }
     public static int Roll1d12() {
         Random azar = new Random();
         int resultado = azar.nextInt(12);

@@ -1,15 +1,5 @@
 package domain;
 
-import data.CreatureArrays;
-import data.DetailsArrays;
-import service.CreatureFunctions;
-import domain.util.Rolls;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Arrays;
 import java.util.Objects;
 
 public class CreatureClass {
@@ -38,7 +28,7 @@ public class CreatureClass {
 
 
     public void printMonster(){
-        System.out.println(Objects.requireNonNullElse(this.printableBlock + this.printableStats, "Please roll a creature first.\n"));
+        System.out.println(Objects.requireNonNullElse(this.printableBlock, "Please roll a creature first.\n"));
     }
 
 

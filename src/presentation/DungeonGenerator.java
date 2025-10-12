@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 import domain.DungeonClass;
+import service.DungeonFunctions;
 
 
 public class DungeonGenerator {
@@ -12,93 +13,61 @@ public class DungeonGenerator {
         DungeonClass dungeon = null;
 
         System.out.println("\nWELCOME TO THE DUNGEON GENERATOR");
-/*
+
         do {
             try {
                 System.out.print("""
                         Please select an option:
-                        1) Create new random monster
-                        2) Reroll Subcategory
-                        3) Reroll Prompt
-                        4) Reroll Stats
-                        5) Export monster
-                        6) View generated monster list
-                        7) Exit
+                        1) Create new random dungeon
+                        2) Add areas
+                        3) View generated dungeons list
+                        4) View current dungeon
+                        5) Export dungeon
+                        6) Main menu
                         
-                        Option:\s""");
+                        \tOption:\s""");
                 option = Integer.parseInt(dataInput.nextLine());
 
                 switch (option) {
                     case 1 -> {
-                        creature = new DungeonClass();
-                        creature.rollAttributes();
-                        dungeonList.add(creature);
+                        dungeon = new DungeonClass();
+                        DungeonFunctions.rollDungeon(dungeon);
+                        dungeonList.add(dungeon);
+                        System.out.println(dungeon);
                     }
-                    case 2 -> {
-                        if (creature == null) {
-                            creature = new DungeonClass();
-                            creature.rollAttributes();
-                            dungeonList.add(creature);
-                        } else {
-                            creature.reRollSubcategory();
-                            dungeonList.add(creature);
-                        }
-                    }
-                    case 3 -> {
-                        if (creature == null) {
-                            creature = new DungeonClass();
-                            creature.rollAttributes();
-                            dungeonList.add(creature);
-                        } else {
-                            creature.reRollPrompt();
-                            dungeonList.add(creature);
-                        }
-                    }
+                    case 2 -> new DungeonAreaGenerator().run(dataInput, dungeon);
+                    case 3 -> dungeon = new DungeonRevision().run(dataInput,dungeonList,dungeon);
                     case 4 -> {
-                        if (creature == null) {
-                            creature = new DungeonClass();
-                            creature.rollAttributes();
-                            dungeonList.add(creature);
-                        } else {
-                            creature.rollStats();
-                            creature.printMonster();
-                            creature.printStats();
-                            dungeonList.add(creature);
+                        if (dungeon==null){
+                            System.out.println("\nGenerating dungeon...\n");
+                            dungeon = new DungeonClass();
+                            DungeonFunctions.rollDungeon(dungeon);
+                            dungeonList.add(dungeon);
                         }
+                        System.out.println(dungeon);
                     }
                     case 5 -> {
-                        if (creature == null) {
-                            creature = new DungeonClass();
-                            creature.rollAttributes();
-                            dungeonList.add(creature);
+                        if (dungeon == null) {
+                            dungeon = new DungeonClass();
+                            DungeonFunctions.rollDungeon(dungeon);
+                            dungeonList.add(dungeon);
                         }
-                        creature.exportCreature();
+                        DungeonFunctions.exportDungeon(dungeon);
                         System.out.println("""
                                 ***********************
                                 *  Check your files!  *
                                 ***********************
                                 """);
                     }
-                    case 6 -> {
-                        int counter = 1;
-                        System.out.println("""
-                                *** LIST OF MONSTERS ***""");
-                        for (DungeonClass c : dungeonList){
-                            System.out.printf("%d) %s\n", counter, c.getPrompt());
-                            counter++;
-                        }
-                        System.out.println("\n");
-                    }
-                    case 7 -> System.out.println("\nReturning to main menu...\n");
+                    case 6 -> System.out.println("\nReturning to main menu...\n");
                     default -> System.out.print("\nInvalid number!\n\n");
                 }
             } catch (Exception e) {
                 System.out.println("\nPlease choose a valid option.\n");
             }
         }
-        while (option != 7);
+        while (option != 6);
 
- */
 
     }
 }

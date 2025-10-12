@@ -51,14 +51,13 @@ public class NPCClass {
     public String toString(){
 
         return String.format("""
-                NPC: %s, %s %s
-                Ethnics: %s
+                NPC: %s, the %s %s
                 Gender: %s
                 Age: %s
                 Appearance: %s
                 Personality: %s
                 Quirk: %s
-                """, this.name, this.race, this.job, this.ethnics, this.gender, this.age, this.appearence,this.personality, this.quirk);
+                """, this.name, this.race, this.job, this.gender, this.age, this.appearence,this.personality, this.quirk);
     }
 
     public String[] getRaceTable() {
