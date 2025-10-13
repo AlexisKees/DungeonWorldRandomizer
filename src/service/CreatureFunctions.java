@@ -183,7 +183,6 @@ public class CreatureFunctions {
                     Creature prompt: %s
                     """, creature.getCategory(), creature.getSubcategory(), creature.getPrompt()));
         addStatsToBlock(creature);
-        creature.printMonster();
     }
 
 
@@ -272,8 +271,6 @@ public class CreatureFunctions {
                 Creature prompt: %s
                 """, creature.getCategory(), creature.getSubcategory(), creature.getPrompt()));
         addStatsToBlock(creature);
-        creature.printMonster();
-
 
     }
 
@@ -290,9 +287,6 @@ public class CreatureFunctions {
                     Creature prompt: %s
                     """, creature.getCategory(), creature.getSubcategory(), creature.getPrompt()));
         addStatsToBlock(creature);
-        creature.printMonster();
-
-
     }
 
     private static void reviseRolls(CreatureClass creature){
@@ -429,8 +423,16 @@ public class CreatureFunctions {
                 se vuelve a rolear el array, quitando la posibilidad de que salgan los últimos
                  dos elementos (que son los que dicen "roll 1d10 twice")
                  */
-                int r2 = Rolls.UniversalRoll(DetailsArrays.DAMAGE_TYPE) -2;
-                int r3 = Rolls.UniversalRoll(DetailsArrays.DAMAGE_TYPE) -2;
+                int r2;
+                do{
+                    r2 = Rolls.UniversalRoll(DetailsArrays.DAMAGE_TYPE) -2;
+                } while (r2<0);
+
+                int r3;
+                do{
+                    r3 = Rolls.UniversalRoll(DetailsArrays.DAMAGE_TYPE) -2;
+                } while (r2<0);
+
                 creature.setDamageType(DetailsArrays.DAMAGE_TYPE[r2]+", "+DetailsArrays.DAMAGE_TYPE[r3]);
             }
         }
@@ -448,20 +450,15 @@ public class CreatureFunctions {
         }
 
     }
+
     private static void rollAlignment(CreatureClass creature) {
         int r1 = Rolls.UniversalRoll(DetailsArrays.ALIGNMENT);
         creature.setAlignment(DetailsArrays.ALIGNMENT[r1]);
     }
+
     private static void rollDisposition(CreatureClass creature) {
         int r1 = Rolls.UniversalRoll(DetailsArrays.DISPOSITION);
         creature.setDisposition(DetailsArrays.DISPOSITION[r1]);
-        switch (creature.getDisposition()){
-            case "roll 1d10 twice" ->{
-                String disp1 = DetailsArrays.DISPOSITION[Rolls.Roll1d10()];
-                String disp2 = DetailsArrays.DISPOSITION[Rolls.Roll1d10()];
-                creature.setDisposition(disp1 + " and " + disp2);
-            }
-        }
     }
 
 

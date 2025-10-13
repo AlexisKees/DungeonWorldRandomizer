@@ -53,8 +53,8 @@ public class DungeonRevision {
                                 case 1 -> DungeonFunctions.exportDungeon(selectedDungeon);
                                 case 2 -> {
                                     dungeon = selectedDungeon;
-                                    System.out.println("You can now go back to the DUNGEON GENERATOR");
-                                    System.out.println("and keep editing your dungeon");
+                                    System.out.println("\nDUNGEON SUCCESFULLY LOADED\n");
+                                    return dungeon;
                                 }
                                 case 3 -> {
                                     System.out.println("Going back to the DUNGEON GENERATOR");

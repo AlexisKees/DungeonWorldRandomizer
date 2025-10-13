@@ -33,12 +33,14 @@ public class CreatureGenerator {
                     case 1 -> {
                         creature = new CreatureClass();
                         CreatureFunctions.rollAttributes(creature);
+                        creature.printMonster();
                         creatureList.add(creature);
                     }
                     case 2 -> {
                         if (creature == null) {
                             creature = new CreatureClass();
                             CreatureFunctions.rollAttributes(creature);
+                            creature.printMonster();
                             creatureList.add(creature);
                         } else {
                             CreatureFunctions.reRollSubcategory(creature);
@@ -49,6 +51,7 @@ public class CreatureGenerator {
                         if (creature == null) {
                             creature = new CreatureClass();
                             CreatureFunctions.rollAttributes(creature);
+                            creature.printMonster();
                             creatureList.add(creature);
                         } else {
                             CreatureFunctions.reRollPrompt(creature);
@@ -59,9 +62,11 @@ public class CreatureGenerator {
                         if (creature == null) {
                             creature = new CreatureClass();
                             CreatureFunctions.rollAttributes(creature);
+                            creature.printMonster();
                             creatureList.add(creature);
                         } else {
                             CreatureFunctions.rollStats(creature);
+                            creature.printMonster();
                             creatureList.add(creature);
                         }
                     }
@@ -69,6 +74,7 @@ public class CreatureGenerator {
                         if (creature == null) {
                             creature = new CreatureClass();
                             CreatureFunctions.rollAttributes(creature);
+                            creature.printMonster();
                             creatureList.add(creature);
                         }
                         CreatureFunctions.exportCreature(creature);

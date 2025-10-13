@@ -117,18 +117,18 @@ public class DangerArrays {
             "taint/blight/curse",                          // 2
             "taint/blight/curse",                          // 3
             "taint/blight/curse",                          // 4
-            "magical: natural + MAGIC TYPE [p55]",         // 5 (6–9)
-            "magical: natural + MAGIC TYPE [p55]",         // 6
-            "magical: natural + MAGIC TYPE [p55]",         // 7
-            "magical: natural + MAGIC TYPE [p55]",         // 8
-            "planar: natural + ELEMENT [p55]",             // 9 (10–11)
-            "planar: natural + ELEMENT [p55]",             // 10
+            "magical: natural + MAGIC TYPE",         // 5 (6–9)
+            "magical: natural + MAGIC TYPE",         // 6
+            "magical: natural + MAGIC TYPE",         // 7
+            "magical: natural + MAGIC TYPE",         // 8
+            "planar: natural + ELEMENT",             // 9 (10–11)
+            "planar: natural + ELEMENT",             // 10
             "divine: natural + deity"                      // 11 (12)
     };
 
     /* ---- HAZARD → NATURAL ---- */
     public static final String[] NATURAL_PROMPTS = {
-            "oddity-based [p55]",                                            // 0 (1)
+            "oddity-based",                                            // 0 (1)
             "tectonic/volcanic",                                             // 1 (2)
             "unseen pitfall (chasm, crevasse, abyss, rift)",                 // 2 (3–4)
             "unseen pitfall (chasm, crevasse, abyss, rift)",                 // 3

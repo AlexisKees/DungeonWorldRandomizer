@@ -36,11 +36,12 @@ public class QuestClass {
     @Override
     public String toString(){
         return String.format("""
+                \nQUEST
                 Task: %s
                 Relevance: %s
                 Reward: %s
                 Tasked by: %s
-                To be carried out at: %s, in the %s
+                To be carried out at: %s, in the %s\n
                 """, this.task,this.relevance,this.reward,this.questGiver.getBrief(),this.dungeon.getName(), this.biome.getBiome());
     }
 

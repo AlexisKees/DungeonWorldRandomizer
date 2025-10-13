@@ -25,16 +25,12 @@ public class DungeonClass {
 
     public void addDiscovery(DiscoveryClass discovery){
         int i;
-        boolean added=false;
         for (i=0;i<this.discoveries.length;i++){
             if (this.discoveries[i]==null){
                 this.discoveries[i]=discovery;
-                added=true;
                 break;
             }
         }
-        if (added) System.out.println("Discovery added successfully!");
-        else System.out.println("Seems like the discoveries list is already full!");
     }
 
     public void initializeDangersList(int i){
@@ -43,16 +39,12 @@ public class DungeonClass {
 
     public void addTheme(String theme){
         int i;
-        boolean added=false;
         for (i=0;i<this.themes.length;i++){
             if (this.themes[i]==null){
                 this.themes[i]=theme;
-                added=true;
                 break;
             }
         }
-        if (added) System.out.println("Danger added successfully!");
-        else System.out.println("Seems like the dangers list is already full!");
     }
 
     public void initializeThemes(int i){
@@ -61,34 +53,26 @@ public class DungeonClass {
 
     public void addArea(DungeonAreaClass area){
         int i;
-        boolean added=false;
         for (i=0;i<this.areas.length;i++){
             if (this.areas[i]==null){
                 this.areas[i]=area;
-                added=true;
                 break;
             }
         }
-        if (added) System.out.println("Area added successfully!");
-        else System.out.println("Seems like the areas list is already full!");
     }
 
     public void initializeAreas(int i){
         this.areas = new DungeonAreaClass[i];
     }
 
-    public String addDanger(DangerClass danger){
+    public void addDanger(DangerClass danger){
         int i;
-        boolean added=false;
         for (i=0;i<this.dangers.length;i++){
             if (this.dangers[i]==null){
                 this.dangers[i]=danger;
-                added=true;
                 break;
             }
         }
-        if (added) return "Danger added successfully!";
-        else return "Seems like the dangers list is already full!";
     }
 
 

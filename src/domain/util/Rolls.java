@@ -19,6 +19,13 @@ public class Rolls {
         int resultado = azar.nextInt(6);
         return resultado;
     }
+
+    public static int Roll1d8() {
+        Random azar = new Random();
+        int resultado = azar.nextInt(8);
+        return resultado;
+    }
+
     public static int Roll1d12() {
         Random azar = new Random();
         int resultado = azar.nextInt(12);

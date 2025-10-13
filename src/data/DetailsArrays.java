@@ -206,18 +206,18 @@ public class DetailsArrays {
     };
 
     public static final String[] DISPOSITION = {
-            "attacking",        // 0
+            "attacking",            // 0
             "hostile/aggressive", // 1
             "hostile/aggressive", // 2
-            "cautious/doubtful",  // 3
-            "fearful/fleeing",    // 4
-            "neutral",            // 5
-            "neutral",            // 6
-            "curious/hopeful",    // 7
-            "friendly",           // 8
-            "roll 1d10 twice",    // 9
-            "roll 1d10 twice",    // 10
-            "roll 1d10 twice"     // 11
+            "hostile/aggressive", // 3
+            "cautious/doubtful",  // 4
+            "cautious/doubtful",  // 5
+            "fearful/fleeing",    // 6
+            "neutral",            // 7
+            "neutral",            // 8
+            "neutral",            // 9
+            "curious/hopeful",    // 10
+            "friendly"            // 11
     };
 
     public static final String[] ELEMENT = {

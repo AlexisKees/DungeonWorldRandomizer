@@ -1,6 +1,7 @@
 package domain;
 
 public class SteadingClass {
+    private String name = "";
     private String size = "";
     private String tags = "";
     private String[] featuresTable;
@@ -10,6 +11,27 @@ public class SteadingClass {
     private String raceOfBuilders = "";
     private String alignment = "";
     private String dangerLevel = "";
+
+    public String getName(){
+        return name;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
+
+    @Override
+    public String toString(){
+        return String.format("""
+                %s, %s %s
+                
+                Alignment: %s
+                Danger level: %s
+                Tags: %s
+                Feature: %s
+                Problem: %s
+                """, this.name.toUpperCase(), this.raceOfBuilders.toUpperCase(), this.size.toUpperCase(), this.alignment, this.dangerLevel, this.getTags(), this.feature, this.problem);
+    }
 
     public String getSize() {
         return size;

@@ -147,10 +147,10 @@ public class DiscoveryArrays {
 
     /* ---- NATURAL FEATURE → LAIR ---- */
     public static final String[] LAIR_PROMPTS = {
-            "RUIN [p49]",         // 0 (1)
-            "RUIN [p49]",         // 1 (2)
-            "RUIN [p49]",         // 2 (3)
-            "RUIN [p49]",         // 3 (4)
+            "Lair RUIN",         // 0 (1)
+            "Lair RUIN",         // 1 (2)
+            "Lair RUIN",         // 2 (3)
+            "Lair RUIN",         // 3 (4)
             "cave/tunnel",        // 4 (5)
             "cave/tunnel",        // 5 (6)
             "cave/tunnel",        // 6 (7)
@@ -171,8 +171,8 @@ public class DiscoveryArrays {
             "canyon/valley/vale/dale", // 5 (6)
             "multilevel/tiered",       // 6 (7)
             "multilevel/tiered",       // 7 (8)
-            "pocket of TERRAIN [p55]", // 8 (9)
-            "pocket of TERRAIN [p55]", // 9 (10)
+            "pocket of TERRAIN", // 8 (9)
+            "pocket of TERRAIN", // 9 (10)
             "slope up/down",           // 10 (11)
             "slope up/down"            // 11 (12)
     };
@@ -195,7 +195,7 @@ public class DiscoveryArrays {
 
     /* ---- NATURAL FEATURE → LANDMARK ---- */
     public static final String[] LANDMARK_PROMPTS = {
-            "ODDITY [p55]",        // 0 (1)
+            "Landmark ODDITY",        // 0 (1)
             "striking landscape",  // 1 (2)
             "striking landscape",  // 2 (3)
             "earth-based",         // 3 (4)
@@ -216,13 +216,13 @@ public class DiscoveryArrays {
             "notable plant/flower", // 2 (3)
             "notable tree/brush",   // 3 (4)
             "notable tree/brush",   // 4 (5)
-            "notable BEAST [p53]",  // 5 (6)
-            "notable BEAST [p53]",  // 6 (7)
-            "notable BEAST [p53]",  // 7 (8)
+            "notable BEAST",  // 5 (6)
+            "notable BEAST",  // 6 (7)
+            "notable BEAST",  // 7 (8)
             "useful plant/herb/root", // 8 (9)
             "useful plant/herb/root", // 9 (10)
-            "useful BEAST [p53]",     // 10 (11)
-            "useful BEAST [p53]"      // 11 (12)
+            "useful BEAST",     // 10 (11)
+            "useful BEAST"      // 11 (12)
     };
 
     /* ---- NATURAL FEATURE → RESOURCE ---- */
@@ -259,10 +259,10 @@ public class DiscoveryArrays {
 
     /* ---- EVIDENCE → REMAINS/DEBRIS ---- */
     public static final String[] REMAINS_DEBRIS_PROMPTS = {
-            "bones of CREATURE [p53]", // 0 (1)
-            "bones of CREATURE [p53]", // 1 (2)
-            "bones of CREATURE [p53]", // 2 (3)
-            "bones of CREATURE [p53]", // 3 (4)
+            "bones of CREATURE", // 0 (1)
+            "bones of CREATURE", // 1 (2)
+            "bones of CREATURE", // 2 (3)
+            "bones of CREATURE", // 3 (4)
             "CREATURE carcass",        // 4 (5)
             "CREATURE carcass",        // 5 (6)
             "CREATURE carcass",        // 6 (7)
@@ -286,13 +286,13 @@ public class DiscoveryArrays {
             "map/note",             // 8 (9)
             "map/note",             // 9 (10)
             "food/supplies",        // 10 (11)
-            "treasure [p47]"        // 11 (12)
+            "treasure"        // 11 (12)
     };
 
     /* ---- STRUCTURE → ENIGMATIC ---- */
     public static final String[] ENIGMATIC_PROMPTS = {
-            "ODDITY [p55]",        // 0 (1)
-            "ODDITY [p55]",        // 1 (2)
+            "Enigmatic ODDITY",        // 0 (1)
+            "Enigmatic ODDITY",        // 1 (2)
             "mound/earthworks",    // 2 (3)
             "mound/earthworks",    // 3 (4)
             "mound/earthworks",    // 4 (5)
@@ -355,34 +355,56 @@ public class DiscoveryArrays {
 
     /* ---- STRUCTURE → RUIN ---- */
     public static final String[] RUIN_PROMPTS = {
-            "dungeon [p58]",         // 0 (1)
-            "dungeon [p58]",         // 1 (2)
-            "dungeon [p58]",         // 2 (3)
-            "steading [p50]",        // 3 (4)
-            "steading [p50]",        // 4 (5)
-            "steading [p50]",        // 5 (6)
-            "religious (1d8+4)",     // 6 (7)
-            "religious (1d8+4)",     // 7 (8)
-            "dwelling (1d8+4)",      // 8 (9)
-            "dwelling (1d8+4)",      // 9 (10)
-            "infrastructure (1d8+4)",// 10 (11)
-            "infrastructure (1d8+4)" // 11 (12)
+            "DUNGEON",         // 0 (1)
+            "DUNGEON",         // 1 (2)
+            "DUNGEON",         // 2 (3)
+            "STEADING",        // 3 (4)
+            "STEADING",        // 4 (5)
+            "STEADING",        // 5 (6)
+            "religious",     // 6 (7)
+            "religious",     // 7 (8)
+            "dwelling",      // 8 (9)
+            "dwelling",      // 9 (10)
+            "infrastructure",// 10 (11)
+            "infrastructure" // 11 (12)
     };
 
     /* ---- STRUCTURE → STEADING ---- */
     public static final String[] STEADING_PROMPTS = {
-            "village [p50]", // 0 (1)
-            "village [p50]", // 1 (2)
-            "village [p50]", // 2 (3)
-            "village [p50]", // 3 (4)
-            "village [p50]", // 4 (5)
-            "town [p50]",    // 5 (6)
-            "town [p50]",    // 6 (7)
-            "town [p50]",    // 7 (8)
-            "keep [p51]",    // 8 (9)
-            "keep [p51]",    // 9 (10)
-            "keep [p51]",    // 10 (11)
-            "city [p51]"     // 11 (12)
+            "village", // 0 (1)
+            "village", // 1 (2)
+            "village", // 2 (3)
+            "village", // 3 (4)
+            "village", // 4 (5)
+            "town",    // 5 (6)
+            "town",    // 6 (7)
+            "town",    // 7 (8)
+            "keep",    // 8 (9)
+            "keep",    // 9 (10)
+            "keep",    // 10 (11)
+            "city"     // 11 (12)
     };
+
+    public static final String[] TREASURE_TABLE = {
+            "A few coins, 2d8 or so",
+            "A useful item",
+            "Several coins, about 4d10",
+            "A small valuable (gem, art), worth 2d10x10 coins, 0 weight",
+            "Some minor magical trinket",
+            "Useful clue (map, note, etc.)",
+            "Bag of coins, 1d4x100, 1 weight per 100",
+            "A small item (gem, art) of great value (2d6x100 coins, 0 weight)",
+            "A chest of coins and other small valuables (worth 3d6x100 coins, 1 weight per 100)",
+            "A magical item or magical effect",
+            "Many bags of coins, 2d4x100 or so",
+            "A sign of office (crown, banner) worth 3d4x100 coins (1 weight)",
+            "A large art item worth 4d4x100 coins (1 weight)",
+            "Unique item worth at least 5d4x100 coins",
+            "Everything needed to learn a new spell, and roll again",
+            "A portal or secret path (or directions to one), and roll again",
+            "Something relating to one of the characters, and roll again",
+            "A hoard: 1d10x1000 coins (1 weight per 100), and 1d10x10 gems worth 2d6x100 each"
+    };
+
 
 }
