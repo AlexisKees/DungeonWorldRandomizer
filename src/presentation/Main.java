@@ -34,14 +34,15 @@ public class Main {
             do {
                                 System.out.print("""
                         Chose what you'd like to generate:
-                        1) Generate random Quest
-                        2) Generate random NPC
-                        3) Generate random Steading
-                        4) Generate random Discovery
-                        5) Generate random Danger
-                        6) Generate random Dungeon
-                        7) Generate random Creature
-                        8) Exit
+                        1) Generate Quest
+                        2) Generate NPC
+                        3) Generate Steading
+                        4) Generate Dungeon
+                        5) Generate Biome
+                        6) Generate Discovery
+                        7) Generate Danger
+                        8) Generate Creature
+                        9) Exit
                         
                         \tOption:\s""");
 
@@ -51,15 +52,16 @@ public class Main {
                      case 1 -> new QuestGenerator().run(dataInput, questList,npcList,dungeonList,biomeList);
                      case 2 -> new NPCGenerator().run(dataInput,npcList);
                      case 3 -> new SteadingGenerator().run(dataInput,steadingList);
-                     case 4 -> new DiscoveryGenerator().run(dataInput, discoveryList);
-                     case 5 -> new DangerGenerator().run(dataInput, dangerList);
-                     case 6 -> new DungeonGenerator().run(dataInput, dungeonList);
-                     case 7 -> new CreatureGenerator().run(dataInput, creatureList);
-                     case 8 -> System.out.println("Come back soon!");
+                     case 4 -> new DungeonGenerator().run(dataInput, dungeonList);
+                     case 5 -> new BiomeGenerator();
+                     case 6 -> new DiscoveryGenerator().run(dataInput, discoveryList);
+                     case 7 -> new DangerGenerator().run(dataInput, dangerList);
+                     case 8 -> new CreatureGenerator().run(dataInput, creatureList);
+                     case 9 -> System.out.println("Come back soon!");
                      default -> System.out.println("Please, chose a valid option");
                  }
 
-            } while (option != 3);
+            } while (option != 9);
         } catch (Exception e){
             System.out.println("Please, chose a valid option");
         }
