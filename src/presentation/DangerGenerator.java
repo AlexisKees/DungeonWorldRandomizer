@@ -15,7 +15,7 @@ public class DangerGenerator {
 
         int option = 0;
         DangerClass danger = null;
-        System.out.println("WELCOME TO THE DISCOVERY GENERATOR");
+        System.out.println("WELCOME TO THE DANGER GENERATOR");
 
         try{
             do {
@@ -52,6 +52,11 @@ public class DangerGenerator {
                             System.out.println(danger);
                         }
                         DangerFunctions.exportDanger(danger);
+                        System.out.println("""
+                                ***********************
+                                *  Check your files!  *
+                                ***********************
+                                """);
                     }
                     case 4 -> System.out.println("Going back to main menu");
 

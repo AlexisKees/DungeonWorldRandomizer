@@ -51,6 +51,11 @@ public class SteadingGenerator {
                             System.out.println(steading);
                         }
                         SteadingFunctions.exportSteading(steading);
+                        System.out.println("""
+                                ***********************
+                                *  Check your files!  *
+                                ***********************
+                                """);
                     }
                     case 4 -> System.out.println("Going back to main menu");
 

@@ -24,7 +24,7 @@ public class DungeonRevision {
         try{
             do {
                 System.out.print("""
-                        1) Detailed view
+                        \n1) Detailed view
                         2) Go back to DUNGEON GENERATOR
                         \tOption:\s""");
 
@@ -43,7 +43,7 @@ public class DungeonRevision {
                         int secondOption;
                         do {
                             System.out.print("""
-                                1) Export dungeon
+                                \n1) Export dungeon
                                 2) Select this dungeon to keep editing
                                 3) Go back to DUNGEON GENERATOR
                                 \tOption:\s""");
@@ -57,7 +57,7 @@ public class DungeonRevision {
                                     return dungeon;
                                 }
                                 case 3 -> {
-                                    System.out.println("Going back to the DUNGEON GENERATOR");
+                                    System.out.println("\nGoing back to the DUNGEON GENERATOR\n");
                                     return dungeon;
                                 }
                             }
@@ -69,7 +69,7 @@ public class DungeonRevision {
             } while (option!=2);
 
         } catch (Exception e){
-            System.out.println("An error has occurred: "+e.getMessage());
+            System.out.println("\nAn error has occurred: "+e.getMessage()+"\n");
         }
 
         return dungeon;

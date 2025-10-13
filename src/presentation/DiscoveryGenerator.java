@@ -27,6 +27,7 @@ public class DiscoveryGenerator {
                     case 1 ->{
                         discovery = new DiscoveryClass();
                         DiscoveryFunctions.rollDiscovery(discovery);
+                        discoveryList.add(discovery);
                         System.out.println(discovery);
                     }
                     case 2 -> {
@@ -43,9 +44,15 @@ public class DiscoveryGenerator {
                         if (discovery==null){
                             discovery = new DiscoveryClass();
                             DiscoveryFunctions.rollDiscovery(discovery);
+                            discoveryList.add(discovery);
                             System.out.println(discovery);
                         }
                         DiscoveryFunctions.exportDiscovery(discovery);
+                        System.out.println("""
+                                ***********************
+                                *  Check your files!  *
+                                ***********************
+                                """);
                     }
                     case 4 -> System.out.println("Going back to main menu");
 

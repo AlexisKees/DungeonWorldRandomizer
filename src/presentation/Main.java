@@ -12,10 +12,10 @@ public class Main {
         List<QuestClass> questList = new ArrayList<>();
         List<NPCClass> npcList = new ArrayList<>();
         List<SteadingClass> steadingList = new ArrayList<>();
-        List<DiscoveryClass> discoveryList = new ArrayList<>();
-        List<DangerClass> dangerList = new ArrayList<>();
         List<DungeonClass> dungeonList = new ArrayList<>();
         List<BiomeClass> biomeList = new ArrayList<>();
+        List<DiscoveryClass> discoveryList = new ArrayList<>();
+        List<DangerClass> dangerList = new ArrayList<>();
         List<CreatureClass> creatureList = new ArrayList<>();
 
         System.out.println("""
@@ -53,7 +53,7 @@ public class Main {
                      case 2 -> new NPCGenerator().run(dataInput,npcList);
                      case 3 -> new SteadingGenerator().run(dataInput,steadingList);
                      case 4 -> new DungeonGenerator().run(dataInput, dungeonList);
-                     case 5 -> new BiomeGenerator();
+                     case 5 -> new BiomeGenerator().run(dataInput,biomeList);
                      case 6 -> new DiscoveryGenerator().run(dataInput, discoveryList);
                      case 7 -> new DangerGenerator().run(dataInput, dangerList);
                      case 8 -> new CreatureGenerator().run(dataInput, creatureList);

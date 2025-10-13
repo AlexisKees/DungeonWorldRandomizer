@@ -5,6 +5,11 @@ import data.DetailsArrays;
 import domain.BiomeClass;
 import domain.util.Rolls;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 public class BiomeFunctions {
 
     public static void rollBiome(BiomeClass biome){
@@ -26,4 +31,20 @@ public class BiomeFunctions {
         biome.setDistance(BiomeArrays.DISTANCE[Rolls.UniversalRoll(BiomeArrays.DISTANCE)]);
     }
 
+    public static void exportBiome(BiomeClass biome) throws IOException {
+        String prefix = "Biome_";
+        int biomeNumber = 1;
+        String fileName = String.format(prefix+"%04d.txt",biomeNumber);
+        File file = new File(fileName);
+
+        while (file.exists()){
+            biomeNumber++;
+            fileName = String.format(prefix+"%04d.txt",biomeNumber);
+            file = new File(fileName);
+        }
+
+        PrintWriter salida = new PrintWriter(new FileWriter(file, true));
+        salida.println(biome);
+        salida.close();
+    }
 }
