@@ -1,6 +1,6 @@
 package domain;
 
-public class DungeonClass {
+public class DungeonClass implements PerilousWildsInterface{
     private String nameTemplate;
     private String name;
     private String size;
@@ -18,6 +18,17 @@ public class DungeonClass {
     private DiscoveryClass[] discoveries;
     private DangerClass[] dangers;
     private DungeonAreaClass[] areas;
+    private String oneLiner;
+
+    @Override
+    public String getOneLiner(){
+        return oneLiner;
+    }
+    @Override
+    public void setOneLiner(String oneLiner) {
+        this.oneLiner = oneLiner;
+    }
+
 
     public void initializeDiscoveriesList(int i){
         this.discoveries = new DiscoveryClass[i];

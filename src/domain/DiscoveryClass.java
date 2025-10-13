@@ -4,7 +4,7 @@ import data.DiscoveryArrays;
 
 import java.util.Objects;
 
-public class DiscoveryClass {
+public class DiscoveryClass implements PerilousWildsInterface{
 
     private String category;
     private String[] subcategoriesTable;
@@ -12,6 +12,16 @@ public class DiscoveryClass {
     private String[] promptTable;
     private String prompt;
     private String finalResult;
+    private String oneLiner;
+
+    public String getOneLiner(){
+        return oneLiner;
+    }
+    @Override
+    public void setOneLiner(String oneLiner) {
+        this.oneLiner = oneLiner;
+    }
+
 
     public String[] getPromptTable() {
         return promptTable;

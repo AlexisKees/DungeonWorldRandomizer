@@ -2,7 +2,7 @@ package domain;
 
 import java.util.List;
 
-public class DungeonAreaClass {
+public class DungeonAreaClass implements PerilousWildsInterface{
     private String rarity;
     private String areaType;
     private String areaDressing;
@@ -10,6 +10,15 @@ public class DungeonAreaClass {
     private DiscoveryClass[] discoveries;
     private int dangersAmount;
     private DangerClass[] dangers;
+    private String oneLiner;
+
+    public String getOneLiner(){
+        return oneLiner;
+    }
+    @Override
+    public void setOneLiner(String oneLiner) {
+        this.oneLiner = oneLiner;
+    }
 
     public String getAreaDressing() {
         return areaDressing;

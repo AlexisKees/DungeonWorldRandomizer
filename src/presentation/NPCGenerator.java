@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 import domain.NPCClass;
+import domain.PerilousWildsInterface;
 import service.NPCFunctions;
 
 

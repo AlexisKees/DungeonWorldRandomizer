@@ -1,6 +1,6 @@
 package domain;
 
-public class BiomeClass {
+public class BiomeClass implements PerilousWildsInterface{
     private String biome;
     private String weather;
     private String weatherIntensity;
@@ -9,7 +9,16 @@ public class BiomeClass {
     private String roads;
     private String alignment;
     private String distance;
+    private String oneLiner;
 
+    public String getOneLiner(){
+        return oneLiner;
+    }
+
+    @Override
+    public void setOneLiner(String oneLiner) {
+        this.oneLiner = oneLiner;
+    }
 
     @Override
     public String toString(){

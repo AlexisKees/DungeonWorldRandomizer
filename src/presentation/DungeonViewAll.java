@@ -6,7 +6,7 @@ import service.DungeonFunctions;
 import java.util.List;
 import java.util.Scanner;
 
-public class DungeonRevision {
+public class DungeonViewAll {
 
     public DungeonClass run(Scanner dataInput, List<DungeonClass> dungeonList, DungeonClass dungeon){
         int option = 0;

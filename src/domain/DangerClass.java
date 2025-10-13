@@ -2,13 +2,22 @@ package domain;
 
 import java.util.Objects;
 
-public class DangerClass {
+public class DangerClass implements PerilousWildsInterface{
     private String category;
     private String[] subcategoriesTable;
     private String subcategory;
     private String[] promptTable;
     private String prompt;
     private String finalResult;
+    private String oneLiner;
+
+    public String getOneLiner(){
+        return oneLiner;
+    }
+    @Override
+    public void setOneLiner(String oneLiner) {
+        this.oneLiner = oneLiner;
+    }
 
     @Override
     public String toString(){

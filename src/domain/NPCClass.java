@@ -1,14 +1,7 @@
 package domain;
-import data.CreatureArrays;
 
-import data.DetailsArrays;
-import data.NPCArrays;
-import data.NPCNamesArrays;
-import domain.util.Rolls;
 
-import java.util.Objects;
-
-public class NPCClass {
+public class NPCClass implements PerilousWildsInterface{
     private String[] raceTable;
     private String race;
     private String gender;
@@ -22,6 +15,16 @@ public class NPCClass {
     private String appearence;
     private String personality;
     private String quirk;
+    private String oneLiner;
+
+    public String getOneLiner(){
+        return oneLiner;
+    }
+
+    @Override
+    public void setOneLiner(String oneLiner) {
+        this.oneLiner = oneLiner;
+    }
 
     public String getBrief() {
         return this.brief;

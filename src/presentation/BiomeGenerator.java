@@ -1,6 +1,7 @@
 package presentation;
 
 import domain.BiomeClass;
+import domain.PerilousWildsInterface;
 import service.BiomeFunctions;
 import service.DiscoveryFunctions;
 

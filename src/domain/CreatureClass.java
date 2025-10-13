@@ -2,7 +2,7 @@ package domain;
 
 import java.util.Objects;
 
-public class CreatureClass {
+public class CreatureClass implements PerilousWildsInterface{
 
 //    private Boolean wasRolled = false;
     private String category;
@@ -24,8 +24,21 @@ public class CreatureClass {
     private String disposition;
     private String armorType;
     private String printableStats;
+    private String oneLiner;
+
+    public String getOneLiner(){
+        return oneLiner;
+    }
+    @Override
+    public void setOneLiner(String oneLiner) {
+        this.oneLiner = oneLiner;
+    }
 
 
+    @Override
+    public String toString(){
+        return printableBlock;
+    }
 
     public void printMonster(){
         System.out.println(Objects.requireNonNullElse(this.printableBlock, "Please roll a creature first.\n"));

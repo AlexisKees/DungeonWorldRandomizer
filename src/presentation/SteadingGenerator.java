@@ -1,5 +1,6 @@
 package presentation;
 
+import domain.PerilousWildsInterface;
 import domain.SteadingClass;
 import service.SteadingFunctions;
 
@@ -37,8 +38,8 @@ public class SteadingGenerator {
                         int counter = 1;
                         System.out.println("""
                                 *** LIST OF STEADINGS ***""");
-                        for (SteadingClass s : steadingList){
-                            System.out.printf("%d) %s\n", counter, s.getName());
+                        for (PerilousWildsInterface s : steadingList){
+                            System.out.printf("%d) %s\n", counter, s.getOneLiner());
                             counter++;
                         }
                         System.out.println("\n");

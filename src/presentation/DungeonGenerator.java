@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 import domain.DungeonClass;
+import domain.PerilousWildsInterface;
 import service.DungeonFunctions;
 
 
@@ -36,7 +37,7 @@ public class DungeonGenerator {
                         System.out.println(dungeon);
                     }
                     case 2 -> new DungeonAreaGenerator().run(dataInput, dungeon);
-                    case 3 -> dungeon = new DungeonRevision().run(dataInput,dungeonList,dungeon);
+                    case 3 -> dungeon = new ViewAll().run(dataInput,dungeonList,dungeon,DungeonClass.class);
                     case 4 -> {
                         if (dungeon==null){
                             System.out.println("\nGenerating dungeon...\n");

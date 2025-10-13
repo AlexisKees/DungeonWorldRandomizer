@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 import domain.DangerClass;
 import domain.DangerClass;
+import domain.PerilousWildsInterface;
 import service.DangerFunctions;
 import service.DiscoveryFunctions;
 

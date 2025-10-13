@@ -1,8 +1,7 @@
 package service;
 
 import data.QuestArrays;
-import domain.CreatureClass;
-import domain.QuestClass;
+import domain.*;
 import domain.util.Rolls;
 
 import java.io.*;
@@ -13,6 +12,13 @@ public class QuestFunctions {
         quest.setTask(QuestArrays.TASK[Rolls.UniversalRoll(QuestArrays.TASK)]);
         quest.setRelevance(QuestArrays.RELEVANCE[Rolls.UniversalRoll(QuestArrays.RELEVANCE)]);
         quest.setReward(QuestArrays.REWARD[Rolls.UniversalRoll(QuestArrays.REWARD)]);
+
+        quest.setQuestGiver(new NPCClass());
+        quest.setDungeon(new DungeonClass());
+        quest.setBiome(new BiomeClass());
+        DungeonFunctions.rollDungeon(quest.getDungeon());
+        NPCFunctions.rollFeatures(quest.getQuestGiver());
+        BiomeFunctions.rollBiome(quest.getBiome());
     }
 
     public static void exportQuest(QuestClass quest) throws IOException {

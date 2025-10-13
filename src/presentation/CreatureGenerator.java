@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 import domain.CreatureClass;
+import domain.PerilousWildsInterface;
 import service.CreatureFunctions;
 
 

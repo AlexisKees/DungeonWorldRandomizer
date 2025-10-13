@@ -1,12 +1,22 @@
 package domain;
 
-public class QuestClass {
+public class QuestClass implements PerilousWildsInterface{
     private String task;
     private String relevance;
     private String reward;
     private NPCClass questGiver;
     private DungeonClass dungeon;
     private BiomeClass biome;
+    private String oneLiner;
+
+    public String getOneLiner(){
+        return oneLiner;
+    }
+
+    @Override
+    public void setOneLiner(String oneLiner) {
+        this.oneLiner = oneLiner;
+    }
 
 
     public String getTask() {

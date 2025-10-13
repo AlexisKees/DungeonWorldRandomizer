@@ -1,6 +1,6 @@
 package domain;
 
-public class SteadingClass {
+public class SteadingClass implements PerilousWildsInterface {
     private String name = "";
     private String size = "";
     private String tags = "";
@@ -11,6 +11,16 @@ public class SteadingClass {
     private String raceOfBuilders = "";
     private String alignment = "";
     private String dangerLevel = "";
+    private String oneLiner;
+
+    public String getOneLiner(){
+        return oneLiner;
+    }
+
+    @Override
+    public void setOneLiner(String oneLiner) {
+        this.oneLiner = oneLiner;
+    }
 
     public String getName(){
         return name;

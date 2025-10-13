@@ -2,6 +2,7 @@ package presentation;
 
 import domain.DungeonAreaClass;
 import domain.DungeonClass;
+import domain.PerilousWildsInterface;
 import service.DungeonAreaFunctions;
 
 import java.util.Scanner;

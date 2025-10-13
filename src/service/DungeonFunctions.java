@@ -99,6 +99,8 @@ public class DungeonFunctions {
 
         dungeon.setExits(DungeonArrays.AREA_EXITS_NUMBER[Rolls.UniversalRoll(DungeonArrays.AREA_EXITS_NUMBER)]);
 
+        dungeon.setOneLiner(dungeon.getName());
+
     }
 
     public static void exportDungeon(DungeonClass dungeon) throws IOException {
