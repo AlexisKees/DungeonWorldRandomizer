@@ -13,7 +13,7 @@ public class NPCGenerator {
         var option = 0;
         NPCClass npc = null;
 
-        System.out.println("\nWELCOME TO THE NPC GENERATOR");
+        System.out.println("\nWELCOME TO THE NPC GENERATOR\n");
 
         do {
             try {

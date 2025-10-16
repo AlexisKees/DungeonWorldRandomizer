@@ -50,8 +50,7 @@ public class NPCClass implements IPWClass {
                Age: %s
                Appearance: %s
                Personality: %s
-               Quirk: %s
-                """, this.name, this.race, this.job, this.gender, this.age, this.appearance,this.personality, this.quirk);
+               Quirk: %s""", this.name, this.race, this.job, this.gender, this.age, this.appearance,this.personality, this.quirk);
     }
 
     public String[] getRaceTable() {

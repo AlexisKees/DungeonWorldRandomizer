@@ -13,7 +13,7 @@ public class DungeonGenerator {
         var option = 0;
         DungeonClass dungeon = null;
 
-        System.out.println("\nWELCOME TO THE DUNGEON GENERATOR");
+        System.out.println("WELCOME TO THE DUNGEON GENERATOR\n");
 
         do {
             try {

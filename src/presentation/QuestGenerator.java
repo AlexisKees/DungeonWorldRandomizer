@@ -14,12 +14,12 @@ public class QuestGenerator {
         QuestClass quest = null;
 
 
-        System.out.println("\nWELCOME TO THE QUEST GENERATOR");
+        System.out.println("WELCOME TO THE QUEST GENERATOR\n");
 
         do {
             try {
                 System.out.print("""
-                        Please select an option:
+                        \nPlease select an option:
                         1) Create new random quest
                         2) Quest giver details
                         3) Quest location details
@@ -39,7 +39,7 @@ public class QuestGenerator {
                         npcList.add(quest.getQuestGiver());
                         dungeonList.add(quest.getDungeon());
                         biomeList.add(quest.getBiome());
-                        System.out.println(quest.getBrief());
+                        System.out.print(quest.getBrief());
                     }
                     case 2 -> {
                         if(quest==null){
@@ -50,7 +50,6 @@ public class QuestGenerator {
                             dungeonList.add(quest.getDungeon());
                             biomeList.add(quest.getBiome());
                             System.out.println(quest);
-                            System.out.println("\n");
                         }
                         System.out.println("QUEST GUIVER:\n\n"+quest.getQuestGiver());
                     }

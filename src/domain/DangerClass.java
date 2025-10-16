@@ -21,9 +21,9 @@ public class DangerClass implements IPWClass {
 
     @Override
     public String toString(){
-        String str = "\nDANGER: "+this.category+" -> "+this.subcategory+" -> "+this.prompt+"\n";
+        String str = "DANGER: "+this.category+" -> "+this.subcategory+" -> "+this.prompt+"\n";
         if (!Objects.equals(this.prompt,this.finalResult)){
-            str+=this.finalResult+"\n";
+            str+=this.finalResult;
         }
         return str;
     }

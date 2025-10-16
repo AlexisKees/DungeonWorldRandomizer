@@ -22,9 +22,9 @@ public class DungeonDiscoveryClass implements IPWClass {
 
     @Override
     public String toString(){
-        String str = "\nDUNGEON DISCOVERY: "+this.category+" -> "+this.subcategory+" -> "+this.prompt+"\n";
+        String str = "DUNGEON DISCOVERY: "+this.category+" -> "+this.subcategory+" -> "+this.prompt+"\n";
         if (!Objects.equals(this.prompt,this.finalResult)){
-            str+=this.finalResult+"\n";
+            str+=this.finalResult;
         }
         return str;
     }

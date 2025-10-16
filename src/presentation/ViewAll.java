@@ -39,7 +39,6 @@ public class ViewAll {
         try{
             do {
                 System.out.print("""
-                        \n
                         1) Detailed view
                         2) Go back 
                         \tOption:\s""");
@@ -50,7 +49,7 @@ public class ViewAll {
                 switch (option){
                     case 1 ->{
 
-                        System.out.printf("\n\tPlease insert %s number:\s",label.toLowerCase());
+                        System.out.printf("\tPlease insert %s number:\s",label.toLowerCase());
                         itemNumber=Integer.parseInt(dataInput.nextLine());
                         System.out.println();
                         T selectedItem=list.get(itemNumber-1);
@@ -65,7 +64,6 @@ public class ViewAll {
                         int secondOption;
                         do {
                             System.out.printf("""
-                                \n
                                 1) Export %s
                                 2) Select this %s to keep editing
                                 3) Go back 

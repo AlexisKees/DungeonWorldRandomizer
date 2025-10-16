@@ -1,11 +1,5 @@
 package presentation;
 
-import domain.IPWClass;
-import service.GenericFunctions;
-
-import java.util.List;
-import java.util.Scanner;
-
 public class SubMenu {
     /*
     public <T extends IPWClass> T run(Scanner dataInput, List<T> list, T object, Class<T> type){

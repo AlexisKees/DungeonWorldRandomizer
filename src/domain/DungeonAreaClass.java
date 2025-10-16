@@ -121,7 +121,6 @@ public class DungeonAreaClass implements IPWClass {
                 Dressing: %s
                 Rarity: %s
                 Discoveries: %d
-                Dangers: %d
-                """,this.areaType, this.areaDressing,this.rarity,this.discoveriesAmount,this.dangersAmount);
+                Dangers: %d""",this.areaType, this.areaDressing,this.rarity,this.discoveriesAmount,this.dangersAmount);
     }
 }

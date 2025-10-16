@@ -10,7 +10,7 @@ import service.GenericFunctions;
 public class DiscoveryGenerator {
     public void run(Scanner dataInput, List<DiscoveryClass> discoveryList) throws IOException { int option = 0;
         DiscoveryClass discovery = null;
-        System.out.println("WELCOME TO THE DISCOVERY GENERATOR");
+        System.out.println("WELCOME TO THE DISCOVERY GENERATOR\n");
 
         try{
             do {

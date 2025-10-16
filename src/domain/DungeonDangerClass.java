@@ -21,9 +21,9 @@ public class DungeonDangerClass implements IPWClass {
 
     @Override
     public String toString(){
-        String str = "\nDUNGEON DANGER: "+this.category+" -> "+this.subcategory+" -> "+this.prompt+"\n";
+        String str = "DUNGEON DANGER: "+this.category+" -> "+this.subcategory+" -> "+this.prompt+"\n";
         if (!Objects.equals(this.prompt,this.finalResult)){
-            str+=this.finalResult+"\n";
+            str+=this.finalResult;
         }
         return str;
     }

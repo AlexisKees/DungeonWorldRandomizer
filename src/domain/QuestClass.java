@@ -51,9 +51,9 @@ public class QuestClass implements IPWClass {
                 QUEST:
                 TASK: %s\n
                 RELEVANCE: %s\n
-                REWARD: %s\n                
+                REWARD: %s\n
                 QUEST GIVER:
-                %s\n                
+                %s\n
                 QUEST LOCATION:
                 %s\n
                 %s\n""", this.task, this.relevance, this.reward, this.questGiver, this.biome,this.dungeon);

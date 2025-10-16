@@ -72,9 +72,9 @@ public class DiscoveryClass implements IPWClass {
 
     @Override
     public String toString(){
-      String str= "\nDISCOVERY: "+this.category+" -> "+this.subcategory+" -> "+this.prompt+"\n";
+      String str= "DISCOVERY: "+this.category+" -> "+this.subcategory+" -> "+this.prompt+"\n";
         if (!Objects.equals(this.prompt,this.finalResult)){
-            str+=this.finalResult+"\n";
+            str+=this.finalResult;
         }
         return str;
     };

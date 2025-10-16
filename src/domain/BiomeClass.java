@@ -31,8 +31,7 @@ public class BiomeClass implements IPWClass {
                 Population: %s
                 Roads: %s
                 Alignment: %s
-                Distance: %s
-                """, this.getBiome(), this.getWeather(),this.getWeatherIntensity(), this.getWildlife(), this.getPopulation(),this.getRoads(),this.getAlignment(),this.getDistance() );
+                Distance: %s""", this.getBiome(), this.getWeather(),this.getWeatherIntensity(), this.getWildlife(), this.getPopulation(),this.getRoads(),this.getAlignment(),this.getDistance() );
 
     }
 

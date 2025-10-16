@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class BiomeGenerator {
     public void run(Scanner dataInput, List<BiomeClass> biomeList) throws IOException { int option = 0;
         BiomeClass biome = null;
-        System.out.println("\nWELCOME TO THE BIOME GENERATOR\n");
+        System.out.println("WELCOME TO THE BIOME GENERATOR\n");
 
         try{
             do {
@@ -20,7 +20,7 @@ public class BiomeGenerator {
                         1) Create new random Biome
                         2) View current
                         3) View list of generated biomes
-                        4) Export current
+                        4) Export current biome
                         5) Main menu
                         
                         \tOption:\s""");

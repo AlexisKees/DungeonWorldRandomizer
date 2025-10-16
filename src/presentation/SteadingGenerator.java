@@ -15,7 +15,7 @@ public class SteadingGenerator {
 
         int option = 0;
         SteadingClass steading = null;
-        System.out.println("WELCOME TO THE STEADING GENERATOR");
+        System.out.println("WELCOME TO THE STEADING GENERATOR\n");
 
         try {
             do {

@@ -250,8 +250,7 @@ public class DungeonClass implements IPWClass {
              Accessibility: %s
              Builder: %s
              Function: %s
-             Cause of ruin: %s
-             """,this.name.toUpperCase(), this.size, this.rooms,this.themesAmount, this.getThemes(), this.form,this.exits, this.situation, this.accessibility,this.builder, this.function, this.causeOfRuin);
+             Cause of ruin: %s""",this.name.toUpperCase(), this.size, this.rooms,this.themesAmount, this.getThemes(), this.form,this.exits, this.situation, this.accessibility,this.builder, this.function, this.causeOfRuin);
         if (this.getAreas()[0]!=null){
             str+=String.format("\n\nDUNGEON AREAS:");
             int areaNumber =1 ;

@@ -13,7 +13,7 @@ public class CreatureGenerator {
         var option = 0;
         CreatureClass creature = null;
 
-        System.out.println("\nWELCOME TO THE CREATURE GENERATOR");
+        System.out.println("WELCOME TO THE CREATURE GENERATOR");
 
         do {
             try {

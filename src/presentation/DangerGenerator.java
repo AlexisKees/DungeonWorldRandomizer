@@ -14,18 +14,17 @@ public class DangerGenerator {
 
         int option = 0;
         DangerClass danger = null;
-        System.out.println("WELCOME TO THE DANGER GENERATOR");
+        System.out.println("WELCOME TO THE DANGER GENERATOR\n");
 
         try{
             do {
                 System.out.print("""
                             Please select an option:
                             1) Create new random danger
-                            2) View current danger -> nueva función
-                            3) View list of generated dangers -> ViewAll
-                            4) Export current -> generic Function
+                            2) View current danger
+                            3) View list of generated dangers
+                            4) Export current
                             5) Main menu
-                            quest = new ViewAll().run(dataInput,questList,quest,QuestClass.class);
                             
                             \tOption:\s""");
                 option = Integer.parseInt(dataInput.nextLine());

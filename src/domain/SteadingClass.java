@@ -39,8 +39,7 @@ public class SteadingClass implements IPWClass {
                 Danger level: %s
                 Tags: %s
                 Feature: %s
-                Problem: %s
-                """, this.name.toUpperCase(), this.raceOfBuilders.toUpperCase(), this.size.toUpperCase(), this.alignment, this.dangerLevel, this.getTags(), this.feature, this.problem);
+                Problem: %s""", this.name.toUpperCase(), this.raceOfBuilders.toUpperCase(), this.size.toUpperCase(), this.alignment, this.dangerLevel, this.getTags(), this.feature, this.problem);
     }
 
     public String getSize() {
