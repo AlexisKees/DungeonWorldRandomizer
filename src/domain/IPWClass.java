@@ -1,6 +1,6 @@
 package domain;
 
-public interface PerilousWildsInterface {
+public interface IPWClass {
     String oneLiner ="";
 
 

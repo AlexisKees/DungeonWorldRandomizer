@@ -1,6 +1,6 @@
 package domain;
 
-public class FollowerClass implements PerilousWildsInterface{
+public class FollowerClass implements IPWClass {
     private String oneLiner;
 
     @Override

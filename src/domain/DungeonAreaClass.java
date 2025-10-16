@@ -1,8 +1,6 @@
 package domain;
 
-import java.util.List;
-
-public class DungeonAreaClass implements PerilousWildsInterface{
+public class DungeonAreaClass implements IPWClass {
     private String rarity;
     private String areaType;
     private String areaDressing;

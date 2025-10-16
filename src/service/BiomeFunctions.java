@@ -29,22 +29,7 @@ public class BiomeFunctions {
         biome.setAlignment(DetailsArrays.ALIGNMENT[Rolls.UniversalRoll(DetailsArrays.ALIGNMENT)]);
 //        private String distance;
         biome.setDistance(BiomeArrays.DISTANCE[Rolls.UniversalRoll(BiomeArrays.DISTANCE)]);
+        biome.setOneLiner(String.format("%s %s",biome.getPopulation(),biome.getBiome()));
     }
 
-    public static void exportBiome(BiomeClass biome) throws IOException {
-        String prefix = "Biome_";
-        int biomeNumber = 1;
-        String fileName = String.format(prefix+"%04d.txt",biomeNumber);
-        File file = new File(fileName);
-
-        while (file.exists()){
-            biomeNumber++;
-            fileName = String.format(prefix+"%04d.txt",biomeNumber);
-            file = new File(fileName);
-        }
-
-        PrintWriter salida = new PrintWriter(new FileWriter(file, true));
-        salida.println(biome);
-        salida.close();
-    }
 }

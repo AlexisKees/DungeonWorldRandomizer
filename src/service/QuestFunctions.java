@@ -19,37 +19,18 @@ public class QuestFunctions {
         DungeonFunctions.rollDungeon(quest.getDungeon());
         NPCFunctions.rollFeatures(quest.getQuestGiver());
         BiomeFunctions.rollBiome(quest.getBiome());
+        quest.setOneLiner(String.format("%s's %s quest",quest.getQuestGiver().getName(),quest.getTask()));
+
+        quest.setBrief(String.format("""
+                \nQUEST
+                Task: %s
+                Relevance: %s
+                Reward: %s
+                Tasked by: %s
+                To be carried out at: %s, in some %s
+                """, quest.getTask(),quest.getRelevance(),quest.getReward(),quest.getQuestGiver().getOneLiner(),quest.getDungeon().getName(), quest.getBiome().getOneLiner()));
     }
 
-    public static void exportQuest(QuestClass quest) throws IOException {
-        String prefix = "Quest_";
-        int questNumber = 1;
-        String fileName = String.format(prefix + "%04d.txt", questNumber);
-        File file = new File(fileName);
 
-        while (file.exists()) {
-            questNumber++;
-            fileName = String.format(prefix + "%04d.txt", questNumber);
-            file = new File(fileName);
-        }
-
-        try (PrintWriter salida = new PrintWriter(new FileWriter(file, false))) {
-            salida.printf("""
-                SUMMARY:%n
-                %s%n%n
-                DETAILS:%n
-                QUEST GIVEN BY:%n
-                %s%n
-                TO BE CARRIED OUT AT:%n
-                %s%n%n
-                %s
-                """,
-                    quest.toString(),
-                    quest.getQuestGiver().toString(),
-                    quest.getDungeon().toString(),
-                    quest.getBiome().toString()
-            );
-        }
-    }
 
 }

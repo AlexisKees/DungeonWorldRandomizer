@@ -4,14 +4,7 @@ import data.DangerArrays;
 import data.DetailsArrays;
 import domain.CreatureClass;
 import domain.DangerClass;
-import domain.DiscoveryClass;
 import domain.util.Rolls;
-import jdk.swing.interop.SwingInterOpUtils;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 public class DangerFunctions {
 
@@ -81,22 +74,8 @@ public class DangerFunctions {
             default -> danger.setFinalResult(danger.getPrompt());
         }
 
+        danger.setOneLiner(danger.getFinalResult());
+
     }
 
-    public static void exportDanger(DangerClass danger) throws IOException {
-        String prefix = "Danger_";
-        int dangerNumber = 1;
-        String fileName = String.format(prefix+"%04d.txt",dangerNumber);
-        File file = new File(fileName);
-
-        while (file.exists()){
-            dangerNumber++;
-            fileName = String.format(prefix+"%04d.txt",dangerNumber);
-            file = new File(fileName);
-        }
-
-        PrintWriter salida = new PrintWriter(new FileWriter(file, true));
-        salida.println(danger);
-        salida.close();
-    }
 }

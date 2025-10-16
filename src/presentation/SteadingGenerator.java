@@ -1,69 +1,69 @@
 package presentation;
 
-import domain.PerilousWildsInterface;
+import domain.IPWClass;
 import domain.SteadingClass;
+import service.GenericFunctions;
 import service.SteadingFunctions;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
 public class SteadingGenerator {
 
-    public void run(Scanner dataInput, List<SteadingClass> steadingList){
+    public void run(Scanner dataInput, List<SteadingClass> steadingList) {
 
         int option = 0;
         SteadingClass steading = null;
         System.out.println("WELCOME TO THE STEADING GENERATOR");
 
-        try{
+        try {
             do {
                 System.out.print("""
                         Please select an option:
                         1) Create new random steading
-                        2) See previously generated steadings
-                        3) Print steading
-                        4) Main menu
+                        2) View current
+                        3) View list of generated steadings 
+                        4) Export current 
+                        5) Main menu                        
                         
                         \tOption:\s""");
                 option = Integer.parseInt(dataInput.nextLine());
+                System.out.println();
 
-                switch (option){
-                    case 1 ->{
+                switch (option) {
+                    case 1 -> {
                         steading = new SteadingClass();
                         SteadingFunctions.rollSteading(steading);
-                        System.out.println(steading);
                         steadingList.add(steading);
+                        System.out.println(steading);
                     }
                     case 2 -> {
-                        int counter = 1;
-                        System.out.println("""
-                                *** LIST OF STEADINGS ***""");
-                        for (PerilousWildsInterface s : steadingList){
-                            System.out.printf("%d) %s\n", counter, s.getOneLiner());
-                            counter++;
+                        if (steading == null) {
+                            steading = new SteadingClass();
+                            SteadingFunctions.rollSteading(steading);
+                            System.out.println(steading);
+                            steadingList.add(steading);
                         }
-                        System.out.println("\n");
+                        System.out.println(steading);
                     }
-                    case 3 -> {
-                        if (steading==null){
+                    case 3 -> steading = new ViewAll().run(dataInput, steadingList, steading, SteadingClass.class);
+                    case 4 -> {
+                        if (steading == null) {
                             steading = new SteadingClass();
                             SteadingFunctions.rollSteading(steading);
                             steadingList.add(steading);
                             System.out.println(steading);
                         }
-                        SteadingFunctions.exportSteading(steading);
-                        System.out.println("""
-                                ***********************
-                                *  Check your files!  *
-                                ***********************
-                                """);
+                        GenericFunctions.exportPW(steading);
                     }
-                    case 4 -> System.out.println("Going back to main menu");
+                    case 5 -> System.out.println("Going back to main menu");
 
-                    }
-            }while (option !=4);
-        }catch (Exception e){
-            System.out.println("An error ocurred: "+e.getMessage());
+                }
+
+            } while (option != 5);
+        } catch (Exception e) {
+            System.out.println("An error ocurred: " + e.getMessage());
         }
 
     }

@@ -2,7 +2,6 @@ package presentation;
 
 import domain.DungeonAreaClass;
 import domain.DungeonClass;
-import domain.PerilousWildsInterface;
 import service.DungeonAreaFunctions;
 
 import java.util.Scanner;
@@ -26,6 +25,7 @@ public class DungeonAreaGenerator {
                         """);
 
                 option = Integer.parseInt(dataInput.nextLine());
+                System.out.println();
 
                 switch (option){
                     case 1 -> {

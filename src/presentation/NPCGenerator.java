@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 import domain.NPCClass;
-import domain.PerilousWildsInterface;
+import service.GenericFunctions;
 import service.NPCFunctions;
 
 
@@ -20,11 +20,14 @@ public class NPCGenerator {
                 System.out.print("""
                         Please select an option:
                         1) Create new random NPC
-                        2) View generated NPC list
-                        3) Main Menu
-                        
+                        2) View current
+                        3) View list of generated NPCs
+                        4) Export current
+                        5) Main menu
+                                                
                         Option:\s""");
                 option = Integer.parseInt(dataInput.nextLine());
+                System.out.println();
 
                 switch (option) {
                     case 1 -> {
@@ -34,23 +37,26 @@ public class NPCGenerator {
                             npcList.add(npc);
                     }
                     case 2 -> {
-                        int counter = 1;
-                        System.out.println("""
-                                *** LIST OF NPCs ***""");
-                        for (NPCClass c : npcList){
-                            System.out.printf("%d) %s\n", counter, c.getBrief());
-                            counter++;
+                        if (npc==null) {
+                            npc = new NPCClass();
+                            NPCFunctions.rollFeatures(npc);
+                            NPCFunctions.printNPC(npc);
+                            npcList.add(npc);
                         }
-                        System.out.println("\n");
+                        System.out.println(npc);
                     }
-                    case 3 -> System.out.println("\nReturning to main menu...\n");
+                    case 3 -> npc = new ViewAll().run(dataInput,npcList,npc,NPCClass.class);
+                    case 4 -> GenericFunctions.exportPW(npc);
+                    case 5 -> {
+                        System.out.println("\nReturning to main menu...\n");
+                    }
                     default -> System.out.print("\nInvalid number!\n\n");
                 }
             } catch (Exception e) {
                 System.out.println("\nPlease choose a valid option.\n");
             }
         }
-        while (option != 3);
+        while (option != 5);
 
 
     }

@@ -5,8 +5,13 @@ import data.DetailsArrays;
 import data.NPCArrays;
 import data.NPCNamesArrays;
 import domain.NPCClass;
+import domain.QuestClass;
 import domain.util.Rolls;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Objects;
 
 public class NPCFunctions {
@@ -64,12 +69,12 @@ public class NPCFunctions {
 
         npc.setJob(npc.getJobList()[Rolls.UniversalRoll(npc.getJobList())]);
 
-        npc.setAppearence(NPCArrays.APPEARANCE[Rolls.UniversalRoll(NPCArrays.APPEARANCE)]);
+        npc.setAppearance(NPCArrays.APPEARANCE[Rolls.UniversalRoll(NPCArrays.APPEARANCE)]);
         npc.setPersonality(NPCArrays.PERSONALITY[Rolls.UniversalRoll(NPCArrays.PERSONALITY)]);
         npc.setQuirk(NPCArrays.QUIRK[Rolls.UniversalRoll(NPCArrays.QUIRK)]);
 
-        if (Objects.equals(npc.getAppearence(), "roll twice, reroll any 12 result")){
-            npc.setAppearence(NPCArrays.APPEARANCE[(int)Math.random()*(NPCArrays.APPEARANCE.length-1)]+" and "+NPCArrays.APPEARANCE[(int)Math.random()*(NPCArrays.APPEARANCE.length-1)]);
+        if (Objects.equals(npc.getAppearance(), "roll twice, reroll any 12 result")){
+            npc.setAppearance(NPCArrays.APPEARANCE[(int)Math.random()*(NPCArrays.APPEARANCE.length-1)]+" and "+NPCArrays.APPEARANCE[(int)Math.random()*(NPCArrays.APPEARANCE.length-1)]);
         }
 
         if (Objects.equals(npc.getPersonality(), "roll twice, reroll any 12 result")){
@@ -80,11 +85,12 @@ public class NPCFunctions {
             npc.setQuirk(NPCArrays.QUIRK[(int)Math.random()*(NPCArrays.QUIRK.length-1)]+" and "+NPCArrays.QUIRK[(int)Math.random()*(NPCArrays.QUIRK.length-1)]);
         }
 
-        npc.setBrief(String.format("%s, the %s %s", npc.getName(), npc.getRace(), npc.getJob()));
+        npc.setOneLiner(String.format("%s, the %s %s", npc.getName(), npc.getRace(), npc.getJob()));
     }
 
     public static void printNPC(NPCClass npc){
         System.out.println(npc);
     }
+
 
 }

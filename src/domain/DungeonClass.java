@@ -1,6 +1,6 @@
 package domain;
 
-public class DungeonClass implements PerilousWildsInterface{
+public class DungeonClass implements IPWClass {
     private String nameTemplate;
     private String name;
     private String size;

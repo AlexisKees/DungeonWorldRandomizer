@@ -5,10 +5,7 @@ import data.DetailsArrays;
 import domain.CreatureClass;
 import domain.util.Rolls;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+
 import java.util.Arrays;
 
 public class CreatureFunctions {
@@ -183,6 +180,7 @@ public class CreatureFunctions {
                     Creature prompt: %s
                     """, creature.getCategory(), creature.getSubcategory(), creature.getPrompt()));
         addStatsToBlock(creature);
+        creature.setOneLiner(creature.getPrompt());
     }
 
 
@@ -462,21 +460,4 @@ public class CreatureFunctions {
     }
 
 
-    public static void exportCreature(CreatureClass creature) throws IOException {
-        String prefix = "Creature_";
-        int creatureNumber = 1;
-        String fileName = String.format(prefix+"%04d.txt",creatureNumber);
-        File file = new File(fileName);
-
-        while (file.exists()){
-            creatureNumber++;
-            fileName = String.format(prefix+"%04d.txt",creatureNumber);
-            file = new File(fileName);
-        }
-
-        PrintWriter salida = new PrintWriter(new FileWriter(file, true));
-        salida.println(creature.getPrintableBlock());
-        salida.println(creature.getPrintableStats());
-        salida.close();
-    }
 }

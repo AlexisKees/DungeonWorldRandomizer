@@ -1,6 +1,6 @@
 package domain;
 
-public class QuestClass implements PerilousWildsInterface{
+public class QuestClass implements IPWClass {
     private String task;
     private String relevance;
     private String reward;
@@ -8,6 +8,8 @@ public class QuestClass implements PerilousWildsInterface{
     private DungeonClass dungeon;
     private BiomeClass biome;
     private String oneLiner;
+    private String brief;
+
 
     public String getOneLiner(){
         return oneLiner;
@@ -46,13 +48,16 @@ public class QuestClass implements PerilousWildsInterface{
     @Override
     public String toString(){
         return String.format("""
-                \nQUEST
-                Task: %s
-                Relevance: %s
-                Reward: %s
-                Tasked by: %s
-                To be carried out at: %s, in the %s\n
-                """, this.task,this.relevance,this.reward,this.questGiver.getBrief(),this.dungeon.getName(), this.biome.getBiome());
+                QUEST:
+                TASK: %s\n
+                RELEVANCE: %s\n
+                REWARD: %s\n                
+                QUEST GIVER:
+                %s\n                
+                QUEST LOCATION:
+                %s\n
+                %s\n""", this.task, this.relevance, this.reward, this.questGiver, this.biome,this.dungeon);
+
     }
 
     public BiomeClass getBiome() {
@@ -77,5 +82,13 @@ public class QuestClass implements PerilousWildsInterface{
 
     public void setDungeon(DungeonClass dungeon) {
         this.dungeon = dungeon;
+    }
+
+    public void setBrief(String brief) {
+        this.brief = brief;
+    }
+
+    public String getBrief() {
+        return brief;
     }
 }

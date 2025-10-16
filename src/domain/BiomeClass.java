@@ -1,6 +1,6 @@
 package domain;
 
-public class BiomeClass implements PerilousWildsInterface{
+public class BiomeClass implements IPWClass {
     private String biome;
     private String weather;
     private String weatherIntensity;

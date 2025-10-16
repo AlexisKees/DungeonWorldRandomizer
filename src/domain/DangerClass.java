@@ -2,7 +2,7 @@ package domain;
 
 import java.util.Objects;
 
-public class DangerClass implements PerilousWildsInterface{
+public class DangerClass implements IPWClass {
     private String category;
     private String[] subcategoriesTable;
     private String subcategory;

@@ -39,7 +39,7 @@ public class QuestGenerator {
                         npcList.add(quest.getQuestGiver());
                         dungeonList.add(quest.getDungeon());
                         biomeList.add(quest.getBiome());
-                        System.out.println(quest);
+                        System.out.println(quest.getBrief());
                     }
                     case 2 -> {
                         if(quest==null){
@@ -67,16 +67,7 @@ public class QuestGenerator {
                         System.out.println("QUEST LOCATION - BIOME:\n\n"+quest.getBiome());
                         System.out.println("QUEST LOCATION - DUNGEION:\n\n"+quest.getDungeon());
                     }
-                    case 4 -> {
-                        int counter = 1;
-                        System.out.println("""
-                                *** LIST OF QUESTS ***""");
-                        for (QuestClass c : questList){
-                            System.out.printf("%d) %s\n", counter, c.getTask());
-                            counter++;
-                        }
-                        System.out.println("\n");
-                    }
+                    case 4 -> quest = new ViewAll().run(dataInput,questList,quest,QuestClass.class);
                     case 5 -> {
                         if (quest == null) {
                             quest = new QuestClass();
@@ -92,15 +83,7 @@ public class QuestGenerator {
                             dungeonList.add(quest.getDungeon());
                             biomeList.add(quest.getBiome());
                         }
-                        QuestFunctions.exportQuest(quest);
-                        System.out.println("""
-                                ***********************
-                                *  Check your files!  *
-                                ***********************
-                                """);
-
-                        System.out.println(quest);
-                        System.out.println(quest.getDungeon());
+                        GenericFunctions.exportPW(quest);
                     }
                     case 6 -> System.out.println("\nReturning to main menu...\n");
                     default -> System.out.print("\nInvalid number!\n\n");

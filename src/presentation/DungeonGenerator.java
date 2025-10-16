@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 import domain.DungeonClass;
-import domain.PerilousWildsInterface;
 import service.DungeonFunctions;
+import service.GenericFunctions;
 
 
 public class DungeonGenerator {
@@ -25,9 +25,10 @@ public class DungeonGenerator {
                         4) View current dungeon
                         5) Export dungeon
                         6) Main menu
-                        
+                      
                         \tOption:\s""");
                 option = Integer.parseInt(dataInput.nextLine());
+                System.out.println();
 
                 switch (option) {
                     case 1 -> {
@@ -53,12 +54,7 @@ public class DungeonGenerator {
                             DungeonFunctions.rollDungeon(dungeon);
                             dungeonList.add(dungeon);
                         }
-                        DungeonFunctions.exportDungeon(dungeon);
-                        System.out.println("""
-                                ***********************
-                                *  Check your files!  *
-                                ***********************
-                                """);
+                        GenericFunctions.exportPW(dungeon);
                     }
                     case 6 -> System.out.println("\nReturning to main menu...\n");
                     default -> System.out.print("\nInvalid number!\n\n");

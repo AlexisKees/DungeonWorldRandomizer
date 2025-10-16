@@ -6,8 +6,8 @@ import service.GenericFunctions;
 import java.util.List;
 import java.util.Scanner;
 
-public class ViewAll {
-
+public class SubMenu {
+    /*
     public <T extends IPWClass> T run(Scanner dataInput, List<T> list, T object, Class<T> type){
         int option = 0;
         int itemNumber=0;
@@ -26,31 +26,23 @@ public class ViewAll {
             default -> "Items";
         };
 
-        int counter = 1;
-        System.out.printf("""
-                        *** LIST OF %s ***
-                        """,labelPlural.toUpperCase());
-        for (IPWClass o : list){
-            System.out.printf("%d) %s\n", counter,o.getOneLiner());
-            counter++;
-        }
-        System.out.println("\n");
+
+//        1) Create new random *
+//        2) View list of generated * -> ViewAll
+//        3) View current -> nueva función
+//        4) Export current
+//        5) Main menu
 
         try{
             do {
-                System.out.print("""
-                        \n
-                        1) Detailed view
-                        2) Go back 
-                        \tOption:\s""");
+//                showOptions(type);
 
                 option=Integer.parseInt(dataInput.nextLine());
-                System.out.println();
 
                 switch (option){
                     case 1 ->{
 
-                        System.out.printf("\n\tPlease insert %s number:\s",label.toLowerCase());
+                        System.out.printf("Please insert %s number: ",label.toLowerCase());
                         itemNumber=Integer.parseInt(dataInput.nextLine());
                         System.out.println();
                         T selectedItem=list.get(itemNumber-1);
@@ -71,10 +63,9 @@ public class ViewAll {
                                 3) Go back 
                                 \tOption:\s""",label.toLowerCase(),label.toLowerCase());
                             secondOption=Integer.parseInt(dataInput.nextLine());
-                            System.out.println();
 
                             switch (secondOption){
-                                case 1 -> GenericFunctions.exportPW(object);
+                                case 1 -> GenericFunctions.export(object,label);
                                 case 2 -> {
                                     object = selectedItem;
                                     System.out.printf("\n%s SUCCESFULLY LOADED\n",label.toUpperCase());
@@ -99,4 +90,6 @@ public class ViewAll {
 
         return object;
     }
+
+     */
 }

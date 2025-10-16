@@ -2,14 +2,9 @@ package service;
 
 import data.DetailsArrays;
 import data.SteadingArrays;
-import domain.DungeonClass;
 import domain.SteadingClass;
 import domain.util.Rolls;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 public class SteadingFunctions {
 
@@ -51,22 +46,7 @@ public class SteadingFunctions {
         steading.setRaceOfBuilders(CreatureFunctions.rollHumanoid());
         steading.setAlignment(DetailsArrays.ALIGNMENT[Rolls.UniversalRoll(DetailsArrays.ALIGNMENT)]);
         steading.setDangerLevel(SteadingArrays.DANGER_LEVEL[Rolls.UniversalRoll(SteadingArrays.DANGER_LEVEL)]);
+        steading.setOneLiner(steading.getName()+", "+steading.getRaceOfBuilders()+" "+steading.getSize());
     }
 
-    public static void exportSteading(SteadingClass steading) throws IOException {
-        String prefix = "Steading_";
-        int steadingNumber = 1;
-        String fileName = String.format(prefix+"%04d.txt",steadingNumber);
-        File file = new File(fileName);
-
-        while (file.exists()){
-            steadingNumber++;
-            fileName = String.format(prefix+"%04d.txt",steadingNumber);
-            file = new File(fileName);
-        }
-
-        PrintWriter salida = new PrintWriter(new FileWriter(file, true));
-        salida.println(steading);
-        salida.close();
-    }
 }

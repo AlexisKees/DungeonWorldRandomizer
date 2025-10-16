@@ -32,7 +32,7 @@ public class Main {
         try {
             int option;
             do {
-                                System.out.print("""
+                System.out.print("""
                         Chose what you'd like to generate:
                         1) Generate Quest
                         2) Generate NPC
@@ -46,7 +46,8 @@ public class Main {
                         
                         \tOption:\s""");
 
-                 option = Integer.parseInt(dataInput.nextLine());
+                option = Integer.parseInt(dataInput.nextLine());
+                System.out.println();
 
                  switch (option){
                      case 1 -> new QuestGenerator().run(dataInput, questList,npcList,dungeonList,biomeList);

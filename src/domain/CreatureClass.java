@@ -2,7 +2,7 @@ package domain;
 
 import java.util.Objects;
 
-public class CreatureClass implements PerilousWildsInterface{
+public class CreatureClass implements IPWClass {
 
 //    private Boolean wasRolled = false;
     private String category;

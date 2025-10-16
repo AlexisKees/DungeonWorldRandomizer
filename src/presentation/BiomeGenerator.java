@@ -1,9 +1,8 @@
 package presentation;
 
 import domain.BiomeClass;
-import domain.PerilousWildsInterface;
 import service.BiomeFunctions;
-import service.DiscoveryFunctions;
+import service.GenericFunctions;
 
 import java.io.IOException;
 import java.util.List;
@@ -18,13 +17,15 @@ public class BiomeGenerator {
             do {
                 System.out.print("""
                         Please select an option:
-                        1) Create new random biome
-                        2) See previously generated biomes
-                        3) Print biome
-                        4) Main menu
+                        1) Create new random Biome
+                        2) View current
+                        3) View list of generated biomes
+                        4) Export current
+                        5) Main menu
                         
                         \tOption:\s""");
                 option = Integer.parseInt(dataInput.nextLine());
+                System.out.println();
 
                 switch (option){
                     case 1 ->{
@@ -34,32 +35,26 @@ public class BiomeGenerator {
                         biomeList.add(biome);
                     }
                     case 2 -> {
-                        int counter = 1;
-                        System.out.println("""
-                                *** LIST OF BIOMES ***""");
-                        for (BiomeClass b : biomeList){
-                            System.out.printf("%d) %s\n", counter, b.getBiome());
-                            counter++;
-                        }
-                        System.out.println("\n");
-                    }
-                    case 3 -> {
-                        if (biome==null){
+                        if(biome==null){
                             biome = new BiomeClass();
                             BiomeFunctions.rollBiome(biome);
-                            System.out.println(biome);
+                            biomeList.add(biome);
                         }
-                        BiomeFunctions.exportBiome(biome);
-                        System.out.println("""
-                                ***********************
-                                *  Check your files!  *
-                                ***********************
-                                """);
+                        System.out.println(biome);
                     }
-                    case 4 -> System.out.println("Going back to main menu");
+                    case 3 -> biome = new ViewAll().run(dataInput,biomeList,biome,BiomeClass.class);
+                    case 4 -> {
+                        if(biome==null){
+                            biome = new BiomeClass();
+                            BiomeFunctions.rollBiome(biome);
+                            biomeList.add(biome);
+                        }
+                        GenericFunctions.exportPW(biome);
+                    }
+                    case 5 -> System.out.println("Going back to main menu");
 
                 }
-            }while (option !=4);
+            }while (option !=5);
         }catch (Exception e){
             System.out.println("An error occurred: "+e.getMessage());
         }

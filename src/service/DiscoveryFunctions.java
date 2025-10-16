@@ -159,8 +159,10 @@ public class DiscoveryFunctions {
 
         }
 
-
+        discovery.setOneLiner(discovery.getFinalResult());
     }
+
+
     private static String rollRuins(){
 
         String ruin = DiscoveryArrays.RUIN_PROMPTS[Rolls.UniversalRoll(DiscoveryArrays.RUIN_PROMPTS)];
@@ -198,20 +200,4 @@ public class DiscoveryFunctions {
 
     };
 
-    public static void exportDiscovery(DiscoveryClass discovery) throws IOException {
-        String prefix = "Discovery_";
-        int discoveryNumber = 1;
-        String fileName = String.format(prefix+"%04d.txt",discoveryNumber);
-        File file = new File(fileName);
-
-        while (file.exists()){
-            discoveryNumber++;
-            fileName = String.format(prefix+"%04d.txt",discoveryNumber);
-            file = new File(fileName);
-        }
-
-        PrintWriter salida = new PrintWriter(new FileWriter(file, true));
-        salida.println(discovery);
-        salida.close();
-    }
 }

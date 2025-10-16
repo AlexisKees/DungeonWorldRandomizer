@@ -1,7 +1,6 @@
 package service;
 
-import domain.DungeonClass;
-import domain.PerilousWildsInterface;
+import domain.IPWClass;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -10,20 +9,33 @@ import java.io.PrintWriter;
 
 public class GenericFunctions {
 
-    public static void export(PerilousWildsInterface item, String objectClass) throws IOException {
-        String prefix = objectClass+"_";
-        int itemNumber = 1;
-        String fileName = String.format(prefix+"%04d.txt",itemNumber);
-        File file = new File(fileName);
+    public static <T extends IPWClass> void exportPW(T pw) throws IOException {
+        try {
 
-        while (file.exists()){
-            itemNumber++;
-            fileName = String.format(prefix+"%04d.txt",itemNumber);
-            file = new File(fileName);
+
+            Class<?> c = pw.getClass();
+            String prefix = c.getSimpleName().replaceFirst("Class", "") + "_";
+            int number = 1;
+            String fileName = String.format(prefix + "%04d.txt", number);
+            File file = new File(fileName);
+
+            while (file.exists()) {
+                number++;
+                fileName = String.format(prefix + "%04d.txt", number);
+                file = new File(fileName);
+            }
+
+            PrintWriter salida = new PrintWriter(new FileWriter(file, true));
+            salida.println(pw);
+            salida.close();
+
+            System.out.println("""
+                    ***********************
+                    *  Check your files!  *
+                    ***********************
+                    """);
+        } catch (Exception e){
+            System.out.println("Couldn't print file: "+e.getMessage());
         }
-
-        PrintWriter salida = new PrintWriter(new FileWriter(file, true));
-        salida.println(item);
-        salida.close();
     }
 }

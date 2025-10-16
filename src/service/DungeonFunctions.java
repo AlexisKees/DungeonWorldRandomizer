@@ -2,6 +2,7 @@ package service;
 
 import data.DungeonArrays;
 import domain.DungeonClass;
+import domain.IPWClass;
 import domain.util.Rolls;
 
 import java.io.File;
@@ -102,24 +103,6 @@ public class DungeonFunctions {
         dungeon.setOneLiner(dungeon.getName());
 
     }
-
-    public static void exportDungeon(DungeonClass dungeon) throws IOException {
-        String prefix = "Dungeon_";
-        int dungeonNumber = 1;
-        String fileName = String.format(prefix+"%04d.txt",dungeonNumber);
-        File file = new File(fileName);
-
-        while (file.exists()){
-            dungeonNumber++;
-            fileName = String.format(prefix+"%04d.txt",dungeonNumber);
-            file = new File(fileName);
-        }
-
-        PrintWriter salida = new PrintWriter(new FileWriter(file, true));
-        salida.println(dungeon);
-        salida.close();
-    }
-
 
 
 }

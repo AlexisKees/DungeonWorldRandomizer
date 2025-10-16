@@ -1,7 +1,7 @@
 package domain;
 
 
-public class NPCClass implements PerilousWildsInterface{
+public class NPCClass implements IPWClass {
     private String[] raceTable;
     private String race;
     private String gender;
@@ -12,10 +12,11 @@ public class NPCClass implements PerilousWildsInterface{
     private String category;
     private String[] jobList;
     private String job;
-    private String appearence;
+    private String appearance;
     private String personality;
     private String quirk;
     private String oneLiner;
+
 
     public String getOneLiner(){
         return oneLiner;
@@ -26,20 +27,11 @@ public class NPCClass implements PerilousWildsInterface{
         this.oneLiner = oneLiner;
     }
 
-    public String getBrief() {
-        return this.brief;
-    }
-
-    private String brief;
-
     private void NPCClass(){
     };
 
-
-
-
-    public String getAppearence() {
-        return this.appearence;
+    public String getAppearance() {
+        return this.appearance;
     }
 
     public String getPersonality() {
@@ -52,15 +44,14 @@ public class NPCClass implements PerilousWildsInterface{
 
     @Override
     public String toString(){
-
         return String.format("""
-                NPC: %s, the %s %s
-                Gender: %s
-                Age: %s
-                Appearance: %s
-                Personality: %s
-                Quirk: %s
-                """, this.name, this.race, this.job, this.gender, this.age, this.appearence,this.personality, this.quirk);
+               NPC: %s, the %s %s
+               Gender: %s
+               Age: %s
+               Appearance: %s
+               Personality: %s
+               Quirk: %s
+                """, this.name, this.race, this.job, this.gender, this.age, this.appearance,this.personality, this.quirk);
     }
 
     public String[] getRaceTable() {
@@ -143,8 +134,8 @@ public class NPCClass implements PerilousWildsInterface{
         this.job = job;
     }
 
-    public void setAppearence(String appearence) {
-        this.appearence = appearence;
+    public void setAppearance(String appearance) {
+        this.appearance = appearance;
     }
 
     public void setPersonality(String personality) {
@@ -155,7 +146,5 @@ public class NPCClass implements PerilousWildsInterface{
         this.quirk = quirk;
     }
 
-    public void setBrief(String brief) {
-        this.brief = brief;
-    }
+
 }

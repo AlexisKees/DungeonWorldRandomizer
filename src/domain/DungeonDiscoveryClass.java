@@ -2,7 +2,7 @@ package domain;
 
 import java.util.Objects;
 
-public class DiscoveryClass implements IPWClass {
+public class DungeonDiscoveryClass implements IPWClass {
 
     private String category;
     private String[] subcategoriesTable;
@@ -20,15 +20,14 @@ public class DiscoveryClass implements IPWClass {
         this.oneLiner = oneLiner;
     }
 
-
-    public String[] getPromptTable() {
-        return promptTable;
+    @Override
+    public String toString(){
+        String str = "\nDUNGEON DISCOVERY: "+this.category+" -> "+this.subcategory+" -> "+this.prompt+"\n";
+        if (!Objects.equals(this.prompt,this.finalResult)){
+            str+=this.finalResult+"\n";
+        }
+        return str;
     }
-
-    public void setPromptTable(String[] promptTable) {
-        this.promptTable = promptTable;
-    }
-
 
     public String getCategory() {
         return category;
@@ -54,6 +53,14 @@ public class DiscoveryClass implements IPWClass {
         this.subcategory = subcategory;
     }
 
+    public String[] getPromptTable() {
+        return promptTable;
+    }
+
+    public void setPromptTable(String[] promptTable) {
+        this.promptTable = promptTable;
+    }
+
     public String getPrompt() {
         return prompt;
     }
@@ -69,13 +76,4 @@ public class DiscoveryClass implements IPWClass {
     public void setFinalResult(String finalResult) {
         this.finalResult = finalResult;
     }
-
-    @Override
-    public String toString(){
-      String str= "\nDISCOVERY: "+this.category+" -> "+this.subcategory+" -> "+this.prompt+"\n";
-        if (!Objects.equals(this.prompt,this.finalResult)){
-            str+=this.finalResult+"\n";
-        }
-        return str;
-    };
 }
