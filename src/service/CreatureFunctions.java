@@ -7,6 +7,7 @@ import domain.util.Rolls;
 
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class CreatureFunctions {
 
@@ -218,57 +219,67 @@ public class CreatureFunctions {
         }
     }
 
-    public static void reRollSubcategory(CreatureClass creature){
+    public static void reRollSubcategory(CreatureClass creature) {
+        String previousSubcategory = creature.getSubcategory();
+        String currentSubcategory;
+        do{
 
-        int r1 = Rolls.UniversalRoll(creature.getSubcategoryTable());
+            int r1 = Rolls.UniversalRoll(creature.getSubcategoryTable());
 
 
-        creature.setSubcategory(creature.getSubcategoryTable()[r1]);
+            creature.setSubcategory(creature.getSubcategoryTable()[r1]);
+            currentSubcategory = creature.getSubcategory();
+        } while (Objects.equals(previousSubcategory,currentSubcategory));
 
-        if (Arrays.equals(creature.getSubcategoryTable(), CreatureArrays.SUBCATEGORIES_MONSTER)){
-            switch (creature.getSubcategory()) {
-                case "Extraplanar" -> creature.setPromptTable(CreatureArrays.PROMPTS_MONSTER_EXTRAPLANAR);
-                case "Legendary" -> creature.setPromptTable(CreatureArrays.PROMPTS_MONSTER_LEGENDARY);
-                case "Undead" -> creature.setPromptTable(CreatureArrays.PROMPTS_MONSTER_UNDEAD);
-                case "Unusual" -> creature.setPromptTable(CreatureArrays.PROMPTS_MONSTER_UNUSUAL);
-                case "Beastly" -> creature.setPromptTable(CreatureArrays.PROMPTS_MONSTER_BEASTLY);
-                case "Humanoid" -> creature.setPromptTable(CreatureArrays.PROMPTS_MONSTER_WILD_HUMANOID);
-                default -> creature.setPromptTable(new String[12]);
+            if (Arrays.equals(creature.getSubcategoryTable(), CreatureArrays.SUBCATEGORIES_MONSTER)) {
+                switch (creature.getSubcategory()) {
+                    case "Extraplanar" -> creature.setPromptTable(CreatureArrays.PROMPTS_MONSTER_EXTRAPLANAR);
+                    case "Legendary" -> creature.setPromptTable(CreatureArrays.PROMPTS_MONSTER_LEGENDARY);
+                    case "Undead" -> creature.setPromptTable(CreatureArrays.PROMPTS_MONSTER_UNDEAD);
+                    case "Unusual" -> creature.setPromptTable(CreatureArrays.PROMPTS_MONSTER_UNUSUAL);
+                    case "Beastly" -> creature.setPromptTable(CreatureArrays.PROMPTS_MONSTER_BEASTLY);
+                    case "Humanoid" -> creature.setPromptTable(CreatureArrays.PROMPTS_MONSTER_WILD_HUMANOID);
+                    default -> creature.setPromptTable(new String[12]);
 
+                }
+            } else if (Arrays.equals(creature.getSubcategoryTable(), CreatureArrays.SUBCATEGORIES_BEAST)) {
+                switch (creature.getSubcategory()) {
+                    case "Water-going" -> creature.setPromptTable(CreatureArrays.PROMPTS_BEAST_WATER_GOING);
+                    case "Airborne" -> creature.setPromptTable(CreatureArrays.PROMPTS_BEAST_AIRBORNE);
+                    case "Earthbound" -> creature.setPromptTable(CreatureArrays.PROMPTS_BEAST_EARTHBOUND);
+                    default -> creature.setPromptTable(new String[12]);
+                }
+            } else {
+                switch (creature.getSubcategory()) {
+                    case "Rare" -> creature.setPromptTable(CreatureArrays.PROMPTS_HUMANOID_RARE);
+                    case "Uncommon" -> creature.setPromptTable(CreatureArrays.PROMPTS_HUMANOID_UNCOMMON);
+                    case "Common" -> creature.setPromptTable(CreatureArrays.PROMPTS_HUMANOID_COMMON);
+                    default -> creature.setPromptTable(new String[12]);
+                }
             }
-        } else if (Arrays.equals(creature.getSubcategoryTable(), CreatureArrays.SUBCATEGORIES_BEAST)) {
-            switch (creature.getSubcategory()) {
-                case "Water-going" -> creature.setPromptTable(CreatureArrays.PROMPTS_BEAST_WATER_GOING);
-                case "Airborne" -> creature.setPromptTable(CreatureArrays.PROMPTS_BEAST_AIRBORNE);
-                case "Earthbound" -> creature.setPromptTable(CreatureArrays.PROMPTS_BEAST_EARTHBOUND);
-                default -> creature.setPromptTable(new String[12]);
-            }
-        } else {
-            switch (creature.getSubcategory()) {
-                case "Rare" -> creature.setPromptTable(CreatureArrays.PROMPTS_HUMANOID_RARE);
-                case "Uncommon" -> creature.setPromptTable(CreatureArrays.PROMPTS_HUMANOID_UNCOMMON);
-                case "Common" -> creature.setPromptTable(CreatureArrays.PROMPTS_HUMANOID_COMMON);
-                default -> creature.setPromptTable(new String[12]);
-            }
-        }
 
-        //Se asigna prompt
-        int r2 = Rolls.UniversalRoll(creature.getPromptTable());
-        creature.setPrompt(creature.getPromptTable()[r2]);
+            //Se asigna prompt
+            int r2 = Rolls.UniversalRoll(creature.getPromptTable());
+            creature.setPrompt(creature.getPromptTable()[r2]);
 
-        reviseRolls(creature);
+            reviseRolls(creature);
 
-        creature.setPrintableBlock();
+            creature.setPrintableBlock();
+
 
     }
 
     public static void reRollPrompt(CreatureClass creature){
+        String previousPrompt = creature.getPrompt();
+        String currentPrompt = creature.getPrompt();
+        do {
+            int r1 = Rolls.UniversalRoll(creature.getPromptTable());
 
-        int r1 = Rolls.UniversalRoll(creature.getPromptTable());
-
-        creature.setPrompt(creature.getPromptTable()[r1]);
-        reviseRolls(creature);
-        creature.setPrintableBlock();
+            creature.setPrompt(creature.getPromptTable()[r1]);
+            reviseRolls(creature);
+            creature.setPrintableBlock();
+            currentPrompt = creature.getPrompt();
+        } while (Objects.equals(previousPrompt,currentPrompt));
     }
 
     private static void reviseRolls(CreatureClass creature){
@@ -326,6 +337,25 @@ public class CreatureFunctions {
     private static void rollGroupSize(CreatureClass creature){
         int r1 = Rolls.UniversalRoll(DetailsArrays.NO_APPEARING);
         creature.setGroupSize(DetailsArrays.NO_APPEARING[r1]);
+
+        switch (creature.getGroupSize()){
+            case "horde (4d6 per wave)" -> {
+                creature.setDamage("1d6");
+                creature.setHitPoints(3);
+            }
+            case "group (1d6+2)" -> {
+                creature.setDamage("1d8");
+                creature.setHitPoints(6);
+            }
+            case "solitary (1)" ->{
+                creature.setDamage("1d10");
+                creature.setHitPoints(12);
+            }
+        }
+    }
+
+    public static void setGroupSize(CreatureClass creature, String groupSize){
+        creature.setGroupSize(groupSize);
 
         switch (creature.getGroupSize()){
             case "horde (4d6 per wave)" -> {

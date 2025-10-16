@@ -1,7 +1,9 @@
 package service;
 
 import data.DungeonArrays;
+import domain.DangerClass;
 import domain.DungeonAreaClass;
+import domain.DungeonDangerClass;
 import domain.util.Rolls;
 
 import java.util.Objects;
@@ -63,6 +65,11 @@ public class DungeonAreaFunctions {
         area.setAreaDressing(DungeonArrays.AREA_DRESSING[Rolls.UniversalRoll(DungeonArrays.AREA_DRESSING)]);
         if (Objects.equals(area.getAreaDressing(),"roll 1d10 twice, combine")){
             area.setAreaDressing(DungeonArrays.AREA_DRESSING[Rolls.Roll1d10()]+" and "+DungeonArrays.AREA_DRESSING[Rolls.Roll1d10()]);
+        }
+
+        int i;
+        for (i=1; i<=area.getDiscoveriesAmount();i++){
+            area.addDanger(new DangerClass());
         }
 
     }

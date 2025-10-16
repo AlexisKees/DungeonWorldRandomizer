@@ -311,8 +311,8 @@ public class DungeonArrays {
             "adventurer/captive",                 // 7
             "books/scrolls",                      // 8
             "coins/gems/jewelry",                 // 9
-            "roll 1d8, add magic type [p55]",     // 10
-            "roll feature, add magic type [p55]", // 11
+            "roll 1d8, add magic type",     // 10
+            "roll feature, add magic type", // 11
             "roll 1d10 twice, combine"            // 12
     };
 
@@ -337,9 +337,9 @@ public class DungeonArrays {
             "confusing (maze, etc.)",  // 7
             "gas (poison, etc.)",      // 8
             "ambush",                  // 9
-            "based on Element [p55]",  // 10
-            "based on Magic Type [p55]", // 11
-            "based on Oddity [p55]"    // 12
+            "based on Element",  // 10
+            "based on Magic Type", // 11
+            "based on Oddity"    // 12
     };
 
     // Prompts - Creature (12 elementos)

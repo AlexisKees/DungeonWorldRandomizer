@@ -51,7 +51,7 @@ public class DungeonAreaClass implements IPWClass {
     public void addDanger(DangerClass danger){
         int i;
         boolean added=false;
-        for (i=0;i<this.dangers.length;i++){
+        for (i=1;i<=this.dangersAmount;i++){
             if (this.dangers[i]==null){
                 this.dangers[i]=danger;
                 added=true;

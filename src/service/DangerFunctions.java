@@ -2,8 +2,10 @@ package service;
 
 import data.DangerArrays;
 import data.DetailsArrays;
+import data.DungeonArrays;
 import domain.CreatureClass;
 import domain.DangerClass;
+import domain.DungeonDangerClass;
 import domain.util.Rolls;
 
 public class DangerFunctions {
@@ -71,6 +73,53 @@ public class DangerFunctions {
             c.setDisposition(DetailsArrays.DISPOSITION[0]); //SET DISPOSITION TO "ATTACKING"
             danger.setFinalResult(c.getPrintableBlock());
         }
+            default -> danger.setFinalResult(danger.getPrompt());
+        }
+
+        danger.setOneLiner(danger.getFinalResult());
+
+    }
+
+    public static void rollDungeonDanger(DungeonDangerClass danger){
+        int roll;
+
+        roll = Rolls.UniversalRoll(DungeonArrays.DUNGEON_DANGER_CATEGORIES);
+        danger.setCategory(DungeonArrays.DUNGEON_DANGER_CATEGORIES[roll]);
+
+        switch (danger.getCategory()){
+            case "Trap" ->  danger.setPromptTable(DungeonArrays.DUNGEON_DANGER_TRAP_PROMPTS);
+            case "Creature" -> danger.setPromptTable(DungeonArrays.DUNGEON_DANGER_CREATURE_PROMPTS);
+        }
+
+        roll = Rolls.UniversalRoll(danger.getPromptTable());
+        danger.setPrompt(danger.getPromptTable()[roll]);
+
+        switch (danger.getPrompt()) {
+            case "based on Element" -> {
+                String element = CreatureFunctions.rollElement();
+                danger.setFinalResult("Elemental trap. "+element);
+            }
+            case "based on Magic Type" -> {
+                String magicType = CreatureFunctions.rollMagicType();
+                danger.setFinalResult("Magical trap.  "+magicType);
+            }
+            case "based on Oddity" -> {
+                String oddity = CreatureFunctions.rollOddity();
+                danger.setFinalResult("Oddity trap. "+oddity);
+            }
+            case "Creature leader/lord (with minions)" -> {
+                CreatureClass c = new CreatureClass();
+                CreatureFunctions.rollAttributes(c);
+                c.setDisposition(DetailsArrays.DISPOSITION[0]); //SET DISPOSITION TO "ATTACKING"
+                danger.setFinalResult(c.getPrintableBlock());
+            }
+            case "Creature" -> {
+                CreatureClass c = new CreatureClass();
+                CreatureFunctions.rollAttributes(c);
+                c.setDisposition(DetailsArrays.DISPOSITION[0]); //SET DISPOSITION TO "ATTACKING"
+                CreatureFunctions.setGroupSize(c,"solitary (1)");
+                danger.setFinalResult("CREATURE LORD:\n"+c.getPrintableBlock());
+            }
             default -> danger.setFinalResult(danger.getPrompt());
         }
 
