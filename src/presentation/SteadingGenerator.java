@@ -57,7 +57,7 @@ public class SteadingGenerator {
                         }
                         GenericFunctions.exportPW(steading);
                     }
-                    case 5 -> System.out.println("Going back to main menu");
+                    case 5 -> System.out.println("\nReturning to main menu...\n");
 
                 }
 

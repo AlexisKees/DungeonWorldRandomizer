@@ -18,7 +18,10 @@ public class Main {
         List<DangerClass> dangerList = new ArrayList<>();
         List<CreatureClass> creatureList = new ArrayList<>();
 
-        System.out.println("""
+        try {
+            int option;
+            do {
+                System.out.println("""
                 
                 
                 *********************************
@@ -29,9 +32,6 @@ public class Main {
                 Based on "The Perilous Wilds, revised edition".
                 """);
 
-        try {
-            int option;
-            do {
                 System.out.print("""
                         Chose what you'd like to generate:
                         1) Generate Quest

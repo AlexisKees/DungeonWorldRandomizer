@@ -51,7 +51,7 @@ public class BiomeGenerator {
                         }
                         GenericFunctions.exportPW(biome);
                     }
-                    case 5 -> System.out.println("Going back to main menu");
+                    case 5 -> System.out.println("\nReturning to main menu...\n");
 
                 }
             }while (option !=5);

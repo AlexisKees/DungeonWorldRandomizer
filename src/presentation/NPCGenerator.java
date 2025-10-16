@@ -47,9 +47,7 @@ public class NPCGenerator {
                     }
                     case 3 -> npc = new ViewAll().run(dataInput,npcList,npc,NPCClass.class);
                     case 4 -> GenericFunctions.exportPW(npc);
-                    case 5 -> {
-                        System.out.println("\nReturning to main menu...\n");
-                    }
+                    case 5 -> System.out.println("\nReturning to main menu...\n");
                     default -> System.out.print("\nInvalid number!\n\n");
                 }
             } catch (Exception e) {
