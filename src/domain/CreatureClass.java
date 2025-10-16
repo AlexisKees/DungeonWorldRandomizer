@@ -93,8 +93,20 @@ public class CreatureClass implements IPWClass {
         return printableBlock;
     }
 
-    public void setPrintableBlock(String printableBlock) {
-        this.printableBlock = printableBlock;
+    public void setPrintableBlock() {
+        this.printableBlock =String.format("""
+                    Creature category: %s
+                    Creature subcategory: %s
+                    Creature prompt: %s
+                    Group size: %s
+                    Individual size: %s
+                    %dHP (%d armor: %s)
+                    %s damage (%s, %s)
+                    Tags: %s
+                    Alignment: %s
+                    Disposition: %s
+                        """, this.getCategory(), this.getSubcategory(), this.getPrompt(),this.getGroupSize(),this.getSize(),this.getHitPoints(),this.getArmor(),this.getArmorType(),
+                this.getDamage(),this.getReach(),this.getDamageType(),this.getTags(),this.getAlignment(),this.getDisposition());
     }
 
     public String getSize() {
