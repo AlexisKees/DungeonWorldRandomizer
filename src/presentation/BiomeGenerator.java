@@ -16,12 +16,13 @@ public class BiomeGenerator {
         try{
             do {
                 System.out.print("""
-                        Please select an option:
+                        \nPlease select an option:
                         1) Create new random Biome
                         2) View current
-                        3) View list of generated biomes
-                        4) Export current biome
-                        5) Main menu
+                        3) Reroll this biome
+                        4) View list of generated biomes
+                        5) Export current biome
+                        6) Main menu
                         
                         \tOption:\s""");
                 option = Integer.parseInt(dataInput.nextLine());
@@ -42,8 +43,18 @@ public class BiomeGenerator {
                         }
                         System.out.println(biome);
                     }
-                    case 3 -> biome = new ViewAll().run(dataInput,biomeList,biome,BiomeClass.class);
-                    case 4 -> {
+                    case 3 -> {
+                        if(biome==null){
+                            biome = new BiomeClass();
+                            BiomeFunctions.rollBiome(biome);
+                            biomeList.add(biome);
+                        } else {
+                            BiomeFunctions.reRollDetails(biome);
+                        }
+                        System.out.println(biome);
+                    }
+                    case 4 -> biome = new ViewAll().run(dataInput,biomeList,biome,BiomeClass.class);
+                    case 5 -> {
                         if(biome==null){
                             biome = new BiomeClass();
                             BiomeFunctions.rollBiome(biome);
@@ -51,10 +62,10 @@ public class BiomeGenerator {
                         }
                         GenericFunctions.exportPW(biome);
                     }
-                    case 5 -> System.out.println("\nReturning to main menu...\n");
+                    case 6 -> System.out.println("\nReturning to main menu...\n");
 
                 }
-            }while (option !=5);
+            }while (option !=6);
         }catch (Exception e){
             System.out.println("An error occurred: "+e.getMessage());
         }

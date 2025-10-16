@@ -174,12 +174,19 @@ public class CreatureFunctions {
 
         rollStats(creature);
 
-        creature.setPrintableBlock (String.format("""
+        creature.setPrintableBlock(String.format("""
                     Creature category: %s
                     Creature subcategory: %s
                     Creature prompt: %s
-                    """, creature.getCategory(), creature.getSubcategory(), creature.getPrompt()));
-        addStatsToBlock(creature);
+                    Group size: %s
+                    Individual size: %s
+                    %dHP (%d armor: %s)
+                    %s damage (%s, %s)
+                    Tags: %s
+                    Alignment: %s
+                    Disposition: %s
+                        """, creature.getCategory(), creature.getSubcategory(), creature.getPrompt(),creature.getGroupSize(),creature.getSize(),creature.getHitPoints(),creature.getArmor(),creature.getArmorType(),
+                    creature.getDamage(),creature.getReach(),creature.getDamageType(),creature.getTags(),creature.getAlignment(),creature.getDisposition()));
         creature.setOneLiner(creature.getPrompt());
     }
 
@@ -264,11 +271,18 @@ public class CreatureFunctions {
         reviseRolls(creature);
 
         creature.setPrintableBlock(String.format("""
-                Creature category: %s
-                Creature subcategory: %s
-                Creature prompt: %s
-                """, creature.getCategory(), creature.getSubcategory(), creature.getPrompt()));
-        addStatsToBlock(creature);
+                    Creature category: %s
+                    Creature subcategory: %s
+                    Creature prompt: %s
+                    Group size: %s
+                    Individual size: %s
+                    %dHP (%d armor: %s)
+                    %s damage (%s, %s)
+                    Tags: %s
+                    Alignment: %s
+                    Disposition: %s
+                        """, creature.getCategory(), creature.getSubcategory(), creature.getPrompt(),creature.getGroupSize(),creature.getSize(),creature.getHitPoints(),creature.getArmor(),creature.getArmorType(),
+                creature.getDamage(),creature.getReach(),creature.getDamageType(),creature.getTags(),creature.getAlignment(),creature.getDisposition()));
 
     }
 
@@ -283,8 +297,15 @@ public class CreatureFunctions {
                     Creature category: %s
                     Creature subcategory: %s
                     Creature prompt: %s
-                    """, creature.getCategory(), creature.getSubcategory(), creature.getPrompt()));
-        addStatsToBlock(creature);
+                    Group size: %s
+                    Individual size: %s
+                    %dHP (%d armor: %s)
+                    %s damage (%s, %s)
+                    Tags: %s
+                    Alignment: %s
+                    Disposition: %s
+                        """, creature.getCategory(), creature.getSubcategory(), creature.getPrompt(),creature.getGroupSize(),creature.getSize(),creature.getHitPoints(),creature.getArmor(),creature.getArmorType(),
+                creature.getDamage(),creature.getReach(),creature.getDamageType(),creature.getTags(),creature.getAlignment(),creature.getDisposition()));
     }
 
     private static void reviseRolls(CreatureClass creature){
@@ -335,23 +356,21 @@ public class CreatureFunctions {
         rollTags(creature);
         rollAlignment(creature);
         rollDisposition(creature);
+        creature.setPrintableBlock(String.format("""
+                    Creature category: %s
+                    Creature subcategory: %s
+                    Creature prompt: %s
+                    Group size: %s
+                    Individual size: %s
+                    %dHP (%d armor: %s)
+                    %s damage (%s, %s)
+                    Tags: %s
+                    Alignment: %s
+                    Disposition: %s
+                        """, creature.getCategory(), creature.getSubcategory(), creature.getPrompt(),creature.getGroupSize(),creature.getSize(),creature.getHitPoints(),creature.getArmor(),creature.getArmorType(),
+                creature.getDamage(),creature.getReach(),creature.getDamageType(),creature.getTags(),creature.getAlignment(),creature.getDisposition()));
     }
 
-
-    private static void addStatsToBlock(CreatureClass creature){
-        String statsBlock = String.format("""
-                Group size: %s
-                Individual size: %s
-                %dHP (%d armor: %s)
-                %s damage (%s, %s)
-                Tags: %s
-                Alignment: %s
-                Disposition: %s
-                """, creature.getGroupSize(),creature.getSize(),creature.getHitPoints(),creature.getArmor(),creature.getArmorType(),
-                    creature.getDamage(),creature.getReach(),creature.getDamageType(),creature.getTags(),creature.getAlignment(),creature.getDisposition());
-
-        creature.setPrintableBlock(creature.getPrintableBlock()+statsBlock);
-    }
 
     private static void rollGroupSize(CreatureClass creature){
         int r1 = Rolls.UniversalRoll(DetailsArrays.NO_APPEARING);
