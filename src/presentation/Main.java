@@ -13,6 +13,7 @@ public class Main {
         List<NPCClass> npcList = new ArrayList<>();
         List<SteadingClass> steadingList = new ArrayList<>();
         List<DungeonClass> dungeonList = new ArrayList<>();
+        List<DungeonAreaClass> areaList = new ArrayList<>();
         List<BiomeClass> biomeList = new ArrayList<>();
         List<DiscoveryClass> discoveryList = new ArrayList<>();
         List<DangerClass> dangerList = new ArrayList<>();
@@ -38,11 +39,12 @@ public class Main {
                         2) Generate NPC
                         3) Generate Steading
                         4) Generate Dungeon
-                        5) Generate Biome
-                        6) Generate Discovery
-                        7) Generate Danger
-                        8) Generate Creature
-                        9) Exit
+                        5) Generate area
+                        6) Generate Biome
+                        7) Generate Discovery
+                        8) Generate Danger
+                        9) Generate Creature
+                        10) Exit
                         
                         \tOption:\s""");
 
@@ -54,15 +56,16 @@ public class Main {
                      case 2 -> new NPCGenerator().run(dataInput,npcList);
                      case 3 -> new SteadingGenerator().run(dataInput,steadingList);
                      case 4 -> new DungeonGenerator().run(dataInput, dungeonList);
-                     case 5 -> new BiomeGenerator().run(dataInput,biomeList);
-                     case 6 -> new DiscoveryGenerator().run(dataInput, discoveryList);
-                     case 7 -> new DangerGenerator().run(dataInput, dangerList);
-                     case 8 -> new CreatureGenerator().run(dataInput, creatureList);
-                     case 9 -> System.out.println("Come back soon!");
+                     case 5 -> new AreaGenerator().run(dataInput, areaList);
+                     case 6 -> new BiomeGenerator().run(dataInput,biomeList);
+                     case 7 -> new DiscoveryGenerator().run(dataInput, discoveryList);
+                     case 8 -> new DangerGenerator().run(dataInput, dangerList);
+                     case 9 -> new CreatureGenerator().run(dataInput, creatureList);
+                     case 10 -> System.out.println("Come back soon!");
                      default -> System.out.println("Please, chose a valid option");
                  }
 
-            } while (option != 9);
+            } while (option != 10);
         } catch (Exception e){
             System.out.println("Please, chose a valid option");
         }

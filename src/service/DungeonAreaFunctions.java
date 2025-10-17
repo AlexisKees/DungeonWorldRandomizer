@@ -12,6 +12,12 @@ import java.util.Objects;
 public class DungeonAreaFunctions {
 
     public static void rollArea(DungeonAreaClass area) {
+        area.setAreaType(DungeonArrays.AREA_TYPE[Rolls.UniversalRoll(DungeonArrays.AREA_TYPE)]);
+        rollAreaDetails(area);
+    }
+
+    public static void rollAreaDetails(DungeonAreaClass area){
+
         int rollRarity = Rolls.UniversalRoll(DungeonArrays.AREA_RARITY);
         area.setRarity(DungeonArrays.AREA_RARITY[rollRarity]);
 
@@ -60,8 +66,6 @@ public class DungeonAreaFunctions {
 
         area.setRarity(DungeonArrays.AREA_RARITY[rollRarity]);
 
-        area.setAreaType(DungeonArrays.AREA_TYPE[Rolls.UniversalRoll(DungeonArrays.AREA_TYPE)]);
-
         area.setAreaDressing(DungeonArrays.AREA_DRESSING[Rolls.UniversalRoll(DungeonArrays.AREA_DRESSING)]);
         if (Objects.equals(area.getAreaDressing(),"roll 1d10 twice, combine")){
             area.setAreaDressing(DungeonArrays.AREA_DRESSING[Rolls.Roll1d10()]+" and "+DungeonArrays.AREA_DRESSING[Rolls.Roll1d10()]);
@@ -83,6 +87,6 @@ public class DungeonAreaFunctions {
                 area.addDiscovery(discovery);
             }
         }
-
     }
+
 }
