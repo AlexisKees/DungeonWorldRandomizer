@@ -1,7 +1,6 @@
 package service;
 
 import data.DungeonArrays;
-import domain.DangerClass;
 import domain.DungeonAreaClass;
 import domain.DungeonDangerClass;
 import domain.DungeonDiscoveryClass;

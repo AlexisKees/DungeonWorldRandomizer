@@ -5,13 +5,8 @@ import data.DetailsArrays;
 import data.NPCArrays;
 import data.NPCNamesArrays;
 import domain.NPCClass;
-import domain.QuestClass;
 import domain.util.Rolls;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Objects;
 
 public class NPCFunctions {

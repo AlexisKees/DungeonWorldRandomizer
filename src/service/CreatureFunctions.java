@@ -119,36 +119,6 @@ public class CreatureFunctions {
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public static void rollAttributes(CreatureClass creature) {
         //Se asigna tabla de categorías (siempre igual) y de ahí se toma para el length de universalRoll
         creature.setCategoryTable(CreatureArrays.CATEGORIES);
@@ -178,8 +148,6 @@ public class CreatureFunctions {
         creature.setPrintableBlock();
         creature.setOneLiner(creature.getPrompt());
     }
-
-
 
     private static void assignSubcategoryTable(CreatureClass creature){
         switch (creature.getCategory()) {

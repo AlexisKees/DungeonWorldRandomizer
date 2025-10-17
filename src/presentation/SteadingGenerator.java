@@ -1,11 +1,9 @@
 package presentation;
 
-import domain.IPWClass;
 import domain.SteadingClass;
 import service.GenericFunctions;
 import service.SteadingFunctions;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
