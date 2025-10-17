@@ -5,9 +5,9 @@ public class DungeonAreaClass implements IPWClass {
     private String areaType;
     private String areaDressing;
     private int discoveriesAmount;
-    private DiscoveryClass[] discoveries;
+    private DungeonDiscoveryClass[] discoveries;
     private int dangersAmount;
-    private DangerClass[] dangers;
+    private DungeonDangerClass[] dangers;
     private String oneLiner;
 
     public String getOneLiner(){
@@ -27,39 +27,35 @@ public class DungeonAreaClass implements IPWClass {
     }
 
    public void initializeDiscoveriesList(int i){
-        this.discoveries = new DiscoveryClass[i];
+        this.discoveries = new DungeonDiscoveryClass[i];
    }
 
-   public void addDiscovery(DiscoveryClass discovery){
+   public void addDiscovery(DungeonDiscoveryClass discovery){
         int i;
         boolean added=false;
-        for (i=0;i<this.discoveries.length;i++){
+        for (i=0;i<this.getDiscoveriesAmount();i++){
             if (this.discoveries[i]==null){
                 this.discoveries[i]=discovery;
                 added=true;
                 break;
             }
         }
-       if (added) System.out.println("Discovery added successfully!");
-       else System.out.println("Seems like the discoveries list is already full!");
    }
 
     public void initializeDangersList(int i){
-        this.dangers = new DangerClass[i];
+        this.dangers = new DungeonDangerClass[i];
     }
 
-    public void addDanger(DangerClass danger){
+    public void addDanger(DungeonDangerClass danger){
         int i;
         boolean added=false;
-        for (i=1;i<=this.dangersAmount;i++){
+        for (i=0;i<this.dangersAmount;i++){
             if (this.dangers[i]==null){
                 this.dangers[i]=danger;
                 added=true;
                 break;
             }
         }
-        if (added) System.out.println("Danger added successfully!");
-        else System.out.println("Seems like the dangers list is already full!");
     }
 
 
@@ -98,29 +94,52 @@ public class DungeonAreaClass implements IPWClass {
         this.dangersAmount = dangersAmount;
     }
 
-    public DiscoveryClass[] getDiscoveries() {
-        return discoveries;
+    public String getDiscoveries() {
+
+            if (this.getDiscoveriesAmount()==0){
+                return "no discoveries";
+            } else {
+                String str = "";
+                int i;
+                for(i=0;i<this.getDiscoveriesAmount();i++){
+                    str+= String.format("""
+                        \n%d) %S""",i+1,this.discoveries[i].getFinalResult());
+                }
+                return str;
+            }
+
     }
 
-    public void setDiscoveries(DiscoveryClass[] discoveries) {
+    public void setDiscoveries(DungeonDiscoveryClass[] discoveries) {
         this.discoveries = discoveries;
     }
 
-    public DangerClass[] getDangers() {
-        return dangers;
+    public String getDangers() {
+        if (this.getDangersAmount()==0){
+            return "no dangers.";
+        } else {
+            String str = "";
+            int i;
+            for(i=0;i<this.getDangersAmount();i++){
+                str+= String.format("""
+                        \n%d) %S""",i+1,this.dangers[i].getFinalResult());
+            }
+            return str;
+        }
     }
 
-    public void setDangers(DangerClass[] dangers) {
+    public void setDangers(DungeonDangerClass[] dangers) {
         this.dangers = dangers;
     }
 
     @Override
     public String toString(){
+
      return String.format("""
                 Area: %s
                 Dressing: %s
                 Rarity: %s
-                Discoveries: %d
-                Dangers: %d""",this.areaType, this.areaDressing,this.rarity,this.discoveriesAmount,this.dangersAmount);
+                Discoveries: %s
+                Dangers: %s""",this.areaType, this.areaDressing,this.rarity,this.getDiscoveries(),this.getDangers());
     }
 }

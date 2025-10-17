@@ -17,7 +17,7 @@ public class DungeonAreaGenerator {
 
             do {
                 System.out.print("""
-                        1) Generate random area
+                        \n1) Generate random area
                         2) Add area to dungeon
                         3) Back to DUNGEON GENERATOR
                         

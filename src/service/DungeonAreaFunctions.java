@@ -4,6 +4,7 @@ import data.DungeonArrays;
 import domain.DangerClass;
 import domain.DungeonAreaClass;
 import domain.DungeonDangerClass;
+import domain.DungeonDiscoveryClass;
 import domain.util.Rolls;
 
 import java.util.Objects;
@@ -68,8 +69,20 @@ public class DungeonAreaFunctions {
         }
 
         int i;
-        for (i=1; i<=area.getDiscoveriesAmount();i++){
-            area.addDanger(new DangerClass());
+        if (area.getDangersAmount()>0) {
+            for (i = 1; i <= area.getDangersAmount(); i++) {
+                DungeonDangerClass danger = new DungeonDangerClass();
+                DangerFunctions.rollDungeonDanger(danger);
+                area.addDanger(danger);
+            }
+        }
+
+        if (area.getDiscoveriesAmount()>0){
+            for(i=1; i<=area.getDiscoveriesAmount();i++) {
+                DungeonDiscoveryClass discovery = new DungeonDiscoveryClass();
+                DiscoveryFunctions.rollDungeonDiscovery(discovery);
+                area.addDiscovery(discovery);
+            }
         }
 
     }

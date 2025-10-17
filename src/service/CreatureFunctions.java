@@ -371,6 +371,7 @@ public class CreatureFunctions {
                 creature.setHitPoints(12);
             }
         }
+        creature.setPrintableBlock();
     }
     private static void rollSize(CreatureClass creature){
         int r1 = Rolls.UniversalRoll(DetailsArrays.SIZE);
