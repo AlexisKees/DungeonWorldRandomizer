@@ -199,7 +199,7 @@ public class NPCArrays {
 
         /* ===================== NPC FOLLOWER ===================== */
 
-        public static final String[] FOLLOWER_COMPETENCE = {
+        public static final String[] FOLLOWER_QUALITY = {
                 "A liability: Quality -1, +0 tags", // 0
                 "A liability: Quality -1, +0 tags", // 1
                 "A liability: Quality -1, +0 tags", // 2
@@ -226,22 +226,21 @@ public class NPCArrays {
                 "Unremarkable",                         // 8
                 "Has lived a life of privilege: +1 tag",// 9
                 "Specialist: +1 to Quality, -2 tags",   // 10
-                "Roll twice, reroll any 12 result"      // 11
         };
 
         public static final String[] FOLLOWER_LOYALTY = {
-                "Little faith in the cause: Loyalty 0", // 0
-                "Little faith in the cause: Loyalty 0", // 1
-                "Dutiful: Loyalty +1",                  // 2
-                "Dutiful: Loyalty +1",                  // 3
-                "Dutiful: Loyalty +1",                  // 4
-                "Dutiful: Loyalty +1",                  // 5
-                "Dutiful: Loyalty +1",                  // 6
-                "Dutiful: Loyalty +1",                  // 7
-                "Dutiful: Loyalty +1",                  // 8
-                "Dutiful: Loyalty +1",                  // 9
-                "Devoted to the cause: Loyalty +2",     // 10
-                "Devoted to the cause: Loyalty +2"      // 11
+                "Little faith in the cause",
+                "Little faith in the cause",
+                "Dutiful",
+                "Dutiful",
+                "Dutiful",
+                "Dutiful",
+                "Dutiful",
+                "Dutiful",
+                "Dutiful",
+                "Dutiful",
+                "Devoted to the cause",
+                "Devoted to the cause"
         };
 
         public static final String[] FOLLOWER_INSTINCT = {
@@ -288,6 +287,41 @@ public class NPCArrays {
                 "9 HP, d8",     // 9  (10–12)
                 "9 HP, d8",     // 10
                 "9 HP, d8"      // 11
+        };
+
+        public static final String[] FOLLOWER_ARMOR = {
+                "None: 0 Armor",
+                "None: 0 Armor",
+                "None: 0 Armor",
+                "Hides or leather: 1 Armor",
+                "Hides or leather: 1 Armor",
+                "Hides or leather: 1 Armor",
+                "Hides or leather: 1 Armor",
+                "Hides or leather: 1 Armor",
+                "Scale or chain: 2 Armor",
+                "Scale or chain: 2 Armor",
+                "Plate: 3 Armor",
+        };
+
+        public static final String[] FOLLOWER_TAGS = {
+                "____-wise",
+                "Archer",
+                "Athletic",
+                "Beautiful",
+                "Cautious",
+                "Connected (____)",
+                "Cunning",
+                "Devious",
+                "Group",
+                "Guide (____)",
+                "Hardy",
+                "Healer",
+                "Meek",
+                "Magical",
+                "Organized",
+                "Self-sufficient",
+                "Stealthy",
+                "Warrior"
         };
 
 

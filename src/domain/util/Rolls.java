@@ -9,6 +9,16 @@ public class Rolls {
      return (int) (Math.random()*a.length);
     }
 
+    public static boolean rollBoolean(){
+        return java.util.concurrent.ThreadLocalRandom.current().nextBoolean();
+    };
+
+    public static int Roll1d2() {
+        Random azar = new Random();
+        int resultado = azar.nextInt(2);
+        return resultado;
+    }
+
     public static int Roll1d4() {
         Random azar = new Random();
         int resultado = azar.nextInt(4);
