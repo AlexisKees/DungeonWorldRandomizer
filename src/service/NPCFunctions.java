@@ -6,10 +6,13 @@ import data.NPCArrays;
 import data.NPCNamesArrays;
 import domain.NPCClass;
 import domain.util.Rolls;
+import presentation.ViewAll;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.Scanner;
 
-public class NPCFunctions {
+public class NPCFunctions implements IPWService<NPCClass>{
 
     public static void rollFeatures(NPCClass npc){
         //set race rarity, races array and race
@@ -88,4 +91,50 @@ public class NPCFunctions {
     }
 
 
+    @Override
+    public void showOptions(Scanner dataInput, NPCClass npc, List<NPCClass> npcList) {
+        var option = 0;
+        System.out.println("\nWELCOME TO THE NPC GENERATOR\n");
+
+        do {
+            try {
+                System.out.print("""
+                        Please select an option:
+                        1) Create new random NPC
+                        2) View current
+                        3) View list of generated NPCs
+                        4) Export current
+                        5) Main menu
+                                                
+                        Option:\s""");
+                option = Integer.parseInt(dataInput.nextLine());
+                System.out.println();
+
+                switch (option) {
+                    case 1 -> {
+                        npc = new NPCClass();
+                        NPCFunctions.rollFeatures(npc);
+                        NPCFunctions.printNPC(npc);
+                        npcList.add(npc);
+                    }
+                    case 2 -> {
+                        if (npc==null) {
+                            npc = new NPCClass();
+                            NPCFunctions.rollFeatures(npc);
+                            NPCFunctions.printNPC(npc);
+                            npcList.add(npc);
+                        }
+                        System.out.println(npc);
+                    }
+                    case 3 -> npc = new ViewAll().run(dataInput,npcList,npc,NPCClass.class);
+                    case 4 -> GenericFunctions.exportPW(npc);
+                    case 5 -> System.out.println("\nReturning to main menu...\n");
+                    default -> System.out.print("\nInvalid number!\n\n");
+                }
+            } catch (Exception e) {
+                System.out.println("\nPlease choose a valid option.\n");
+            }
+        }
+        while (option != 5);
+    }
 }

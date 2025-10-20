@@ -3,10 +3,14 @@ package service;
 import data.DungeonArrays;
 import domain.DungeonClass;
 import domain.util.Rolls;
+import presentation.DungeonAreaGenerator;
+import presentation.ViewAll;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.Scanner;
 
-public class DungeonFunctions {
+public class DungeonFunctions implements IPWService<DungeonClass> {
     public static void rollDungeon(DungeonClass dungeon){
 
         //set name template and name
@@ -99,4 +103,59 @@ public class DungeonFunctions {
     }
 
 
+    @Override
+    public void showOptions(Scanner dataInput, DungeonClass dungeon, List<DungeonClass> dungeonList) {
+        int option = 0;
+        System.out.println("WELCOME TO THE DUNGEON GENERATOR\n");
+
+        do {
+            try {
+                System.out.print("""
+                        Please select an option:
+                        1) Create new random dungeon
+                        2) Add areas
+                        3) View generated dungeons list
+                        4) View current dungeon
+                        5) Export dungeon
+                        6) Main menu
+                      
+                        \tOption:\s""");
+                option = Integer.parseInt(dataInput.nextLine());
+                System.out.println();
+
+                switch (option) {
+                    case 1 -> {
+                        dungeon = new DungeonClass();
+                        DungeonFunctions.rollDungeon(dungeon);
+                        dungeonList.add(dungeon);
+                        System.out.println(dungeon);
+                    }
+                    case 2 -> new DungeonAreaGenerator().run(dataInput, dungeon);
+                    case 3 -> dungeon = new ViewAll().run(dataInput,dungeonList,dungeon,DungeonClass.class);
+                    case 4 -> {
+                        if (dungeon==null){
+                            System.out.println("\nGenerating dungeon...\n");
+                            dungeon = new DungeonClass();
+                            DungeonFunctions.rollDungeon(dungeon);
+                            dungeonList.add(dungeon);
+                        }
+                        System.out.println(dungeon);
+                    }
+                    case 5 -> {
+                        if (dungeon == null) {
+                            dungeon = new DungeonClass();
+                            DungeonFunctions.rollDungeon(dungeon);
+                            dungeonList.add(dungeon);
+                        }
+                        GenericFunctions.exportPW(dungeon);
+                    }
+                    case 6 -> System.out.println("\nReturning to main menu...\n");
+                    default -> System.out.print("\nInvalid number!\n\n");
+                }
+            } catch (Exception e) {
+                System.out.println("\nPlease choose a valid option.\n");
+            }
+        }
+        while (option != 6);
+    }
 }

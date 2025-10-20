@@ -4,12 +4,15 @@ import data.CreatureArrays;
 import data.DetailsArrays;
 import domain.CreatureClass;
 import domain.util.Rolls;
+import presentation.ViewAll;
 
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
+import java.util.Scanner;
 
-public class CreatureFunctions {
+public class CreatureFunctions implements IPWService<CreatureClass> {
 
     public static String rollOddity(){
         var r1 = Rolls.UniversalRoll(DetailsArrays.ODDITY);
@@ -230,11 +233,10 @@ public class CreatureFunctions {
             int r2 = Rolls.UniversalRoll(creature.getPromptTable());
             creature.setPrompt(creature.getPromptTable()[r2]);
 
-            reviseRolls(creature);
+        reviseRolls(creature);
 
-            creature.setPrintableBlock();
-
-
+        creature.setPrintableBlock();
+        creature.setOneLiner(creature.getPrompt());
     }
 
     public static void reRollPrompt(CreatureClass creature){
@@ -246,8 +248,10 @@ public class CreatureFunctions {
             creature.setPrompt(creature.getPromptTable()[r1]);
             reviseRolls(creature);
             creature.setPrintableBlock();
+            creature.setOneLiner(creature.getPrompt());
             currentPrompt = creature.getPrompt();
         } while (Objects.equals(previousPrompt,currentPrompt));
+
     }
 
     private static void reviseRolls(CreatureClass creature){
@@ -291,6 +295,7 @@ public class CreatureFunctions {
     }
 
     public static void rollStats(CreatureClass creature){
+        creature.setHitPoints(0);
         rollGroupSize(creature);
         rollSize(creature);
         rollArmor(creature);
@@ -341,6 +346,8 @@ public class CreatureFunctions {
         }
         creature.setPrintableBlock();
     }
+
+
     private static void rollSize(CreatureClass creature){
         int r1 = Rolls.UniversalRoll(DetailsArrays.SIZE);
         creature.setSize(DetailsArrays.SIZE[r1]);
@@ -429,4 +436,94 @@ public class CreatureFunctions {
     }
 
 
+    @Override
+    public void showOptions(Scanner dataInput, CreatureClass creature, List creatureList) {
+        var option = 0;
+        System.out.println("WELCOME TO THE CREATURE GENERATOR");
+
+        do {
+            try {
+                System.out.print("""
+                        Please select an option:
+                        1) Create new random creature
+                        2) Reroll Subcategory
+                        3) Reroll Prompt
+                        4) Reroll Stats
+                        5) View current creature
+                        6) View generated creature list
+                        7) Export creature
+                        8) Main menu
+                        
+                        \tOption:\s""");
+                option = Integer.parseInt(dataInput.nextLine());
+                System.out.println();
+
+                switch (option) {
+                    case 1 -> {
+                        creature = new CreatureClass();
+                        CreatureFunctions.rollAttributes(creature);
+                        creatureList.add(creature);
+                        System.out.println(creature);
+                    }
+                    case 2 -> {
+                        if (creature == null) {
+                            creature = new CreatureClass();
+                            CreatureFunctions.rollAttributes(creature);
+                            creatureList.add(creature);
+                        } else {
+                            CreatureFunctions.reRollSubcategory(creature);
+                            creatureList.add(creature);
+                            System.out.println(creature);
+                        }
+                    }
+                    case 3 -> {
+                        if (creature == null) {
+                            creature = new CreatureClass();
+                            CreatureFunctions.rollAttributes(creature);
+                            creatureList.add(creature);
+                            System.out.println(creature);
+                        } else {
+                            CreatureFunctions.reRollPrompt(creature);
+                            creatureList.add(creature);
+                            System.out.println(creature);
+                        }
+                    }
+                    case 4 -> {
+                        if (creature == null) {
+                            creature = new CreatureClass();
+                            CreatureFunctions.rollAttributes(creature);
+                            creatureList.add(creature);
+                            System.out.println(creature);
+                        } else {
+                            CreatureFunctions.rollStats(creature);
+                            creatureList.add(creature);
+                            System.out.println(creature);
+                        }
+                    }
+                    case 5 -> {
+                        if (creature == null) {
+                            creature = new CreatureClass();
+                            CreatureFunctions.rollAttributes(creature);
+                            creatureList.add(creature);
+                        }
+                        System.out.println(creature);
+                    }
+                    case 6 -> creature = new ViewAll().run(dataInput,creatureList,creature,CreatureClass.class);
+                    case 7 -> {
+                        if (creature == null) {
+                            creature = new CreatureClass();
+                            CreatureFunctions.rollAttributes(creature);
+                            creatureList.add(creature);
+                        }
+                        GenericFunctions.exportPW(creature);
+                    }
+                    case 8 -> System.out.println("\nReturning to main menu...\n");
+                    default -> System.out.print("\nInvalid number!\n\n");
+                }
+            } catch (Exception e) {
+                System.out.println("\nAn error occurred!\n");
+            }
+        }
+        while (option != 8);
+    }
 }

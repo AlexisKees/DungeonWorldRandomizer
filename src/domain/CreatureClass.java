@@ -34,7 +34,6 @@ public class CreatureClass implements IPWClass {
         this.oneLiner = oneLiner;
     }
 
-
     @Override
     public String toString(){
         return printableBlock;

@@ -5,11 +5,14 @@ import domain.DungeonAreaClass;
 import domain.DungeonDangerClass;
 import domain.DungeonDiscoveryClass;
 import domain.util.Rolls;
+import presentation.ViewAll;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.Scanner;
 
 
-public class DungeonAreaFunctions {
+public class DungeonAreaFunctions implements IPWService<DungeonAreaClass>{
 
     public static void rollArea(DungeonAreaClass area) {
         area.setAreaType(DungeonArrays.AREA_TYPE[Rolls.UniversalRoll(DungeonArrays.AREA_TYPE)]);
@@ -89,4 +92,69 @@ public class DungeonAreaFunctions {
         }
     }
 
+    @Override
+    public void showOptions(Scanner dataInput, DungeonAreaClass area, List<DungeonAreaClass> areaList) {
+        int option = 0;
+        System.out.println("WELCOME TO THE AREA GENERATOR\n");
+
+        try{
+
+            do {
+                System.out.print("""
+                        \nPlease select an option:
+                        1) Create new random area
+                        2) View current area
+                        3) Reroll this area
+                        4) View list of generated area
+                        5) Export current area
+                        6) Main menu
+                        
+                        \tOption:\s""");
+
+                option = Integer.parseInt(dataInput.nextLine());
+                System.out.println();
+
+                switch (option){
+                    case 1 -> {
+                        area = new DungeonAreaClass();
+                        DungeonAreaFunctions.rollArea(area);
+                        areaList.add(area);
+                        System.out.println(area);
+                    }
+                    case 2 ->{
+                        if (area==null){
+                            area = new DungeonAreaClass();
+                            areaList.add(area);
+                            DungeonAreaFunctions.rollArea(area);
+                        }
+                        System.out.println(area);
+                    }
+                    case 3 ->{
+                        if (area==null){
+                            area = new DungeonAreaClass();
+                            DungeonAreaFunctions.rollArea(area);
+                            areaList.add(area);
+                        } else {
+                            DungeonAreaFunctions.rollAreaDetails(area);
+                            areaList.add(area);
+                        }
+                        System.out.println(area);
+                    }
+                    case 4 -> area = new ViewAll().run(dataInput, areaList, area, DungeonAreaClass.class);
+                    case 5 -> {
+                        if (area==null){
+                            area = new DungeonAreaClass();
+                            DungeonAreaFunctions.rollArea(area);
+                        }
+                        GenericFunctions.exportPW(area);
+                    }
+                    case 6 -> System.out.println("Going back to DUNGEON GENERATOR");
+                }
+            } while (option!=6);
+
+
+        }catch (Exception e){
+            System.out.println("There has been a problem during DUNGEON AREA GENERATOR excecution: "+e.getMessage());
+        }
+    }
 }

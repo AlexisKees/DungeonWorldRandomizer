@@ -1,6 +1,7 @@
 package presentation;
 
 import domain.*;
+import service.BiomeFunctions;
 import service.FollowerFunctions;
 
 import java.util.ArrayList;
@@ -55,20 +56,47 @@ public class Main {
 
                  switch (option){
                      case 1 -> new QuestGenerator().run(dataInput, questList,npcList,dungeonList,biomeList);
-                     case 2 -> new NPCGenerator().run(dataInput,npcList);
-                     case 3 -> new FollowerGenerator().run(dataInput,followerList);
-                     case 4 -> new SteadingGenerator().run(dataInput,steadingList);
-                     case 5 -> new DungeonGenerator().run(dataInput, dungeonList);
-                     case 6 -> new AreaGenerator().run(dataInput, areaList);
-                     case 7 -> new BiomeGenerator().run(dataInput,biomeList);
-                     case 8 -> new DiscoveryGenerator().run(dataInput, discoveryList);
-                     case 9 -> new DangerGenerator().run(dataInput, dangerList);
-                     case 10 -> new CreatureGenerator().run(dataInput, creatureList);
+                     case 2 -> {
+                         NPCClass npc = new NPCClass();
+                         SubMenu.run(dataInput,npc, npcList);
+                     }
+                     case 3 -> {
+                         FollowerClass follower = new FollowerClass();
+                         SubMenu.run(dataInput,follower, followerList);
+                     }
+                     case 4 -> {
+                         SteadingClass steading = new SteadingClass();
+                         SubMenu.run(dataInput, steading, steadingList);
+                     }
+                     case 5 -> {
+                         DungeonClass dungeon = new DungeonClass();
+                         SubMenu.run(dataInput, dungeon, dungeonList);
+                     }
+                     case 6 -> {
+                         DungeonAreaClass area = new DungeonAreaClass();
+                         SubMenu.run(dataInput, area, areaList);
+                     }
+                     case 7 -> {
+                         BiomeClass biome = new BiomeClass();
+                         SubMenu.run(dataInput,biome,biomeList);
+                     }
+                     case 8 -> {
+                         DiscoveryClass discovery = new DiscoveryClass();
+                         SubMenu.run(dataInput,discovery, discoveryList);
+                     }
+                     case 9 -> {
+                         DangerClass danger = new DangerClass();
+                         SubMenu.run(dataInput, danger, dangerList);
+                     }
+                     case 10 ->{
+                         CreatureClass creature = new CreatureClass();
+                         SubMenu.run(dataInput, creature, creatureList);
+                     }
                      case 11 -> System.out.println("Come back soon!");
                      default -> System.out.println("Please, chose a valid option");
                  }
 
-            } while (option != 10);
+            } while (option != 11);
         } catch (Exception e){
             System.out.println("Please, chose a valid option");
         }

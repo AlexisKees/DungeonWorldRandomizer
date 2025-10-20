@@ -4,9 +4,13 @@ import data.DetailsArrays;
 import data.SteadingArrays;
 import domain.SteadingClass;
 import domain.util.Rolls;
+import presentation.ViewAll;
+
+import java.util.List;
+import java.util.Scanner;
 
 
-public class SteadingFunctions {
+public class SteadingFunctions implements IPWService<SteadingClass> {
 
     public static void rollSteading(SteadingClass steading){
         steading.setSize(SteadingArrays.SETTLEMENT_SIZE[Rolls.UniversalRoll(SteadingArrays.SETTLEMENT_SIZE)]);
@@ -49,4 +53,58 @@ public class SteadingFunctions {
         steading.setOneLiner(steading.getName()+", "+steading.getRaceOfBuilders()+" "+steading.getSize());
     }
 
+    @Override
+    public void showOptions(Scanner dataInput, SteadingClass steading, List<SteadingClass> steadingList) {
+        int option = 0;
+        System.out.println("WELCOME TO THE STEADING GENERATOR\n");
+
+        try {
+            do {
+                System.out.print("""
+                        Please select an option:
+                        1) Create new random steading
+                        2) View current
+                        3) View list of generated steadings 
+                        4) Export current 
+                        5) Main menu                        
+                        
+                        \tOption:\s""");
+                option = Integer.parseInt(dataInput.nextLine());
+                System.out.println();
+
+                switch (option) {
+                    case 1 -> {
+                        steading = new SteadingClass();
+                        SteadingFunctions.rollSteading(steading);
+                        steadingList.add(steading);
+                        System.out.println(steading);
+                    }
+                    case 2 -> {
+                        if (steading == null) {
+                            steading = new SteadingClass();
+                            SteadingFunctions.rollSteading(steading);
+                            System.out.println(steading);
+                            steadingList.add(steading);
+                        }
+                        System.out.println(steading);
+                    }
+                    case 3 -> steading = new ViewAll().run(dataInput, steadingList, steading, SteadingClass.class);
+                    case 4 -> {
+                        if (steading == null) {
+                            steading = new SteadingClass();
+                            SteadingFunctions.rollSteading(steading);
+                            steadingList.add(steading);
+                            System.out.println(steading);
+                        }
+                        GenericFunctions.exportPW(steading);
+                    }
+                    case 5 -> System.out.println("\nReturning to main menu...\n");
+
+                }
+
+            } while (option != 5);
+        } catch (Exception e) {
+            System.out.println("An error ocurred: " + e.getMessage());
+        }
+    }
 }
