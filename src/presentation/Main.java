@@ -55,7 +55,7 @@ public class Main {
                 System.out.println();
 
                  switch (option){
-                     case 1 -> new QuestGenerator().run(dataInput, questList,npcList,dungeonList,biomeList);
+                     case 1 -> new QuestGenerator().run(dataInput, questList, npcList, dungeonList, biomeList);
                      case 2 -> {
                          NPCClass npc = new NPCClass();
                          SubMenu.run(dataInput,npc, npcList);

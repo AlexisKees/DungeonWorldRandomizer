@@ -1,6 +1,6 @@
 package presentation;
 
-import domain.IPWClass;
+import domain.*;
 import service.util.ClassIdentifier;
 
 import java.util.List;
@@ -15,5 +15,14 @@ public class SubMenu {
             System.out.println("No service registered for class '"+object.getClass()+"'.");
         }
     }
+
+    public static <T extends IPWClass> void run(Scanner dataInput, T object, DungeonClass dungeon){
+
+    }
+
+    public static <T extends IPWClass> void run(Scanner dataInput, List<QuestClass>questList, List<NPCClass> npcList, List<DungeonClass> dungeonList, List<BiomeClass> biomeList){
+
+    }
+
 
 }

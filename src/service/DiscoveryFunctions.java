@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
-public class DiscoveryFunctions implements IPWService<DiscoveryClass>{
+public class DiscoveryFunctions implements IAreaServices<DiscoveryClass>{
 
     public static void rollDiscovery(DiscoveryClass discovery){
         discovery.setCategory(DiscoveryArrays.DISCOVERY_CATEGORIES[Rolls.UniversalRoll(DiscoveryArrays.DISCOVERY_CATEGORIES)]);
@@ -289,5 +289,11 @@ public class DiscoveryFunctions implements IPWService<DiscoveryClass>{
         }catch (Exception e){
             System.out.println("An error occurred: "+e.getMessage());
         }
+    }
+
+
+    @Override
+    public void showAreaOptions(Scanner dataInput, DiscoveryClass object, DungeonAreaClass area) {
+
     }
 }
