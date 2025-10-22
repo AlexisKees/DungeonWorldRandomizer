@@ -8,7 +8,7 @@ import presentation.ViewAll;
 import java.util.List;
 import java.util.Scanner;
 
-public class QuestFunctions implements IQuestServices {
+public class QuestFunctions {
 
     public static void rollQuest(Quest quest){
         quest.setTask(QuestArrays.TASK[Rolls.UniversalRoll(QuestArrays.TASK)]);
@@ -34,8 +34,8 @@ public class QuestFunctions implements IQuestServices {
     }
 
 
-    @Override
-    public void showOptions(Scanner dataInput, Quest quest,List<Quest> questList, List<NPC> npcList, List<Dungeon> dungeonList, List<Biome> biomeList) {
+
+    public static void showOptions(Scanner dataInput, Quest quest, List<Quest> questList, List<NPC> npcList, List<Dungeon> dungeonList, List<Biome> biomeList) {
         var option = 0;
 
         System.out.println("WELCOME TO THE QUEST GENERATOR\n");

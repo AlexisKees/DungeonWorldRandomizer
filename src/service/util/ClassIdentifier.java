@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ClassIdentifier {
-    private static final Map<Class<?>, IGenericServices<?>> map = new HashMap<>();
+    private static final Map<Class<?>, IAllServices<?>> map = new HashMap<>();
 
     static {
         map.put(Area.class,new DungeonAreaFunctions());
@@ -20,13 +20,12 @@ public class ClassIdentifier {
         map.put(AreaDiscovery.class,new DungeonDiscoveryFunctions());
         map.put(Follower.class,new FollowerFunctions());
         map.put(NPC.class,new NPCFunctions());
-        map.put(Quest.class,new QuestFunctions());
         map.put(Steading.class,new SteadingFunctions());
     }
 
     @SuppressWarnings("unchecked")
-    public static <T extends IPWClass> IGenericServices<T> getServiceFile(Class<T> c) {
-        return (IGenericServices<T>) map.get(c);
+    public static <T extends IPWClass> IAllServices<T> getServiceFile(Class<T> c) {
+        return (IAllServices<T>) map.get(c);
     }
 }
 

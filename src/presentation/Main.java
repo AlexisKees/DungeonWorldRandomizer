@@ -36,16 +36,16 @@ public class Main {
 
                 System.out.print("""
                         Chose what you'd like to generate:
-                        1) Generate Quest
-                        2) Generate NPC
-                        3) Generate Follower
-                        4) Generate Steading
-                        5) Generate Dungeon
-                        6) Generate Area
-                        7) Generate Biome
-                        8) Generate Discovery
-                        9) Generate Danger
-                        10) Generate Creature
+                        1)  Generate Area
+                        2)  Generate Biome
+                        3)  Generate Creature
+                        4)  Generate Danger
+                        5)  Generate Discovery
+                        6)  Generate Dungeon
+                        7)  Generate Follower
+                        8)  Generate NPC
+                        9)  Generate Quest
+                        10) Generate Steading
                         11) Exit
                         
                         \tOption:\s""");
@@ -54,44 +54,44 @@ public class Main {
 
                  switch (option){
                      case 1 -> {
-                         Quest quest = new Quest();
-                         SubMenu.run(dataInput, quest, questList, npcList, dungeonList, biomeList);
-                     }
-                     case 2 -> {
-                         NPC npc = new NPC();
-                         SubMenu.run(dataInput,npc, npcList);
-                     }
-                     case 3 -> {
-                         Follower follower = new Follower();
-                         SubMenu.run(dataInput,follower, followerList);
-                     }
-                     case 4 -> {
-                         Steading steading = new Steading();
-                         SubMenu.run(dataInput, steading, steadingList);
-                     }
-                     case 5 -> {
-                         Dungeon dungeon = new Dungeon();
-                         SubMenu.run(dataInput, dungeon, dungeonList);
-                     }
-                     case 6 -> {
                          Area area = new Area();
                          SubMenu.run(dataInput, area, areaList);
                      }
-                     case 7 -> {
+                     case 2 -> {
                          Biome biome = new Biome();
                          SubMenu.run(dataInput,biome,biomeList);
                      }
-                     case 8 -> {
-                         Discovery discovery = new Discovery();
-                         SubMenu.run(dataInput,discovery, discoveryList);
+                     case 3 -> {
+                         Creature creature = new Creature();
+                         SubMenu.run(dataInput, creature, creatureList);
                      }
-                     case 9 -> {
+                     case 4 -> {
                          Danger danger = new Danger();
                          SubMenu.run(dataInput, danger, dangerList);
                      }
-                     case 10 ->{
-                         Creature creature = new Creature();
-                         SubMenu.run(dataInput, creature, creatureList);
+                     case 5 -> {
+                         Discovery discovery = new Discovery();
+                         SubMenu.run(dataInput,discovery, discoveryList);
+                     }
+                     case 6 -> {
+                         Dungeon dungeon = new Dungeon();
+                         SubMenu.run(dataInput, dungeon, dungeonList);
+                     }
+                     case 7 -> {
+                         Follower follower = new Follower();
+                         SubMenu.run(dataInput,follower, followerList);
+                     }
+                     case 8 -> {
+                         NPC npc = new NPC();
+                         SubMenu.run(dataInput,npc, npcList);
+                     }
+                     case 9 -> {
+                         Quest quest = new Quest();
+                         SubMenu.run(dataInput, quest, questList, npcList, dungeonList, biomeList);
+                     }
+                     case 10 -> {
+                         Steading steading = new Steading();
+                         SubMenu.run(dataInput, steading, steadingList);
                      }
                      case 11 -> System.out.println("Come back soon!");
                      default -> System.out.println("Please, chose a valid option");

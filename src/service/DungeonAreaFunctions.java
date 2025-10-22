@@ -4,12 +4,13 @@ import domain.Area;
 import domain.Dungeon;
 import presentation.ViewAll;
 
+import java.util.List;
 import java.util.Scanner;
 
 
-public class DungeonAreaFunctions implements IDungeonServices<Area> {
-    @Override
-    public void showOptions(Scanner dataInput, Area area, Dungeon dungeon) {
+public class DungeonAreaFunctions  {
+
+    public static void showOptions(Scanner dataInput, Area area, Dungeon dungeon) {
         int option = 0;
         System.out.println("WELCOME TO THE AREA GENERATOR\n");
 
@@ -58,7 +59,7 @@ public class DungeonAreaFunctions implements IDungeonServices<Area> {
                             area = new Area();
                             AreaFunctions.rollArea(area);
                         }
-                        GenericFunctions.exportPW(area);
+                        dungeon.addArea(area);
                     }
                     case 6 -> System.out.println("Going back to DUNGEON GENERATOR");
                 }
@@ -69,55 +70,6 @@ public class DungeonAreaFunctions implements IDungeonServices<Area> {
             System.out.println("There has been a problem during DUNGEON AREA GENERATOR excecution: "+e.getMessage());
         }
     }
-
-
-
-
-/*
-    @Override
-    public void showOptions(Scanner dataInput, Area area, Dungeon dungeon) {
-        int option = 0;
-        System.out.println("PROCEED TO ADD AREAS\n");
-
-        try{
-
-            do {
-                System.out.print("""
-                        \n1) Generate random area
-                        2) Add area to dungeon
-                        3) Back to DUNGEON GENERATOR
-                        
-                        \tOption:\s
-                        """);
-
-                option = Integer.parseInt(dataInput.nextLine());
-                System.out.println();
-
-                switch (option){
-                    case 1 -> {
-                        area = new Area();
-                        AreaFunctions.rollArea(area);
-                        System.out.println(area);
-                    }
-                    case 2 ->{
-                        if (area==null){
-                            area = new Area();
-                            AreaFunctions.rollArea(area);
-                            System.out.println(area);
-                        }
-                        dungeon.addArea(area);
-                    }
-                    case 3 -> System.out.println("Going back to DUNGEON GENERATOR");
-                }
-            } while (option!=3);
-
-
-        }catch (Exception e){
-            System.out.println("There has been a problem during DUNGEON AREA GENERATOR excecution: "+e.getMessage());
-        }
-    }
-
- */
 
 
 }

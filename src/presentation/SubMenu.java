@@ -1,6 +1,8 @@
 package presentation;
 
 import domain.*;
+import service.DungeonAreaFunctions;
+import service.QuestFunctions;
 import service.util.ClassIdentifier;
 
 import java.util.List;
@@ -15,24 +17,13 @@ public class SubMenu {
             System.out.println("No service registered for class '"+object.getClass()+"'.");
         }
     }
-
-    public static <T extends IPWClass> void run(Scanner dataInput, T object, Dungeon dungeon){
-        var serviceInterface = ClassIdentifier.getServiceFile((Class <T>) object.getClass());
-        if (serviceInterface != null){
-            serviceInterface.showOptions(dataInput,object,dungeon);
-        } else {
-            System.out.println("No service registered for class '"+object.getClass()+"'.");
-        }
-
+    //run para dungeon area
+    public static  void run(Scanner dataInput, Area area, Dungeon dungeon){
+        DungeonAreaFunctions.showOptions(dataInput,area,dungeon);
     }
-
-    public static <T extends IPWClass> void run(Scanner dataInput, Quest object, List<Quest>questList, List<NPC> npcList, List<Dungeon> dungeonList, List<Biome> biomeList){
-        var serviceInterface = ClassIdentifier.getServiceFile((Class <T>) object.getClass());
-        if (serviceInterface != null){
-            serviceInterface.showOptions(dataInput, object, questList,npcList, dungeonList, biomeList);
-        } else {
-            System.out.println("No service registered for class '"+object.getClass()+"'.");
-        }
+    //run para quest
+    public static void run(Scanner dataInput, Quest object, List<Quest>questList, List<NPC> npcList, List<Dungeon> dungeonList, List<Biome> biomeList){
+        QuestFunctions.showOptions(dataInput, object, questList,npcList, dungeonList, biomeList);
     }
 
 

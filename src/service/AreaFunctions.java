@@ -148,7 +148,7 @@ public class AreaFunctions implements IAllServices<Area> {
                         }
                         GenericFunctions.exportPW(area);
                     }
-                    case 6 -> System.out.println("Going back to DUNGEON GENERATOR");
+                    case 6 -> System.out.println("Going back to main menu");
                 }
             } while (option!=6);
 
