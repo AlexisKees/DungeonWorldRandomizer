@@ -9,11 +9,8 @@ import presentation.ViewAll;
 import java.util.List;
 import java.util.Scanner;
 
-public class DangerFunctions implements IAllServices<Danger>, IAreaServices<AreaDanger> {
-    @Override
-    public void showAreaOptions(Scanner dataInput, AreaDanger object, Area area) {
+public class DangerFunctions implements IAllServices<Danger> {
 
-    }
 
     public static void rollDanger(Danger danger){
         int roll;

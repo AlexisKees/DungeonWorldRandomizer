@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
-public class DiscoveryFunctions implements IAreaServices<Discovery>, IAllServices<Discovery> {
+public class DiscoveryFunctions implements IAllServices<Discovery> {
 
     public static void rollDiscovery(Discovery discovery){
         discovery.setCategory(DiscoveryArrays.DISCOVERY_CATEGORIES[Rolls.UniversalRoll(DiscoveryArrays.DISCOVERY_CATEGORIES)]);
-//        if(discovery.getCategory()!=null) System.out.println("Category stablished"); else System.out.println("Failed trying to set category");
+//        if(discovery.getCategory()!=null) System.out.println("Category established"); else System.out.println("Failed trying to set category");
         switch (discovery.getCategory()){
              case "UNNATURAL FEATURE" -> discovery.setSubcategoriesTable(DiscoveryArrays.UNNATURAL_FEATURE_SUBCATEGORIES);
              case "NATURAL FEATURE" -> discovery.setSubcategoriesTable(DiscoveryArrays.NATURAL_FEATURE_SUBCATEGORIES);
@@ -28,30 +28,30 @@ public class DiscoveryFunctions implements IAreaServices<Discovery>, IAllService
         }
 
         discovery.setSubcategory(discovery.getSubcategoriesTable()[Rolls.UniversalRoll(discovery.getSubcategoriesTable())]);
-//        if(discovery.getSubcategory()!=null) System.out.println("Subategory stablished"); else System.out.println("Failed trying to set subcategory. Category was: "+discovery.getCategory());
+//        if(discovery.getSubcategory()!=null) System.out.println("Subcategory established"); else System.out.println("Failed trying to set subcategory. Category was: "+discovery.getCategory());
 
         switch (discovery.getSubcategory()){
-            case "Divine" -> {discovery.setPromptTable(DiscoveryArrays.DIVINE_PROMPTS);}
-            case "Planar" -> {discovery.setPromptTable(DiscoveryArrays.PLANAR_PROMPTS);}
-            case "Arcane" -> {discovery.setPromptTable(DiscoveryArrays.ARCANE_PROMPTS);}
-            case "Lair" -> {discovery.setPromptTable(DiscoveryArrays.LAIR_PROMPTS);}
-            case "Terrain Change" -> {discovery.setPromptTable(DiscoveryArrays.TERRAIN_CHANGE_PROMPTS);}
-            case "Water Feature" -> {discovery.setPromptTable(DiscoveryArrays.WATER_FEATURE_PROMPTS);}
-            case "Landmark" -> {discovery.setPromptTable(DiscoveryArrays.LANDMARK_PROMPTS);}
-            case "Flora/Fauna" -> {discovery.setPromptTable(DiscoveryArrays.FLORA_FAUNA_PROMPTS);}
-            case "Resource" -> {discovery.setPromptTable(DiscoveryArrays.RESOURCE_PROMPTS);}
-            case "Tracks/Spoor" -> {discovery.setPromptTable(DiscoveryArrays.TRACKS_SPOOR_PROMPTS);}
-            case "Remains/Debris" -> {discovery.setPromptTable(DiscoveryArrays.REMAINS_DEBRIS_PROMPTS);}
-            case "Stash/Cache" -> {discovery.setPromptTable(DiscoveryArrays.STASH_CACHE_PROMPTS);}
-            case "Enigmatic" -> {discovery.setPromptTable(DiscoveryArrays.ENIGMATIC_PROMPTS);}
-            case "Infrastructure" -> {discovery.setPromptTable(DiscoveryArrays.INFRASTRUCTURE_PROMPTS);}
-            case "Dwelling" -> {discovery.setPromptTable(DiscoveryArrays.DWELLING_PROMPTS);}
-            case "Religious" -> {discovery.setPromptTable(DiscoveryArrays.RELIGIOUS_PROMPTS);}
-            case "Ruin" -> {discovery.setPromptTable(DiscoveryArrays.RUIN_PROMPTS);}
-            case "Steading" -> {discovery.setPromptTable(DiscoveryArrays.STEADING_PROMPTS);}
+            case "Divine" -> discovery.setPromptTable(DiscoveryArrays.DIVINE_PROMPTS);
+            case "Planar" -> discovery.setPromptTable(DiscoveryArrays.PLANAR_PROMPTS);
+            case "Arcane" -> discovery.setPromptTable(DiscoveryArrays.ARCANE_PROMPTS);
+            case "Lair" -> discovery.setPromptTable(DiscoveryArrays.LAIR_PROMPTS);
+            case "Terrain Change" -> discovery.setPromptTable(DiscoveryArrays.TERRAIN_CHANGE_PROMPTS);
+            case "Water Feature" -> discovery.setPromptTable(DiscoveryArrays.WATER_FEATURE_PROMPTS);
+            case "Landmark" -> discovery.setPromptTable(DiscoveryArrays.LANDMARK_PROMPTS);
+            case "Flora/Fauna" -> discovery.setPromptTable(DiscoveryArrays.FLORA_FAUNA_PROMPTS);
+            case "Resource" -> discovery.setPromptTable(DiscoveryArrays.RESOURCE_PROMPTS);
+            case "Tracks/Spoor" -> discovery.setPromptTable(DiscoveryArrays.TRACKS_SPOOR_PROMPTS);
+            case "Remains/Debris" -> discovery.setPromptTable(DiscoveryArrays.REMAINS_DEBRIS_PROMPTS);
+            case "Stash/Cache" -> discovery.setPromptTable(DiscoveryArrays.STASH_CACHE_PROMPTS);
+            case "Enigmatic" -> discovery.setPromptTable(DiscoveryArrays.ENIGMATIC_PROMPTS);
+            case "Infrastructure" -> discovery.setPromptTable(DiscoveryArrays.INFRASTRUCTURE_PROMPTS);
+            case "Dwelling" -> discovery.setPromptTable(DiscoveryArrays.DWELLING_PROMPTS);
+            case "Religious" -> discovery.setPromptTable(DiscoveryArrays.RELIGIOUS_PROMPTS);
+            case "Ruin" -> discovery.setPromptTable(DiscoveryArrays.RUIN_PROMPTS);
+            case "Steading" -> discovery.setPromptTable(DiscoveryArrays.STEADING_PROMPTS);
         }
 
-//        if(discovery.getPromptTable()!=null) System.out.println("Prompt table stablished"); else System.out.println("Failed trying to set prompt table. Subcategory was: "+discovery.getSubcategory());
+//        if(discovery.getPromptTable()!=null) System.out.println("Prompt table established"); else System.out.println("Failed trying to set prompt table. Subcategory was: "+discovery.getSubcategory());
 
         discovery.setPrompt(discovery.getPromptTable()[Rolls.UniversalRoll(discovery.getPromptTable())]);
 
@@ -108,12 +108,12 @@ public class DiscoveryFunctions implements IAreaServices<Discovery>, IAllService
         case "DUNGEON" -> {
             Dungeon d = new Dungeon();
             DungeonFunctions.rollDungeon(d);
-            discovery.setFinalResult("Dungeon in ruins:\n"+d.toString());
+            discovery.setFinalResult("Dungeon in ruins:\n"+d);
         }
         case "STEADING" -> {
             Steading s = new Steading();
             SteadingFunctions.rollSteading(s);
-            discovery.setFinalResult("Steading in ruins:\n"+s.toString());
+            discovery.setFinalResult("Steading in ruins:\n"+s);
         }
         case "religious" -> {
             int roll = Rolls.Roll1d8()+4;
@@ -168,12 +168,12 @@ public class DiscoveryFunctions implements IAreaServices<Discovery>, IAllService
             case "DUNGEON" -> {
                 Dungeon d = new Dungeon();
                 DungeonFunctions.rollDungeon(d);
-                return String.format("Dungeon in ruins:\n" + d.toString());
+                return String.format("Dungeon in ruins:\n" + d);
             }
             case "STEADING" -> {
                 Steading s = new Steading();
                 SteadingFunctions.rollSteading(s);
-                return String.format("Steading in ruins:\n" + s.toString());
+                return String.format("Steading in ruins:\n" + s);
             }
             case "religious" -> {
                 int roll = Rolls.Roll1d8() + 4;
@@ -194,13 +194,13 @@ public class DiscoveryFunctions implements IAreaServices<Discovery>, IAllService
 
         return ruin;
 
-    };
+    }
 
 
 
     @Override
     public void showOptions(Scanner dataInput, Discovery discovery, List<Discovery> discoveryList) {
-        int option = 0;
+        int option;
         System.out.println("WELCOME TO THE DISCOVERY GENERATOR\n");
 
         try{
@@ -252,9 +252,4 @@ public class DiscoveryFunctions implements IAreaServices<Discovery>, IAllService
     }
 
 
-
-    @Override
-    public void showOptions(Scanner dataInput, Discovery object, Area area) {
-
-    }
 }
