@@ -4,7 +4,10 @@ import data.DungeonArrays;
 import domain.AreaDiscovery;
 import domain.util.Rolls;
 
-public class DungeonDiscoveryFunctions {
+import java.util.List;
+import java.util.Scanner;
+
+public class DungeonDiscoveryFunctions implements IAllServices<AreaDiscovery>{
 
     public static void rollDungeonDiscovery(AreaDiscovery discovery){
         int roll;
@@ -47,4 +50,8 @@ public class DungeonDiscoveryFunctions {
 
     }
 
+    @Override
+    public void showOptions(Scanner dataInput, AreaDiscovery object, List<AreaDiscovery> list) {
+
+    }
 }

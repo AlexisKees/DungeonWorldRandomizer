@@ -2,7 +2,8 @@ package presentation;
 
 import domain.Area;
 import domain.Dungeon;
-import service.DungeonAreaFunctions;
+import service.AreaFunctions;
+
 
 import java.util.Scanner;
 
@@ -28,13 +29,13 @@ public class DungeonAreaGenerator {
                 switch (option){
                     case 1 -> {
                         area = new Area();
-                        DungeonAreaFunctions.rollArea(area);
+                        AreaFunctions.rollArea(area);
                         System.out.println(area);
                     }
                     case 2 ->{
                         if (area==null){
                             area = new Area();
-                            DungeonAreaFunctions.rollArea(area);
+                            AreaFunctions.rollArea(area);
                             System.out.println(area);
                         }
                         dungeon.addArea(area);

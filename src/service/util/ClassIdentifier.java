@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class ClassIdentifier {
     private static final Map<Class<?>, IGenericServices<?>> map = new HashMap<>();
-    private static final Map<Class<?>, IDungeonServices<?>> mapDungeon = new HashMap<>();
+
     static {
         map.put(Area.class,new DungeonAreaFunctions());
         map.put(Biome.class,new BiomeFunctions());
@@ -22,16 +22,10 @@ public class ClassIdentifier {
         map.put(NPC.class,new NPCFunctions());
         map.put(Quest.class,new QuestFunctions());
         map.put(Steading.class,new SteadingFunctions());
-
-        mapDungeon.put(Area.class, new DungeonAreaFunctions());
-
     }
 
     @SuppressWarnings("unchecked")
     public static <T extends IPWClass> IGenericServices<T> getServiceFile(Class<T> c) {
-
-
-
         return (IGenericServices<T>) map.get(c);
     }
 }

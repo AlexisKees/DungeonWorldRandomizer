@@ -11,19 +11,11 @@ public class ViewAll {
     public <T extends IPWClass> T run(Scanner dataInput, List<T> list, T object, Class<T> type){
         int option = 0;
         int itemNumber=0;
-        String label = type.getSimpleName().substring(0,type.getSimpleName().length()-5);
+        String label = type.getSimpleName();
 
         String labelPlural = switch (label){
-            case "Biome" -> "Biomes";
-            case "Creature" -> "Creatures";
-            case "Danger" -> "Dangers";
             case "Discovery" -> "Discoveries";
-            case "Dungeon" -> "Dungeons";
-            case "Follower"-> "Followers";
-            case "NPC" -> "NPC";
-            case "Quest" -> "Quests";
-            case "Steading" -> "Steadings";
-            default -> "Items";
+            default -> label+"s";
         };
 
         int counter = 1;
@@ -39,8 +31,8 @@ public class ViewAll {
         try{
             do {
                 System.out.print("""
-                        1) Detailed view
-                        2) Go back 
+                        1) View one element in detail
+                        2) Go back
                         \tOption:\s""");
 
                 option=Integer.parseInt(dataInput.nextLine());
