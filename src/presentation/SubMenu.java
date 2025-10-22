@@ -16,12 +16,23 @@ public class SubMenu {
         }
     }
 
-    public static <T extends IPWClass> void run(Scanner dataInput, T object, DungeonClass dungeon){
+    public static <T extends IPWClass> void run(Scanner dataInput, T object, Dungeon dungeon){
+        var serviceInterface = ClassIdentifier.getServiceFile((Class <T>) object.getClass());
+        if (serviceInterface != null){
+            serviceInterface.showOptions(dataInput,object,dungeon);
+        } else {
+            System.out.println("No service registered for class '"+object.getClass()+"'.");
+        }
 
     }
 
-    public static <T extends IPWClass> void run(Scanner dataInput, List<QuestClass>questList, List<NPCClass> npcList, List<DungeonClass> dungeonList, List<BiomeClass> biomeList){
-
+    public static <T extends IPWClass> void run(Scanner dataInput, Quest object, List<Quest>questList, List<NPC> npcList, List<Dungeon> dungeonList, List<Biome> biomeList){
+        var serviceInterface = ClassIdentifier.getServiceFile((Class <T>) object.getClass());
+        if (serviceInterface != null){
+            serviceInterface.showOptions(dataInput, object, questList,npcList, dungeonList, biomeList);
+        } else {
+            System.out.println("No service registered for class '"+object.getClass()+"'.");
+        }
     }
 
 

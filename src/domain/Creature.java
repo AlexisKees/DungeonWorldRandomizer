@@ -2,7 +2,7 @@ package domain;
 
 import java.util.Objects;
 
-public class CreatureClass implements IPWClass {
+public class Creature implements IPWClass {
 
 //    private Boolean wasRolled = false;
     private String category;
@@ -204,7 +204,7 @@ public class CreatureClass implements IPWClass {
         this.printableStats = printableStats;
     }
 
-    public CreatureClass() {}
+    public Creature() {}
 
     public String getPrompt() {
         return prompt;

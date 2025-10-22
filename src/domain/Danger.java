@@ -2,8 +2,10 @@ package domain;
 
 import java.util.Objects;
 
-public class DungeonDangerClass implements IPWClass {
+public class Danger implements IPWClass {
     private String category;
+    private String[] subcategoriesTable;
+    private String subcategory;
     private String[] promptTable;
     private String prompt;
     private String finalResult;
@@ -19,7 +21,7 @@ public class DungeonDangerClass implements IPWClass {
 
     @Override
     public String toString(){
-        String str = "DUNGEON DANGER: "+this.category+" -> "+this.prompt+"\n";
+        String str = "DANGER: "+this.category+" -> "+this.subcategory+" -> "+this.prompt+"\n";
         if (!Objects.equals(this.prompt,this.finalResult)){
             str+=this.finalResult;
         }
@@ -32,6 +34,22 @@ public class DungeonDangerClass implements IPWClass {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String[] getSubcategoriesTable() {
+        return subcategoriesTable;
+    }
+
+    public void setSubcategoriesTable(String[] subcategoriesTable) {
+        this.subcategoriesTable = subcategoriesTable;
+    }
+
+    public String getSubcategory() {
+        return subcategory;
+    }
+
+    public void setSubcategory(String subcategory) {
+        this.subcategory = subcategory;
     }
 
     public String[] getPromptTable() {

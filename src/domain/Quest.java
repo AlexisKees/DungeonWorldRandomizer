@@ -1,12 +1,12 @@
 package domain;
 
-public class QuestClass implements IPWClass {
+public class Quest implements IPWClass {
     private String task;
     private String relevance;
     private String reward;
-    private NPCClass questGiver;
-    private DungeonClass dungeon;
-    private BiomeClass biome;
+    private NPC questGiver;
+    private Dungeon dungeon;
+    private Biome biome;
     private String oneLiner;
     private String brief;
 
@@ -60,27 +60,27 @@ public class QuestClass implements IPWClass {
 
     }
 
-    public BiomeClass getBiome() {
+    public Biome getBiome() {
         return biome;
     }
 
-    public void setBiome(BiomeClass biome) {
+    public void setBiome(Biome biome) {
         this.biome = biome;
     }
 
-    public NPCClass getQuestGiver() {
+    public NPC getQuestGiver() {
         return questGiver;
     }
 
-    public void setQuestGiver(NPCClass questGiver) {
+    public void setQuestGiver(NPC questGiver) {
         this.questGiver = questGiver;
     }
 
-    public DungeonClass getDungeon() {
+    public Dungeon getDungeon() {
         return dungeon;
     }
 
-    public void setDungeon(DungeonClass dungeon) {
+    public void setDungeon(Dungeon dungeon) {
         this.dungeon = dungeon;
     }
 

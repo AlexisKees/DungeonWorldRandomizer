@@ -4,15 +4,15 @@ import data.CreatureArrays;
 import data.DetailsArrays;
 import data.NPCArrays;
 import data.NPCNamesArrays;
-import domain.FollowerClass;
+import domain.Follower;
 import domain.util.Rolls;
 import presentation.ViewAll;
 
 import java.util.List;
 import java.util.Scanner;
 
-public class FollowerFunctions implements IPWService<FollowerClass> {
-    public static void rollFollower(FollowerClass follower){
+public class FollowerFunctions implements IAllServices<Follower> {
+    public static void rollFollower(Follower follower){
         int rarity = Rolls.Roll1d12();
         switch (rarity) {
             case 6,7,8,9 -> follower.setRaceTable(CreatureArrays.PROMPTS_HUMANOID_UNCOMMON);
@@ -52,7 +52,7 @@ public class FollowerFunctions implements IPWService<FollowerClass> {
         rollFollowerDetails(follower);
     }
 
-    public static void rollFollowerDetails(FollowerClass follower){
+    public static void rollFollowerDetails(Follower follower){
 
 //        private int HP;
 //        private int armor;
@@ -130,7 +130,7 @@ public class FollowerFunctions implements IPWService<FollowerClass> {
 
 
 
-    public static void addTag(FollowerClass f){
+    public static void addTag(Follower f){
         int roll;
         String tag = "";
         boolean tagAlreadyExists = ((f.getTags().indexOf(tag)!=-1)||(f.getTags().indexOf(tag.toLowerCase())!=-1));
@@ -143,14 +143,14 @@ public class FollowerFunctions implements IPWService<FollowerClass> {
         if (f.getTags().length()==0) f.setTags(tag);
         else f.setTags(f.getTags()+", "+tag.toLowerCase());
     }
-    public static void addTag(FollowerClass f,  String tag){
+    public static void addTag(Follower f, String tag){
         boolean tagAlreadyExists = ((f.getTags().indexOf(tag)!=-1)||(f.getTags().indexOf(tag.toLowerCase())!=-1));
 
         if (f.getTags().length()==0) f.setTags(tag);
         else if (!tagAlreadyExists) f.setTags(f.getTags()+", "+tag.toLowerCase());
     }
 
-    public static void reviseBackground(FollowerClass follower){
+    public static void reviseBackground(Follower follower){
         switch (follower.getBackground()){
             case "Life of servitude/oppression: +meek" -> addTag(follower, "Meek");
             case "Past prime: -1 to Quality, +1 wise" ->{
@@ -173,7 +173,7 @@ public class FollowerFunctions implements IPWService<FollowerClass> {
         }
     }
 
-    public static void removeTag(FollowerClass follower){
+    public static void removeTag(Follower follower){
         String str;
         if (follower.getTags().indexOf(",")==-1) follower.setTags("");
         else {
@@ -185,7 +185,7 @@ public class FollowerFunctions implements IPWService<FollowerClass> {
 
 
     @Override
-    public void showOptions(Scanner dataInput, FollowerClass follower, List<FollowerClass> followerList) {
+    public void showOptions(Scanner dataInput, Follower follower, List<Follower> followerList) {
         int option = 0;
         System.out.println("WELCOME TO THE FOLLOWER GENERATOR\n");
 
@@ -208,30 +208,30 @@ public class FollowerFunctions implements IPWService<FollowerClass> {
 
                 switch (option){
                     case 1 -> {
-                        follower = new FollowerClass();
+                        follower = new Follower();
                         FollowerFunctions.rollFollower(follower);
                         System.out.println(follower);
                     }
                     case 2 ->{
                         if (follower==null){
-                            follower = new FollowerClass();
+                            follower = new Follower();
                             FollowerFunctions.rollFollower(follower);
                         }
                         System.out.println(follower);
                     }
                     case 3 ->{
                         if (follower==null){
-                            follower = new FollowerClass();
+                            follower = new Follower();
                             FollowerFunctions.rollFollower(follower);
                         } else {
                             FollowerFunctions.rollFollowerDetails(follower);
                         }
                         System.out.println(follower);
                     }
-                    case 4 -> follower = new ViewAll().run(dataInput, followerList, follower, FollowerClass.class);
+                    case 4 -> follower = new ViewAll().run(dataInput, followerList, follower, Follower.class);
                     case 5 -> {
                         if (follower==null){
-                            follower = new FollowerClass();
+                            follower = new Follower();
                             FollowerFunctions.rollFollower(follower);
                         }
                         GenericFunctions.exportPW(follower);

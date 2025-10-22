@@ -2,7 +2,7 @@ package domain;
 
 import java.util.Objects;
 
-public class DiscoveryClass implements IPWClass {
+public class Discovery implements IPWClass {
 
     private String category;
     private String[] subcategoriesTable;

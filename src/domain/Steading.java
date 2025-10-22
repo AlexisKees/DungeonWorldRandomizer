@@ -1,6 +1,6 @@
 package domain;
 
-public class SteadingClass implements IPWClass {
+public class Steading implements IPWClass {
     private String name = "";
     private String size = "";
     private String tags = "";

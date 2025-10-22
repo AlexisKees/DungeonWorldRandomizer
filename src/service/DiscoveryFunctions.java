@@ -2,7 +2,6 @@ package service;
 
 import data.DetailsArrays;
 import data.DiscoveryArrays;
-import data.DungeonArrays;
 import domain.*;
 import domain.util.Rolls;
 import presentation.ViewAll;
@@ -11,9 +10,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
-public class DiscoveryFunctions implements IAreaServices<DiscoveryClass>{
+public class DiscoveryFunctions implements IAreaServices<Discovery>, IAllServices<Discovery> {
 
-    public static void rollDiscovery(DiscoveryClass discovery){
+    public static void rollDiscovery(Discovery discovery){
         discovery.setCategory(DiscoveryArrays.DISCOVERY_CATEGORIES[Rolls.UniversalRoll(DiscoveryArrays.DISCOVERY_CATEGORIES)]);
 //        if(discovery.getCategory()!=null) System.out.println("Category stablished"); else System.out.println("Failed trying to set category");
         switch (discovery.getCategory()){
@@ -78,21 +77,21 @@ public class DiscoveryFunctions implements IAreaServices<DiscoveryClass>{
             discovery.setFinalResult("Useful "+beast);
         }
         case "bones of CREATURE" -> {
-            CreatureClass c = new CreatureClass();
+            Creature c = new Creature();
             CreatureFunctions.rollAttributes(c);
             discovery.setFinalResult(String.format("""
                     Bones of a creature:
                     %s""", c.getPrintableBlock()));
         }
         case "CREATURE carcass" -> {
-            CreatureClass c = new CreatureClass();
+            Creature c = new Creature();
             CreatureFunctions.rollAttributes(c);
             discovery.setFinalResult(String.format("""
                     Creature carcass:
                     %s""", c.getPrintableBlock()));
         }
         case "Creature" -> {
-            CreatureClass c = new CreatureClass();
+            Creature c = new Creature();
             CreatureFunctions.rollAttributes(c);
             discovery.setFinalResult(c.getPrintableBlock());
         }
@@ -107,12 +106,12 @@ public class DiscoveryFunctions implements IAreaServices<DiscoveryClass>{
             discovery.setFinalResult("Enigmatic "+oddity);}
 
         case "DUNGEON" -> {
-            DungeonClass d = new DungeonClass();
+            Dungeon d = new Dungeon();
             DungeonFunctions.rollDungeon(d);
             discovery.setFinalResult("Dungeon in ruins:\n"+d.toString());
         }
         case "STEADING" -> {
-            SteadingClass s = new SteadingClass();
+            Steading s = new Steading();
             SteadingFunctions.rollSteading(s);
             discovery.setFinalResult("Steading in ruins:\n"+s.toString());
         }
@@ -133,22 +132,22 @@ public class DiscoveryFunctions implements IAreaServices<DiscoveryClass>{
         }
 
         case "village" -> {
-            SteadingClass s = new SteadingClass();
+            Steading s = new Steading();
             SteadingFunctions.rollSteading(s,"VILLAGE");
             discovery.setFinalResult(s.toString());
         }
         case "town" -> {
-            SteadingClass s = new SteadingClass();
+            Steading s = new Steading();
             SteadingFunctions.rollSteading(s,"TOWN");
             discovery.setFinalResult(s.toString());
         }
         case "keep" -> {
-            SteadingClass s = new SteadingClass();
+            Steading s = new Steading();
             SteadingFunctions.rollSteading(s,"KEEP");
             discovery.setFinalResult(s.toString());
         }
         case "city" -> {
-            SteadingClass s = new SteadingClass();
+            Steading s = new Steading();
             SteadingFunctions.rollSteading(s,"CITY");
             discovery.setFinalResult(s.toString());
         }
@@ -167,12 +166,12 @@ public class DiscoveryFunctions implements IAreaServices<DiscoveryClass>{
         switch (ruin) {
 
             case "DUNGEON" -> {
-                DungeonClass d = new DungeonClass();
+                Dungeon d = new Dungeon();
                 DungeonFunctions.rollDungeon(d);
                 return String.format("Dungeon in ruins:\n" + d.toString());
             }
             case "STEADING" -> {
-                SteadingClass s = new SteadingClass();
+                Steading s = new Steading();
                 SteadingFunctions.rollSteading(s);
                 return String.format("Steading in ruins:\n" + s.toString());
             }
@@ -197,49 +196,10 @@ public class DiscoveryFunctions implements IAreaServices<DiscoveryClass>{
 
     };
 
-    public static void rollDungeonDiscovery(DungeonDiscoveryClass discovery){
-        int roll;
 
-        roll = Rolls.UniversalRoll(DungeonArrays.DUNGEON_DISCOVERY_CATEGORIES);
-        discovery.setCategory(DungeonArrays.DUNGEON_DISCOVERY_CATEGORIES[roll]);
-
-        switch (discovery.getCategory()){
-            case "Feature" ->  discovery.setPromptTable(DungeonArrays.DUNGEON_DISCOVERY_FEATURE_PROMPTS);
-            case "Find" -> discovery.setPromptTable(DungeonArrays.DUNGEON_DISCOVERY_FIND_PROMPTS);
-        }
-
-        roll = Rolls.UniversalRoll(discovery.getPromptTable());
-        discovery.setPrompt(discovery.getPromptTable()[roll]);
-
-        switch (discovery.getPrompt()) {
-
-            case "roll 1d8, add magic type" -> {
-                roll = Rolls.Roll1d8();
-                String magicType = CreatureFunctions.rollMagicType();
-                discovery.setFinalResult(discovery.getPromptTable()[roll]+". "+magicType);
-            }
-            case "roll feature, add magic type" -> {
-                roll = Rolls.UniversalRoll(DungeonArrays.DUNGEON_DISCOVERY_FEATURE_PROMPTS);
-                String feature = DungeonArrays.DUNGEON_DISCOVERY_FEATURE_PROMPTS[roll];
-                String magicType = CreatureFunctions.rollMagicType();
-                discovery.setFinalResult(feature+". "+magicType);
-            }
-            case "roll 1d10 twice, combine" -> {
-                roll = Rolls.Roll1d10();
-                String find1 = discovery.getPromptTable()[roll];
-                roll = Rolls.Roll1d10();
-                String find2 = discovery.getPromptTable()[roll];
-                discovery.setFinalResult(find1+" + "+find2);
-            }
-            default -> discovery.setFinalResult(discovery.getPrompt());
-        }
-
-        discovery.setOneLiner(discovery.getFinalResult());
-
-    }
 
     @Override
-    public void showOptions(Scanner dataInput, DiscoveryClass discovery, List<DiscoveryClass> discoveryList) {
+    public void showOptions(Scanner dataInput, Discovery discovery, List<Discovery> discoveryList) {
         int option = 0;
         System.out.println("WELCOME TO THE DISCOVERY GENERATOR\n");
 
@@ -259,24 +219,24 @@ public class DiscoveryFunctions implements IAreaServices<DiscoveryClass>{
 
                 switch (option){
                     case 1 ->{
-                        discovery = new DiscoveryClass();
+                        discovery = new Discovery();
                         DiscoveryFunctions.rollDiscovery(discovery);
                         discoveryList.add(discovery);
                         System.out.println(discovery);
                     }
                     case 2 -> {
                         if(discovery==null){
-                            discovery = new DiscoveryClass();
+                            discovery = new Discovery();
                             DiscoveryFunctions.rollDiscovery(discovery);
                             discoveryList.add(discovery);
                         }
                         System.out.println(discovery);
                         System.out.println("\n");
                     }
-                    case 3 -> discovery = new ViewAll().run(dataInput,discoveryList,discovery,DiscoveryClass.class);
+                    case 3 -> discovery = new ViewAll().run(dataInput,discoveryList,discovery, Discovery.class);
                     case 4 -> {
                         if(discovery==null){
-                            discovery = new DiscoveryClass();
+                            discovery = new Discovery();
                             DiscoveryFunctions.rollDiscovery(discovery);
                             discoveryList.add(discovery);
                         }
@@ -292,8 +252,9 @@ public class DiscoveryFunctions implements IAreaServices<DiscoveryClass>{
     }
 
 
+
     @Override
-    public void showAreaOptions(Scanner dataInput, DiscoveryClass object, DungeonAreaClass area) {
+    public void showOptions(Scanner dataInput, Discovery object, Area area) {
 
     }
 }

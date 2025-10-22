@@ -1,7 +1,7 @@
 package domain;
 
 
-public class NPCClass implements IPWClass {
+public class NPC implements IPWClass {
     private String[] raceTable;
     private String race;
     private String gender;

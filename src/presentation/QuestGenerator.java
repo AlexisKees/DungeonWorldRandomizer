@@ -9,10 +9,8 @@ import service.*;
 
 
 public class QuestGenerator {
-    public void run(Scanner dataInput, List<QuestClass> questList, List<NPCClass> npcList, List<DungeonClass> dungeonList, List<BiomeClass> biomeList) throws IOException {
+    public void run(Scanner dataInput, Quest quest, List<Quest> questList, List<NPC> npcList, List<Dungeon> dungeonList, List<Biome> biomeList) throws IOException {
         var option = 0;
-        QuestClass quest = null;
-
 
         System.out.println("WELCOME TO THE QUEST GENERATOR\n");
 
@@ -33,7 +31,7 @@ public class QuestGenerator {
 
                 switch (option) {
                     case 1 -> {
-                        quest = new QuestClass();
+                        quest = new Quest();
                         QuestFunctions.rollQuest(quest);
                         questList.add(quest);
                         npcList.add(quest.getQuestGiver());
@@ -43,7 +41,7 @@ public class QuestGenerator {
                     }
                     case 2 -> {
                         if(quest==null){
-                            quest = new QuestClass();
+                            quest = new Quest();
                             QuestFunctions.rollQuest(quest);
                             questList.add(quest);
                             npcList.add(quest.getQuestGiver());
@@ -55,7 +53,7 @@ public class QuestGenerator {
                     }
                     case 3 -> {
                         if(quest==null){
-                            quest = new QuestClass();
+                            quest = new Quest();
                             QuestFunctions.rollQuest(quest);
                             questList.add(quest);
                             npcList.add(quest.getQuestGiver());
@@ -66,14 +64,14 @@ public class QuestGenerator {
                         System.out.println("QUEST LOCATION - BIOME:\n\n"+quest.getBiome());
                         System.out.println("QUEST LOCATION - DUNGEION:\n\n"+quest.getDungeon());
                     }
-                    case 4 -> quest = new ViewAll().run(dataInput,questList,quest,QuestClass.class);
+                    case 4 -> quest = new ViewAll().run(dataInput,questList,quest, Quest.class);
                     case 5 -> {
                         if (quest == null) {
-                            quest = new QuestClass();
+                            quest = new Quest();
                             QuestFunctions.rollQuest(quest);
-                            quest.setQuestGiver(new NPCClass());
-                            quest.setDungeon(new DungeonClass());
-                            quest.setBiome(new BiomeClass());
+                            quest.setQuestGiver(new NPC());
+                            quest.setDungeon(new Dungeon());
+                            quest.setBiome(new Biome());
                             DungeonFunctions.rollDungeon(quest.getDungeon());
                             NPCFunctions.rollFeatures(quest.getQuestGiver());
                             BiomeFunctions.rollBiome(quest.getBiome());

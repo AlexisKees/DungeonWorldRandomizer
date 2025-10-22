@@ -2,20 +2,20 @@ package service;
 
 import data.DangerArrays;
 import data.DetailsArrays;
-import data.DungeonArrays;
-import domain.CreatureClass;
-import domain.DangerClass;
-import domain.DungeonDangerClass;
-import domain.IPWClass;
+import domain.*;
 import domain.util.Rolls;
 import presentation.ViewAll;
 
 import java.util.List;
 import java.util.Scanner;
 
-public class DangerFunctions implements IPWService<DangerClass> {
+public class DangerFunctions implements IAllServices<Danger>, IAreaServices<AreaDanger> {
+    @Override
+    public void showAreaOptions(Scanner dataInput, AreaDanger object, Area area) {
 
-    public static void rollDanger(DangerClass danger){
+    }
+
+    public static void rollDanger(Danger danger){
         int roll;
 
         roll = Rolls.UniversalRoll(DangerArrays.DANGER_CATEGORIES);
@@ -73,7 +73,7 @@ public class DangerFunctions implements IPWService<DangerClass> {
             danger.setFinalResult("Natural "+oddity.toLowerCase());
         }
         case "Creature"->{
-            CreatureClass c = new CreatureClass();
+            Creature c = new Creature();
             CreatureFunctions.rollAttributes(c);
             c.setDisposition(DetailsArrays.DISPOSITION[0]); //SET DISPOSITION TO "ATTACKING"
             danger.setFinalResult(c.getPrintableBlock());
@@ -85,55 +85,10 @@ public class DangerFunctions implements IPWService<DangerClass> {
 
     }
 
-    public static void rollDungeonDanger(DungeonDangerClass danger){
-        int roll;
 
-        roll = Rolls.UniversalRoll(DungeonArrays.DUNGEON_DANGER_CATEGORIES);
-        danger.setCategory(DungeonArrays.DUNGEON_DANGER_CATEGORIES[roll]);
-
-        switch (danger.getCategory()){
-            case "Trap" ->  danger.setPromptTable(DungeonArrays.DUNGEON_DANGER_TRAP_PROMPTS);
-            case "Creature" -> danger.setPromptTable(DungeonArrays.DUNGEON_DANGER_CREATURE_PROMPTS);
-        }
-
-        roll = Rolls.UniversalRoll(danger.getPromptTable());
-        danger.setPrompt(danger.getPromptTable()[roll]);
-
-        switch (danger.getPrompt()) {
-            case "based on Element" -> {
-                String element = CreatureFunctions.rollElement();
-                danger.setFinalResult("Elemental trap. "+element);
-            }
-            case "based on Magic Type" -> {
-                String magicType = CreatureFunctions.rollMagicType();
-                danger.setFinalResult("Magical trap.  "+magicType);
-            }
-            case "based on Oddity" -> {
-                String oddity = CreatureFunctions.rollOddity();
-                danger.setFinalResult("Oddity trap. "+oddity);
-            }
-            case "Creature leader/lord (with minions)" -> {
-                CreatureClass c = new CreatureClass();
-                CreatureFunctions.rollAttributes(c);
-                c.setDisposition(DetailsArrays.DISPOSITION[0]); //SET DISPOSITION TO "ATTACKING"
-                danger.setFinalResult(c.getPrintableBlock());
-            }
-            case "Creature" -> {
-                CreatureClass c = new CreatureClass();
-                CreatureFunctions.rollAttributes(c);
-                c.setDisposition(DetailsArrays.DISPOSITION[0]); //SET DISPOSITION TO "ATTACKING"
-                CreatureFunctions.setGroupSize(c,"solitary (1)");
-                danger.setFinalResult("CREATURE LORD:\n"+c.getPrintableBlock());
-            }
-            default -> danger.setFinalResult(danger.getPrompt());
-        }
-
-        danger.setOneLiner(danger.getFinalResult());
-
-    }
 
     @Override
-    public void showOptions(Scanner dataInput, DangerClass danger, List<DangerClass> dangerList) {
+    public void showOptions(Scanner dataInput, Danger danger, List<Danger> dangerList) {
         int option = 0;
         System.out.println("WELCOME TO THE DANGER GENERATOR\n");
 
@@ -153,21 +108,21 @@ public class DangerFunctions implements IPWService<DangerClass> {
 
                 switch (option){
                     case 1 ->{
-                        danger = new DangerClass();
+                        danger = new Danger();
                         DangerFunctions.rollDanger(danger);
                         System.out.println(danger);
                     }
                     case 2 -> {
                         if (danger == null){
-                            danger = new DangerClass();
+                            danger = new Danger();
                             DangerFunctions.rollDanger(danger);
                         }
                         System.out.println(danger);
                     }
-                    case 3 -> danger = new ViewAll().run(dataInput,dangerList,danger,DangerClass.class);
+                    case 3 -> danger = new ViewAll().run(dataInput,dangerList,danger, Danger.class);
                     case 4 -> {
                         if (danger == null){
-                            danger = new DangerClass();
+                            danger = new Danger();
                             DangerFunctions.rollDanger(danger);
                         }
                         GenericFunctions.exportPW(danger);

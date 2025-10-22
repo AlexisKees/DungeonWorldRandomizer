@@ -2,7 +2,7 @@ package service;
 
 import data.CreatureArrays;
 import data.DetailsArrays;
-import domain.CreatureClass;
+import domain.Creature;
 import domain.util.Rolls;
 import presentation.ViewAll;
 
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class CreatureFunctions implements IPWService<CreatureClass> {
+public class CreatureFunctions implements IAllServices<Creature> {
 
     public static String rollOddity(){
         var r1 = Rolls.UniversalRoll(DetailsArrays.ODDITY);
@@ -122,7 +122,7 @@ public class CreatureFunctions implements IPWService<CreatureClass> {
 
     }
 
-    public static void rollAttributes(CreatureClass creature) {
+    public static void rollAttributes(Creature creature) {
         //Se asigna tabla de categorías (siempre igual) y de ahí se toma para el length de universalRoll
         creature.setCategoryTable(CreatureArrays.CATEGORIES);
         int r1 = Rolls.UniversalRoll(creature.getCategoryTable());
@@ -152,7 +152,7 @@ public class CreatureFunctions implements IPWService<CreatureClass> {
         creature.setOneLiner(creature.getPrompt());
     }
 
-    private static void assignSubcategoryTable(CreatureClass creature){
+    private static void assignSubcategoryTable(Creature creature){
         switch (creature.getCategory()) {
             case "Monster" -> creature.setSubcategoryTable(CreatureArrays.SUBCATEGORIES_MONSTER);
             case "Beast" -> creature.setSubcategoryTable(CreatureArrays.SUBCATEGORIES_BEAST);
@@ -161,7 +161,7 @@ public class CreatureFunctions implements IPWService<CreatureClass> {
 
     }
 
-    private static void assignPromptTable(CreatureClass creature){
+    private static void assignPromptTable(Creature creature){
         if (Arrays.equals(creature.getSubcategoryTable(), CreatureArrays.SUBCATEGORIES_MONSTER)) {
             switch (creature.getSubcategory()) {
                 case "Extraplanar" -> creature.setPromptTable(CreatureArrays.PROMPTS_MONSTER_EXTRAPLANAR);
@@ -190,7 +190,7 @@ public class CreatureFunctions implements IPWService<CreatureClass> {
         }
     }
 
-    public static void reRollSubcategory(CreatureClass creature) {
+    public static void reRollSubcategory(Creature creature) {
         String previousSubcategory = creature.getSubcategory();
         String currentSubcategory;
         do{
@@ -239,7 +239,7 @@ public class CreatureFunctions implements IPWService<CreatureClass> {
         creature.setOneLiner(creature.getPrompt());
     }
 
-    public static void reRollPrompt(CreatureClass creature){
+    public static void reRollPrompt(Creature creature){
         String previousPrompt = creature.getPrompt();
         String currentPrompt = creature.getPrompt();
         do {
@@ -254,7 +254,7 @@ public class CreatureFunctions implements IPWService<CreatureClass> {
 
     }
 
-    private static void reviseRolls(CreatureClass creature){
+    private static void reviseRolls(Creature creature){
         if (Arrays.equals(creature.getPromptTable(), CreatureArrays.PROMPTS_HUMANOID_UNCOMMON)){
             if (creature.getPrompt().equals("Human + Beast")){
                 creature.setPrompt(String.join(" ","Human", CreatureFunctions.rollBeast()));
@@ -294,7 +294,7 @@ public class CreatureFunctions implements IPWService<CreatureClass> {
         }
     }
 
-    public static void rollStats(CreatureClass creature){
+    public static void rollStats(Creature creature){
         creature.setHitPoints(0);
         rollGroupSize(creature);
         rollSize(creature);
@@ -307,7 +307,7 @@ public class CreatureFunctions implements IPWService<CreatureClass> {
     }
 
 
-    private static void rollGroupSize(CreatureClass creature){
+    private static void rollGroupSize(Creature creature){
         int r1 = Rolls.UniversalRoll(DetailsArrays.NO_APPEARING);
         creature.setGroupSize(DetailsArrays.NO_APPEARING[r1]);
 
@@ -327,7 +327,7 @@ public class CreatureFunctions implements IPWService<CreatureClass> {
         }
     }
 
-    public static void setGroupSize(CreatureClass creature, String groupSize){
+    public static void setGroupSize(Creature creature, String groupSize){
         creature.setGroupSize(groupSize);
 
         switch (creature.getGroupSize()){
@@ -348,7 +348,7 @@ public class CreatureFunctions implements IPWService<CreatureClass> {
     }
 
 
-    private static void rollSize(CreatureClass creature){
+    private static void rollSize(Creature creature){
         int r1 = Rolls.UniversalRoll(DetailsArrays.SIZE);
         creature.setSize(DetailsArrays.SIZE[r1]);
         switch (creature.getSize()){
@@ -372,7 +372,7 @@ public class CreatureFunctions implements IPWService<CreatureClass> {
         }
 
     }
-    private static void rollArmor(CreatureClass creature){
+    private static void rollArmor(Creature creature){
         int r1 = Rolls.UniversalRoll(DetailsArrays.ARMOR);
         creature.setArmorType(DetailsArrays.ARMOR[r1]);
         switch (r1){
@@ -384,7 +384,7 @@ public class CreatureFunctions implements IPWService<CreatureClass> {
 
         }
     }
-    private static void rollDamageType(CreatureClass creature){
+    private static void rollDamageType(Creature creature){
         int r1 = Rolls.UniversalRoll(DetailsArrays.DAMAGE_TYPE);
         creature.setDamageType(DetailsArrays.DAMAGE_TYPE[r1]);
         switch (creature.getDamageType()){
@@ -411,7 +411,7 @@ public class CreatureFunctions implements IPWService<CreatureClass> {
             }
         }
     }
-    private static void rollTags(CreatureClass creature){
+    private static void rollTags(Creature creature){
         int r1 = Rolls.UniversalRoll(DetailsArrays.TAG);
         creature.setTags(DetailsArrays.TAG[r1]);
         switch (creature.getTags()){
@@ -425,19 +425,19 @@ public class CreatureFunctions implements IPWService<CreatureClass> {
 
     }
 
-    private static void rollAlignment(CreatureClass creature) {
+    private static void rollAlignment(Creature creature) {
         int r1 = Rolls.UniversalRoll(DetailsArrays.ALIGNMENT);
         creature.setAlignment(DetailsArrays.ALIGNMENT[r1]);
     }
 
-    private static void rollDisposition(CreatureClass creature) {
+    private static void rollDisposition(Creature creature) {
         int r1 = Rolls.UniversalRoll(DetailsArrays.DISPOSITION);
         creature.setDisposition(DetailsArrays.DISPOSITION[r1]);
     }
 
 
     @Override
-    public void showOptions(Scanner dataInput, CreatureClass creature, List creatureList) {
+    public void showOptions(Scanner dataInput, Creature creature, List creatureList) {
         var option = 0;
         System.out.println("WELCOME TO THE CREATURE GENERATOR");
 
@@ -460,14 +460,14 @@ public class CreatureFunctions implements IPWService<CreatureClass> {
 
                 switch (option) {
                     case 1 -> {
-                        creature = new CreatureClass();
+                        creature = new Creature();
                         CreatureFunctions.rollAttributes(creature);
                         creatureList.add(creature);
                         System.out.println(creature);
                     }
                     case 2 -> {
                         if (creature == null) {
-                            creature = new CreatureClass();
+                            creature = new Creature();
                             CreatureFunctions.rollAttributes(creature);
                             creatureList.add(creature);
                         } else {
@@ -478,7 +478,7 @@ public class CreatureFunctions implements IPWService<CreatureClass> {
                     }
                     case 3 -> {
                         if (creature == null) {
-                            creature = new CreatureClass();
+                            creature = new Creature();
                             CreatureFunctions.rollAttributes(creature);
                             creatureList.add(creature);
                             System.out.println(creature);
@@ -490,7 +490,7 @@ public class CreatureFunctions implements IPWService<CreatureClass> {
                     }
                     case 4 -> {
                         if (creature == null) {
-                            creature = new CreatureClass();
+                            creature = new Creature();
                             CreatureFunctions.rollAttributes(creature);
                             creatureList.add(creature);
                             System.out.println(creature);
@@ -502,16 +502,16 @@ public class CreatureFunctions implements IPWService<CreatureClass> {
                     }
                     case 5 -> {
                         if (creature == null) {
-                            creature = new CreatureClass();
+                            creature = new Creature();
                             CreatureFunctions.rollAttributes(creature);
                             creatureList.add(creature);
                         }
                         System.out.println(creature);
                     }
-                    case 6 -> creature = new ViewAll().run(dataInput,creatureList,creature,CreatureClass.class);
+                    case 6 -> creature = new ViewAll().run(dataInput,creatureList,creature, Creature.class);
                     case 7 -> {
                         if (creature == null) {
-                            creature = new CreatureClass();
+                            creature = new Creature();
                             CreatureFunctions.rollAttributes(creature);
                             creatureList.add(creature);
                         }

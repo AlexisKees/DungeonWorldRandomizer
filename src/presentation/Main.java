@@ -1,8 +1,6 @@
 package presentation;
 
 import domain.*;
-import service.BiomeFunctions;
-import service.FollowerFunctions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,16 +9,16 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner dataInput = new Scanner(System.in);
-        List<QuestClass> questList = new ArrayList<>();
-        List<NPCClass> npcList = new ArrayList<>();
-        List<FollowerClass> followerList = new ArrayList<>();
-        List<SteadingClass> steadingList = new ArrayList<>();
-        List<DungeonClass> dungeonList = new ArrayList<>();
-        List<DungeonAreaClass> areaList = new ArrayList<>();
-        List<BiomeClass> biomeList = new ArrayList<>();
-        List<DiscoveryClass> discoveryList = new ArrayList<>();
-        List<DangerClass> dangerList = new ArrayList<>();
-        List<CreatureClass> creatureList = new ArrayList<>();
+        List<Quest> questList = new ArrayList<>();
+        List<NPC> npcList = new ArrayList<>();
+        List<Follower> followerList = new ArrayList<>();
+        List<Steading> steadingList = new ArrayList<>();
+        List<Dungeon> dungeonList = new ArrayList<>();
+        List<Area> areaList = new ArrayList<>();
+        List<Biome> biomeList = new ArrayList<>();
+        List<Discovery> discoveryList = new ArrayList<>();
+        List<Danger> dangerList = new ArrayList<>();
+        List<Creature> creatureList = new ArrayList<>();
 
         try {
             int option;
@@ -55,41 +53,44 @@ public class Main {
                 System.out.println();
 
                  switch (option){
-                     case 1 -> new QuestGenerator().run(dataInput, questList, npcList, dungeonList, biomeList);
+                     case 1 -> {
+                         Quest quest = new Quest();
+                         SubMenu.run(dataInput, quest, questList, npcList, dungeonList, biomeList);
+                     }
                      case 2 -> {
-                         NPCClass npc = new NPCClass();
+                         NPC npc = new NPC();
                          SubMenu.run(dataInput,npc, npcList);
                      }
                      case 3 -> {
-                         FollowerClass follower = new FollowerClass();
+                         Follower follower = new Follower();
                          SubMenu.run(dataInput,follower, followerList);
                      }
                      case 4 -> {
-                         SteadingClass steading = new SteadingClass();
+                         Steading steading = new Steading();
                          SubMenu.run(dataInput, steading, steadingList);
                      }
                      case 5 -> {
-                         DungeonClass dungeon = new DungeonClass();
+                         Dungeon dungeon = new Dungeon();
                          SubMenu.run(dataInput, dungeon, dungeonList);
                      }
                      case 6 -> {
-                         DungeonAreaClass area = new DungeonAreaClass();
+                         Area area = new Area();
                          SubMenu.run(dataInput, area, areaList);
                      }
                      case 7 -> {
-                         BiomeClass biome = new BiomeClass();
+                         Biome biome = new Biome();
                          SubMenu.run(dataInput,biome,biomeList);
                      }
                      case 8 -> {
-                         DiscoveryClass discovery = new DiscoveryClass();
+                         Discovery discovery = new Discovery();
                          SubMenu.run(dataInput,discovery, discoveryList);
                      }
                      case 9 -> {
-                         DangerClass danger = new DangerClass();
+                         Danger danger = new Danger();
                          SubMenu.run(dataInput, danger, dangerList);
                      }
                      case 10 ->{
-                         CreatureClass creature = new CreatureClass();
+                         Creature creature = new Creature();
                          SubMenu.run(dataInput, creature, creatureList);
                      }
                      case 11 -> System.out.println("Come back soon!");

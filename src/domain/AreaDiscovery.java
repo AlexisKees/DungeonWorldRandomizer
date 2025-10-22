@@ -2,7 +2,7 @@ package domain;
 
 import java.util.Objects;
 
-public class DungeonDiscoveryClass implements IPWClass {
+public class AreaDiscovery implements IPWClass {
 
     private String category;
     private String[] promptTable;

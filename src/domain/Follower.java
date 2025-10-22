@@ -1,6 +1,6 @@
 package domain;
 
-public class FollowerClass implements IPWClass {
+public class Follower implements IPWClass {
 
     private String[] raceTable;
     private String race;

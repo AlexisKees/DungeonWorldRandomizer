@@ -2,8 +2,7 @@ package service;
 
 import data.BiomeArrays;
 import data.DetailsArrays;
-import domain.BiomeClass;
-import domain.IPWClass;
+import domain.Biome;
 import domain.util.Rolls;
 import presentation.ViewAll;
 
@@ -11,9 +10,9 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class BiomeFunctions implements IPWService<BiomeClass>{
+public class BiomeFunctions implements IAllServices<Biome> {
 
-    public static void rollBiome(BiomeClass biome){
+    public static void rollBiome(Biome biome){
 //        private String biome;
         biome.setBiome(BiomeArrays.BIOME[Rolls.UniversalRoll(BiomeArrays.BIOME)]);
 //        private String weather;
@@ -33,7 +32,7 @@ public class BiomeFunctions implements IPWService<BiomeClass>{
         biome.setOneLiner(String.format("%s %s",biome.getPopulation(),biome.getBiome()));
     }
 
-    public static void reRollDetails(BiomeClass biome){
+    public static void reRollDetails(Biome biome){
         //        private String weather;
         biome.setWeather(BiomeArrays.WEATHER[Rolls.UniversalRoll(BiomeArrays.WEATHER)]);
 //        private String weatherIntensity;
@@ -53,7 +52,7 @@ public class BiomeFunctions implements IPWService<BiomeClass>{
     }
 
     @Override
-    public void showOptions(Scanner dataInput, BiomeClass biome, List<BiomeClass> biomeList) {
+    public void showOptions(Scanner dataInput, Biome biome, List<Biome> biomeList) {
         int option = 0;
         System.out.println("WELCOME TO THE BIOME GENERATOR\n");
 
@@ -74,14 +73,14 @@ public class BiomeFunctions implements IPWService<BiomeClass>{
 
                 switch (option){
                     case 1 ->{
-                        biome = new BiomeClass();
+                        biome = new Biome();
                         BiomeFunctions.rollBiome(biome);
                         System.out.println(biome);
                         biomeList.add(biome);
                     }
                     case 2 -> {
                         if(biome==null){
-                            biome = new BiomeClass();
+                            biome = new Biome();
                             BiomeFunctions.rollBiome(biome);
                             biomeList.add(biome);
                         }
@@ -89,7 +88,7 @@ public class BiomeFunctions implements IPWService<BiomeClass>{
                     }
                     case 3 -> {
                         if(biome==null){
-                            biome = new BiomeClass();
+                            biome = new Biome();
                             BiomeFunctions.rollBiome(biome);
                             biomeList.add(biome);
                         } else {
@@ -98,10 +97,10 @@ public class BiomeFunctions implements IPWService<BiomeClass>{
                         }
                         System.out.println(biome);
                     }
-                    case 4 -> biome = new ViewAll().run(dataInput,biomeList,biome,BiomeClass.class);
+                    case 4 -> biome = new ViewAll().run(dataInput,biomeList,biome, Biome.class);
                     case 5 -> {
                         if(biome==null){
-                            biome = new BiomeClass();
+                            biome = new Biome();
                             BiomeFunctions.rollBiome(biome);
                             biomeList.add(biome);
                         }

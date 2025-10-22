@@ -1,7 +1,8 @@
 package service;
 
 import data.DungeonArrays;
-import domain.DungeonClass;
+import domain.Area;
+import domain.Dungeon;
 import domain.util.Rolls;
 import presentation.DungeonAreaGenerator;
 import presentation.ViewAll;
@@ -10,8 +11,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class DungeonFunctions implements IPWService<DungeonClass> {
-    public static void rollDungeon(DungeonClass dungeon){
+public class DungeonFunctions implements IAllServices<Dungeon> {
+    public static void rollDungeon(Dungeon dungeon){
 
         //set name template and name
         dungeon.setNameTemplate(DungeonArrays.DUNGEON_NAME_TEMPLATES[Rolls.UniversalRoll(DungeonArrays.DUNGEON_NAME_TEMPLATES)]);
@@ -104,7 +105,7 @@ public class DungeonFunctions implements IPWService<DungeonClass> {
 
 
     @Override
-    public void showOptions(Scanner dataInput, DungeonClass dungeon, List<DungeonClass> dungeonList) {
+    public void showOptions(Scanner dataInput, Dungeon dungeon, List<Dungeon> dungeonList) {
         int option = 0;
         System.out.println("WELCOME TO THE DUNGEON GENERATOR\n");
 
@@ -125,17 +126,20 @@ public class DungeonFunctions implements IPWService<DungeonClass> {
 
                 switch (option) {
                     case 1 -> {
-                        dungeon = new DungeonClass();
+                        dungeon = new Dungeon();
                         DungeonFunctions.rollDungeon(dungeon);
                         dungeonList.add(dungeon);
                         System.out.println(dungeon);
                     }
-                    case 2 -> new DungeonAreaGenerator().run(dataInput, dungeon);
-                    case 3 -> dungeon = new ViewAll().run(dataInput,dungeonList,dungeon,DungeonClass.class);
+                    case 2 -> {
+                        Area area = null;
+                        new DungeonAreaGenerator().run(dataInput, area, dungeon);
+                    }
+                    case 3 -> dungeon = new ViewAll().run(dataInput,dungeonList,dungeon, Dungeon.class);
                     case 4 -> {
                         if (dungeon==null){
                             System.out.println("\nGenerating dungeon...\n");
-                            dungeon = new DungeonClass();
+                            dungeon = new Dungeon();
                             DungeonFunctions.rollDungeon(dungeon);
                             dungeonList.add(dungeon);
                         }
@@ -143,7 +147,7 @@ public class DungeonFunctions implements IPWService<DungeonClass> {
                     }
                     case 5 -> {
                         if (dungeon == null) {
-                            dungeon = new DungeonClass();
+                            dungeon = new Dungeon();
                             DungeonFunctions.rollDungeon(dungeon);
                             dungeonList.add(dungeon);
                         }

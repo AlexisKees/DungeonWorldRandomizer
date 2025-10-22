@@ -1,13 +1,16 @@
 package domain;
 
-public class DungeonAreaClass implements IPWClass {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Area implements IPWClass {
     private String rarity;
     private String areaType;
     private String areaDressing;
     private int discoveriesAmount;
-    private DungeonDiscoveryClass[] discoveries;
+    private List<AreaDiscovery> discoveries;
     private int dangersAmount;
-    private DungeonDangerClass[] dangers;
+    private List<AreaDanger> dangers;
     private String oneLiner;
 
     public String getOneLiner(){
@@ -27,35 +30,19 @@ public class DungeonAreaClass implements IPWClass {
     }
 
    public void initializeDiscoveriesList(int i){
-        this.discoveries = new DungeonDiscoveryClass[i];
+        this.discoveries = new ArrayList<>();
    }
 
-   public void addDiscovery(DungeonDiscoveryClass discovery){
-        int i;
-        boolean added=false;
-        for (i=0;i<this.getDiscoveriesAmount();i++){
-            if (this.discoveries[i]==null){
-                this.discoveries[i]=discovery;
-                added=true;
-                break;
-            }
-        }
+   public void addDiscovery(AreaDiscovery discovery){
+        this.discoveries.add(discovery);
    }
 
     public void initializeDangersList(int i){
-        this.dangers = new DungeonDangerClass[i];
+        this.dangers = new ArrayList<>();
     }
 
-    public void addDanger(DungeonDangerClass danger){
-        int i;
-        boolean added=false;
-        for (i=0;i<this.dangersAmount;i++){
-            if (this.dangers[i]==null){
-                this.dangers[i]=danger;
-                added=true;
-                break;
-            }
-        }
+    public void addDanger(AreaDanger danger){
+        this.dangers.add(danger);
     }
 
 
@@ -103,14 +90,14 @@ public class DungeonAreaClass implements IPWClass {
                 int i;
                 for(i=0;i<this.getDiscoveriesAmount();i++){
                     str+= String.format("""
-                        \n%d) %S""",i+1,this.discoveries[i].getFinalResult());
+                        \n%d) %S""",i+1,this.discoveries.get(i).getFinalResult());
                 }
                 return str;
             }
 
     }
 
-    public void setDiscoveries(DungeonDiscoveryClass[] discoveries) {
+    public void setDiscoveries(List<AreaDiscovery> discoveries) {
         this.discoveries = discoveries;
     }
 
@@ -122,13 +109,13 @@ public class DungeonAreaClass implements IPWClass {
             int i;
             for(i=0;i<this.getDangersAmount();i++){
                 str+= String.format("""
-                        \n%d) %S""",i+1,this.dangers[i].getFinalResult());
+                        \n%d) %S""",i+1,this.dangers.get(i).getFinalResult());
             }
             return str;
         }
     }
 
-    public void setDangers(DungeonDangerClass[] dangers) {
+    public void setDangers(List<AreaDanger> dangers) {
         this.dangers = dangers;
     }
 

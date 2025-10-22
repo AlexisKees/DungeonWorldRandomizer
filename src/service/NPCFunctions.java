@@ -4,7 +4,7 @@ import data.CreatureArrays;
 import data.DetailsArrays;
 import data.NPCArrays;
 import data.NPCNamesArrays;
-import domain.NPCClass;
+import domain.NPC;
 import domain.util.Rolls;
 import presentation.ViewAll;
 
@@ -12,16 +12,16 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class NPCFunctions implements IPWService<NPCClass>{
+public class NPCFunctions implements IAllServices<NPC> {
 
-    public static void rollFeatures(NPCClass npc){
+    public static void rollFeatures(NPC npc){
         //set race rarity, races array and race
         int rarity = Rolls.Roll1d12();
         switch (rarity) {
             case 6,7,8,9 -> npc.setRaceTable(CreatureArrays.PROMPTS_HUMANOID_UNCOMMON);
             case 10,11 -> npc.setRaceTable(CreatureArrays.PROMPTS_HUMANOID_RARE);
             default -> npc.setRaceTable(CreatureArrays.PROMPTS_HUMANOID_COMMON);
-        };
+        }
 
         npc.setRace(npc.getRaceTable()[Rolls.UniversalRoll(npc.getRaceTable())]);
         // set gender, ethnics and name
@@ -32,7 +32,7 @@ public class NPCFunctions implements IPWService<NPCClass>{
             case "Finnish" -> npc.setNamesTable(NPCNamesArrays.NAMES_FINNISH_BASED);
             case "Indonesian" -> npc.setNamesTable(NPCNamesArrays.NAMES_INDONESIAN_BASED);
             default -> npc.setNamesTable(NPCNamesArrays.NAMES_HUNGARIAN_BASED);
-        };
+        }
         //Male names use the first half of each 50 elements array, while female names use the second half
         switch (npc.getGender()){
             case "Male" ->{
@@ -43,9 +43,8 @@ public class NPCFunctions implements IPWService<NPCClass>{
                 int roll = (int)(Math.random() * 24 + 25);
                 npc.setName(npc.getNamesTable()[roll]);
             }
-            default -> {
-                npc.setName(npc.getNamesTable()[Rolls.UniversalRoll(npc.getNamesTable())]);
-            }
+            default -> npc.setName(npc.getNamesTable()[Rolls.UniversalRoll(npc.getNamesTable())]);
+
         }
 
         //Set age using DetailArrays
@@ -63,7 +62,7 @@ public class NPCFunctions implements IPWService<NPCClass>{
             case "Security" -> npc.setJobList(NPCArrays.SECURITY);
             case "Authority" -> npc.setJobList(NPCArrays.AUTHORITY);
             default ->  npc.setJobList(NPCArrays.COMMONER);
-        };
+        }
 
         npc.setJob(npc.getJobList()[Rolls.UniversalRoll(npc.getJobList())]);
 
@@ -86,13 +85,13 @@ public class NPCFunctions implements IPWService<NPCClass>{
         npc.setOneLiner(String.format("%s, the %s %s", npc.getName(), npc.getRace(), npc.getJob()));
     }
 
-    public static void printNPC(NPCClass npc){
+    public static void printNPC(NPC npc){
         System.out.println(npc);
     }
 
 
     @Override
-    public void showOptions(Scanner dataInput, NPCClass npc, List<NPCClass> npcList) {
+    public void showOptions(Scanner dataInput, NPC npc, List<NPC> npcList) {
         var option = 0;
         System.out.println("\nWELCOME TO THE NPC GENERATOR\n");
 
@@ -105,28 +104,28 @@ public class NPCFunctions implements IPWService<NPCClass>{
                         3) View list of generated NPCs
                         4) Export current
                         5) Main menu
-                                                
+                        
                         Option:\s""");
                 option = Integer.parseInt(dataInput.nextLine());
                 System.out.println();
 
                 switch (option) {
                     case 1 -> {
-                        npc = new NPCClass();
+                        npc = new NPC();
                         NPCFunctions.rollFeatures(npc);
                         NPCFunctions.printNPC(npc);
                         npcList.add(npc);
                     }
                     case 2 -> {
                         if (npc==null) {
-                            npc = new NPCClass();
+                            npc = new NPC();
                             NPCFunctions.rollFeatures(npc);
                             NPCFunctions.printNPC(npc);
                             npcList.add(npc);
                         }
                         System.out.println(npc);
                     }
-                    case 3 -> npc = new ViewAll().run(dataInput,npcList,npc,NPCClass.class);
+                    case 3 -> npc = new ViewAll().run(dataInput,npcList,npc, NPC.class);
                     case 4 -> GenericFunctions.exportPW(npc);
                     case 5 -> System.out.println("\nReturning to main menu...\n");
                     default -> System.out.print("\nInvalid number!\n\n");

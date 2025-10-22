@@ -2,7 +2,7 @@ package service;
 
 import data.DetailsArrays;
 import data.SteadingArrays;
-import domain.SteadingClass;
+import domain.Steading;
 import domain.util.Rolls;
 import presentation.ViewAll;
 
@@ -10,19 +10,19 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class SteadingFunctions implements IPWService<SteadingClass> {
+public class SteadingFunctions implements IAllServices<Steading> {
 
-    public static void rollSteading(SteadingClass steading){
+    public static void rollSteading(Steading steading){
         steading.setSize(SteadingArrays.SETTLEMENT_SIZE[Rolls.UniversalRoll(SteadingArrays.SETTLEMENT_SIZE)]);
         rollDetails(steading);
     }
 
-    public static void rollSteading(SteadingClass steading, String size){
+    public static void rollSteading(Steading steading, String size){
         steading.setSize(size);
         rollDetails(steading);
     }
 
-    private static void rollDetails(SteadingClass steading){
+    private static void rollDetails(Steading steading){
         steading.setName(SteadingArrays.STEADING_NAMES[Rolls.UniversalRoll(SteadingArrays.STEADING_NAMES)]);
         switch (steading.getSize()){
             case "VILLAGE" ->{
@@ -54,7 +54,7 @@ public class SteadingFunctions implements IPWService<SteadingClass> {
     }
 
     @Override
-    public void showOptions(Scanner dataInput, SteadingClass steading, List<SteadingClass> steadingList) {
+    public void showOptions(Scanner dataInput, Steading steading, List<Steading> steadingList) {
         int option = 0;
         System.out.println("WELCOME TO THE STEADING GENERATOR\n");
 
@@ -74,24 +74,24 @@ public class SteadingFunctions implements IPWService<SteadingClass> {
 
                 switch (option) {
                     case 1 -> {
-                        steading = new SteadingClass();
+                        steading = new Steading();
                         SteadingFunctions.rollSteading(steading);
                         steadingList.add(steading);
                         System.out.println(steading);
                     }
                     case 2 -> {
                         if (steading == null) {
-                            steading = new SteadingClass();
+                            steading = new Steading();
                             SteadingFunctions.rollSteading(steading);
                             System.out.println(steading);
                             steadingList.add(steading);
                         }
                         System.out.println(steading);
                     }
-                    case 3 -> steading = new ViewAll().run(dataInput, steadingList, steading, SteadingClass.class);
+                    case 3 -> steading = new ViewAll().run(dataInput, steadingList, steading, Steading.class);
                     case 4 -> {
                         if (steading == null) {
-                            steading = new SteadingClass();
+                            steading = new Steading();
                             SteadingFunctions.rollSteading(steading);
                             steadingList.add(steading);
                             System.out.println(steading);
