@@ -34,7 +34,8 @@ public class Area implements IPWClass {
    }
 
    public void addDiscovery(AreaDiscovery discovery){
-        this.discoveries.add(discovery);
+        if(this.discoveries.size()<this.discoveriesAmount) this.discoveries.add(discovery);
+        else System.out.println("Cannot add discovery: maximum amount of discoveries reached!");
    }
 
     public void initializeDangersList(int i){
@@ -42,7 +43,8 @@ public class Area implements IPWClass {
     }
 
     public void addDanger(AreaDanger danger){
-        this.dangers.add(danger);
+        if (this.dangers.size()<this.dangersAmount) this.dangers.add(danger);
+        else System.out.println("Cannot add danger: maximum amount of dangers reached!");
     }
 
 

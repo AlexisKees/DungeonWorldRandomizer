@@ -10,12 +10,11 @@ public class ClassIdentifier {
     private static final Map<Class<?>, IAllServices<?>> map = new HashMap<>();
 
     static {
-        map.put(Area.class,new DungeonAreaFunctions());
+        map.put(Area.class,new AreaFunctions());
         map.put(Biome.class,new BiomeFunctions());
         map.put(Creature.class,new CreatureFunctions());
         map.put(Danger.class,new DangerFunctions());
         map.put(Discovery.class,new DiscoveryFunctions());
-        map.put(Dungeon.class,new DungeonFunctions());
         map.put(AreaDanger.class,new DungeonDangerFunctions());
         map.put(AreaDiscovery.class,new DungeonDiscoveryFunctions());
         map.put(Follower.class,new FollowerFunctions());

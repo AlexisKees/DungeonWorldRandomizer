@@ -75,7 +75,7 @@ public class Main {
                      }
                      case 6 -> {
                          Dungeon dungeon = new Dungeon();
-                         SubMenu.run(dataInput, dungeon, dungeonList);
+                         SubMenu.run(dataInput, dungeon, dungeonList, areaList);
                      }
                      case 7 -> {
                          Follower follower = new Follower();

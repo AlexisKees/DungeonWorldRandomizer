@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class DungeonAreaFunctions  {
+public class DungeonAreaFunctions {
 
-    public static void showOptions(Scanner dataInput, Area area, Dungeon dungeon) {
+    public static void showOptions(Scanner dataInput, Area area, Dungeon dungeon,List<Area> areaList) {
         int option = 0;
         System.out.println("WELCOME TO THE AREA GENERATOR\n");
 
@@ -24,7 +24,7 @@ public class DungeonAreaFunctions  {
                         3) Reroll this area
                         4) View list of generated area
                         5) Add area to dungeon
-                        6) Main menu
+                        6) Back to Dungeon menu
                         
                         \tOption:\s""");
 
@@ -35,6 +35,7 @@ public class DungeonAreaFunctions  {
                     case 1 -> {
                         area = new Area();
                         AreaFunctions.rollArea(area);
+                        areaList.add(area);
                         System.out.println(area);
                     }
                     case 2 ->{
@@ -51,6 +52,7 @@ public class DungeonAreaFunctions  {
                         } else {
                             AreaFunctions.rollAreaDetails(area);
                         }
+                        areaList.add(area);
                         System.out.println(area);
                     }
                     case 4 -> area = new ViewAll().run(dataInput, dungeon.getAreas(), area, Area.class);

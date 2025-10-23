@@ -2,6 +2,7 @@ package presentation;
 
 import domain.*;
 import service.DungeonAreaFunctions;
+import service.DungeonFunctions;
 import service.QuestFunctions;
 import service.util.ClassIdentifier;
 
@@ -18,12 +19,16 @@ public class SubMenu {
         }
     }
     //run para dungeon area
-    public static  void run(Scanner dataInput, Area area, Dungeon dungeon){
-        DungeonAreaFunctions.showOptions(dataInput,area,dungeon);
+    public static  void run(Scanner dataInput, Area area, Dungeon dungeon,List<Area> areaList){
+        DungeonAreaFunctions.showOptions(dataInput,area,dungeon, areaList);
     }
     //run para quest
     public static void run(Scanner dataInput, Quest object, List<Quest>questList, List<NPC> npcList, List<Dungeon> dungeonList, List<Biome> biomeList){
         QuestFunctions.showOptions(dataInput, object, questList,npcList, dungeonList, biomeList);
+    }
+
+    public static void run(Scanner dataInput, Dungeon dungeon, List<Dungeon> dungeonList,List<Area> areaList){
+        DungeonFunctions.showOptions(dataInput, dungeon, dungeonList, areaList);
     }
 
 

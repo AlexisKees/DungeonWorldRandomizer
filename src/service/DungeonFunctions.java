@@ -4,14 +4,14 @@ import data.DungeonArrays;
 import domain.Area;
 import domain.Dungeon;
 import domain.util.Rolls;
-import presentation.DungeonAreaGenerator;
+import presentation.SubMenu;
 import presentation.ViewAll;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class DungeonFunctions implements IAllServices<Dungeon> {
+public class DungeonFunctions {
     public static void rollDungeon(Dungeon dungeon){
 
         //set name template and name
@@ -104,8 +104,8 @@ public class DungeonFunctions implements IAllServices<Dungeon> {
     }
 
 
-    @Override
-    public void showOptions(Scanner dataInput, Dungeon dungeon, List<Dungeon> dungeonList) {
+
+    public static void showOptions(Scanner dataInput, Dungeon dungeon, List<Dungeon> dungeonList,List<Area> areaList) {
         int option = 0;
         System.out.println("WELCOME TO THE DUNGEON GENERATOR\n");
 
@@ -133,7 +133,7 @@ public class DungeonFunctions implements IAllServices<Dungeon> {
                     }
                     case 2 -> {
                         Area area = null;
-                        new DungeonAreaGenerator().run(dataInput, area, dungeon);
+                        SubMenu.run(dataInput, area, dungeon,areaList);
                     }
                     case 3 -> dungeon = new ViewAll().run(dataInput,dungeonList,dungeon, Dungeon.class);
                     case 4 -> {

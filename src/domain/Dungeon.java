@@ -32,18 +32,10 @@ public class Dungeon implements IPWClass {
         this.oneLiner = oneLiner;
     }
 
-
-    public void initializeDiscoveriesList(int i){
-        this.discoveries = new ArrayList<>();
-    }
-
     public void addDiscovery(Discovery discovery){
         discoveries.add(discovery);
     }
 
-    public void initializeDangersList(int i){
-        this.dangers = new ArrayList<>();
-    }
 
     public void addTheme(String theme){
         int i;
@@ -60,7 +52,10 @@ public class Dungeon implements IPWClass {
     }
 
     public void addArea(Area area){
-        this.areas.add(area);
+        if(this.areas.size()<this.rooms){
+            this.areas.add(area);
+            System.out.println("AREA ADDED SUCCESFULLY!");
+        } else System.out.println("Cannot add area: maximum amount of areas reached!");
     }
 
     public void initializeAreas(int i){

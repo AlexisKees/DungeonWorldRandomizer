@@ -31,6 +31,7 @@ public class ViewAll {
         try{
             do {
                 System.out.print("""
+                        Please select an option:
                         1) View one element in detail
                         2) Go back
                         \tOption:\s""");

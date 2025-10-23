@@ -43,42 +43,51 @@ public class DangerFunctions implements IAllServices<Danger> {
         case "lesser demon/elemental" -> {
             String element = CreatureFunctions.rollElement();
             danger.setFinalResult("lesser demon/ "+element+" elemental");
+            danger.setOneLiner(danger.getFinalResult());
         }
         case "demon/elemental" -> {
             String element = CreatureFunctions.rollElement();
             danger.setFinalResult("demon/ "+element+" elemental");
+            danger.setOneLiner(danger.getFinalResult());
         }
         case "greater demon/elemental" -> {
             String element = CreatureFunctions.rollElement();
             danger.setFinalResult("Greater demon/ "+element+" elemental");
+            danger.setOneLiner(danger.getFinalResult());
         }
         case "devil/elemental lord" -> {
             String element = CreatureFunctions.rollElement();
             danger.setFinalResult("Demon / "+element+" elemental Lord");
+            danger.setOneLiner(danger.getFinalResult());
         }
         case "magical: natural + MAGIC TYPE" -> {
             String magicType = CreatureFunctions.rollMagicType();
             danger.setFinalResult("Magical natural phenomenon: "+magicType);
+            danger.setOneLiner(danger.getFinalResult());
         }
         case "planar: natural + ELEMENT" -> {
             String magicType = CreatureFunctions.rollMagicType();
             danger.setFinalResult("Planar natural phenomenon: "+magicType);
+            danger.setOneLiner(danger.getFinalResult());
         }
-        case "divine: natural + deity" -> {}
         case "oddity-based" -> {
             String oddity = CreatureFunctions.rollOddity();
             danger.setFinalResult("Natural "+oddity.toLowerCase());
+            danger.setOneLiner(danger.getFinalResult());
         }
         case "Creature"->{
             Creature c = new Creature();
             CreatureFunctions.rollAttributes(c);
             c.setDisposition(DetailsArrays.DISPOSITION[0]); //SET DISPOSITION TO "ATTACKING"
             danger.setFinalResult(c.getPrintableBlock());
+            danger.setOneLiner(c.getOneLiner());
         }
-            default -> danger.setFinalResult(danger.getPrompt());
+            default -> {
+                danger.setFinalResult(danger.getPrompt());
+                danger.setOneLiner(danger.getFinalResult());
+            }
         }
 
-        danger.setOneLiner(danger.getFinalResult());
 
     }
 
@@ -107,6 +116,7 @@ public class DangerFunctions implements IAllServices<Danger> {
                     case 1 ->{
                         danger = new Danger();
                         DangerFunctions.rollDanger(danger);
+                        dangerList.add(danger);
                         System.out.println(danger);
                     }
                     case 2 -> {
@@ -114,6 +124,7 @@ public class DangerFunctions implements IAllServices<Danger> {
                             danger = new Danger();
                             DangerFunctions.rollDanger(danger);
                         }
+                        dangerList.add(danger);
                         System.out.println(danger);
                     }
                     case 3 -> danger = new ViewAll().run(dataInput,dangerList,danger, Danger.class);
@@ -121,6 +132,7 @@ public class DangerFunctions implements IAllServices<Danger> {
                         if (danger == null){
                             danger = new Danger();
                             DangerFunctions.rollDanger(danger);
+                            dangerList.add(danger);
                         }
                         GenericFunctions.exportPW(danger);
                     }

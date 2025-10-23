@@ -15,7 +15,9 @@ public class AreaFunctions implements IAllServices<Area> {
 
     public static void rollArea(Area area) {
         area.setAreaType(DungeonArrays.AREA_TYPE[Rolls.UniversalRoll(DungeonArrays.AREA_TYPE)]);
+        area.setOneLiner(area.getAreaType());
         rollAreaDetails(area);
+
     }
 
     public static void rollAreaDetails(Area area){

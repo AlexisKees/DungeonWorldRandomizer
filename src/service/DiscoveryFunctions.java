@@ -51,111 +51,130 @@ public class DiscoveryFunctions implements IAllServices<Discovery> {
             case "Steading" -> discovery.setPromptTable(DiscoveryArrays.STEADING_PROMPTS);
         }
 
-//        if(discovery.getPromptTable()!=null) System.out.println("Prompt table established"); else System.out.println("Failed trying to set prompt table. Subcategory was: "+discovery.getSubcategory());
-
         discovery.setPrompt(discovery.getPromptTable()[Rolls.UniversalRoll(discovery.getPromptTable())]);
 
         switch (discovery.getPrompt()){
-        case "Lair RUIN" -> {
-            String ruin = rollRuins().toLowerCase(Locale.ROOT);
-            discovery.setFinalResult("A lair in a "+ruin);
-        }
-        case "pocket of TERRAIN" -> {
-            String terrain = DetailsArrays.TERRAIN[Rolls.UniversalRoll(DetailsArrays.TERRAIN)];
-            discovery.setFinalResult("Pocket of "+terrain);
-        }
-        case "Landmark ODDITY" -> {
-            String oddity = CreatureFunctions.rollOddity();
-            discovery.setFinalResult("Landmark "+oddity);
-        }
-        case "notable BEAST" -> {
-            String beast = CreatureFunctions.rollBeast();
-            discovery.setFinalResult("Notable "+beast);
-        }
-        case "useful BEAST" -> {
-            String beast = CreatureFunctions.rollBeast();
-            discovery.setFinalResult("Useful "+beast);
-        }
-        case "bones of CREATURE" -> {
-            Creature c = new Creature();
-            CreatureFunctions.rollAttributes(c);
-            discovery.setFinalResult(String.format("""
-                    Bones of a creature:
-                    %s""", c.getPrintableBlock()));
-        }
-        case "CREATURE carcass" -> {
-            Creature c = new Creature();
-            CreatureFunctions.rollAttributes(c);
-            discovery.setFinalResult(String.format("""
-                    Creature carcass:
-                    %s""", c.getPrintableBlock()));
-        }
-        case "Creature" -> {
-            Creature c = new Creature();
-            CreatureFunctions.rollAttributes(c);
-            discovery.setFinalResult(c.getPrintableBlock());
-        }
-        case "treasure" -> {
-            int n1 = Rolls.UniversalRoll(DiscoveryArrays.TREASURE_TABLE);
-            int n2 = Rolls.UniversalRoll(DiscoveryArrays.TREASURE_TABLE);
-            int n3 = (n1 + n2) / 2;
-            discovery.setPrompt(DiscoveryArrays.TREASURE_TABLE[n3]);
-        }
-        case "Enigmatic ODDITY" -> {
-            String oddity = CreatureFunctions.rollOddity();
-            discovery.setFinalResult("Enigmatic "+oddity);}
+            case "Lair RUIN" -> {
+                String ruin = rollRuins().toLowerCase(Locale.ROOT);
+                discovery.setFinalResult("A lair in a "+ruin);
+                discovery.setOneLiner(discovery.getFinalResult());
+            }
+            case "pocket of TERRAIN" -> {
+                String terrain = DetailsArrays.TERRAIN[Rolls.UniversalRoll(DetailsArrays.TERRAIN)];
+                discovery.setFinalResult("Pocket of "+terrain);
+                discovery.setOneLiner(discovery.getFinalResult());
+            }
+            case "Landmark ODDITY" -> {
+                String oddity = CreatureFunctions.rollOddity();
+                discovery.setFinalResult("Landmark "+oddity);
+                discovery.setOneLiner(discovery.getFinalResult());
+            }
+            case "notable BEAST" -> {
+                String beast = CreatureFunctions.rollBeast();
+                discovery.setFinalResult("Notable "+beast);
+                discovery.setOneLiner(discovery.getFinalResult());
+            }
+            case "useful BEAST" -> {
+                String beast = CreatureFunctions.rollBeast();
+                discovery.setFinalResult("Useful "+beast);
+                discovery.setOneLiner(discovery.getFinalResult());
+            }
+            case "bones of CREATURE" -> {
+                Creature c = new Creature();
+                CreatureFunctions.rollAttributes(c);
+                discovery.setFinalResult(String.format("""
+                        Bones of a creature:
+                        %s""", c.getPrintableBlock()));
+                discovery.setOneLiner("Bones of a "+c.getOneLiner());
+            }
+            case "CREATURE carcass" -> {
+                Creature c = new Creature();
+                CreatureFunctions.rollAttributes(c);
+                discovery.setFinalResult(String.format("""
+                        Creature carcass:
+                        %s""", c.getPrintableBlock()));
+                discovery.setOneLiner("Carcass of a "+c.getOneLiner());
+            }
+            case "Creature" -> {
+                Creature c = new Creature();
+                CreatureFunctions.rollAttributes(c);
+                discovery.setFinalResult(c.getPrintableBlock());
+                discovery.setOneLiner(c.getOneLiner());
+            }
+            case "treasure" -> {
+                int n1 = Rolls.UniversalRoll(DiscoveryArrays.TREASURE_TABLE);
+                int n2 = Rolls.UniversalRoll(DiscoveryArrays.TREASURE_TABLE);
+                int n3 = (n1 + n2) / 2;
+                discovery.setPrompt(DiscoveryArrays.TREASURE_TABLE[n3]);
+                discovery.setOneLiner(discovery.getFinalResult());
+            }
+            case "Enigmatic ODDITY" -> {
+                String oddity = CreatureFunctions.rollOddity();
+                discovery.setFinalResult("Enigmatic "+oddity);
+                discovery.setOneLiner(discovery.getFinalResult());
+            }
+            case "DUNGEON" -> {
+                Dungeon d = new Dungeon();
+                DungeonFunctions.rollDungeon(d);
+                discovery.setFinalResult("Dungeon in ruins:\n"+d);
+                discovery.setOneLiner("Dungeon in ruins: "+d.getName());
+            }
+            case "STEADING" -> {
+                Steading s = new Steading();
+                SteadingFunctions.rollSteading(s);
+                discovery.setFinalResult("Steading in ruins:\n"+s);
+                discovery.setOneLiner("Steading in ruins: "+s.getName());
+            }
+            case "religious" -> {
+                int roll = Rolls.Roll1d8()+4;
+                String structure = DiscoveryArrays.RELIGIOUS_PROMPTS[roll];
+                discovery.setFinalResult(structure+" in ruins");
+                discovery.setOneLiner(discovery.getFinalResult());
+            }
+            case "dwelling" -> {
+                int roll = Rolls.Roll1d8()+4;
+                String structure = DiscoveryArrays.DWELLING_PROMPTS[roll];
+                discovery.setFinalResult(structure+" in ruins");
+                discovery.setOneLiner(discovery.getFinalResult());
+            }
+            case "infrastructure" -> {
+                int roll = Rolls.Roll1d8()+4;
+                String structure = DiscoveryArrays.INFRASTRUCTURE_PROMPTS[roll];
+                discovery.setFinalResult(structure+" in ruins");
+                discovery.setOneLiner(discovery.getFinalResult());
+            }
+            case "village" -> {
+                Steading s = new Steading();
+                SteadingFunctions.rollSteading(s,"VILLAGE");
+                discovery.setFinalResult(s.toString());
+                discovery.setOneLiner("Village: "+s.getName());
+            }
+            case "town" -> {
+                Steading s = new Steading();
+                SteadingFunctions.rollSteading(s,"TOWN");
+                discovery.setFinalResult(s.toString());
+                discovery.setOneLiner("Town: "+s.getName());
+            }
+            case "keep" -> {
+                Steading s = new Steading();
+                SteadingFunctions.rollSteading(s,"KEEP");
+                discovery.setFinalResult(s.toString());
+                discovery.setOneLiner("Keep: "+s.getName());
+            }
+            case "city" -> {
+                Steading s = new Steading();
+                SteadingFunctions.rollSteading(s,"CITY");
+                discovery.setFinalResult(s.toString());
+                discovery.setOneLiner("City: "+s.getName());
+            }
+            default -> {
+                discovery.setFinalResult(discovery.getPrompt());
+                discovery.setOneLiner(discovery.getFinalResult());
+            }
 
-        case "DUNGEON" -> {
-            Dungeon d = new Dungeon();
-            DungeonFunctions.rollDungeon(d);
-            discovery.setFinalResult("Dungeon in ruins:\n"+d);
-        }
-        case "STEADING" -> {
-            Steading s = new Steading();
-            SteadingFunctions.rollSteading(s);
-            discovery.setFinalResult("Steading in ruins:\n"+s);
-        }
-        case "religious" -> {
-            int roll = Rolls.Roll1d8()+4;
-            String structure = DiscoveryArrays.RELIGIOUS_PROMPTS[roll];
-            discovery.setFinalResult(structure+" in ruins");
-        }
-        case "dwelling" -> {
-            int roll = Rolls.Roll1d8()+4;
-            String structure = DiscoveryArrays.DWELLING_PROMPTS[roll];
-            discovery.setFinalResult(structure+" in ruins");
-        }
-        case "infrastructure" -> {
-            int roll = Rolls.Roll1d8()+4;
-            String structure = DiscoveryArrays.INFRASTRUCTURE_PROMPTS[roll];
-            discovery.setFinalResult(structure+" in ruins");
         }
 
-        case "village" -> {
-            Steading s = new Steading();
-            SteadingFunctions.rollSteading(s,"VILLAGE");
-            discovery.setFinalResult(s.toString());
-        }
-        case "town" -> {
-            Steading s = new Steading();
-            SteadingFunctions.rollSteading(s,"TOWN");
-            discovery.setFinalResult(s.toString());
-        }
-        case "keep" -> {
-            Steading s = new Steading();
-            SteadingFunctions.rollSteading(s,"KEEP");
-            discovery.setFinalResult(s.toString());
-        }
-        case "city" -> {
-            Steading s = new Steading();
-            SteadingFunctions.rollSteading(s,"CITY");
-            discovery.setFinalResult(s.toString());
-        }
-            default -> discovery.setFinalResult(discovery.getPrompt());
 
-        }
-
-        discovery.setOneLiner(discovery.getFinalResult());
     }
 
 

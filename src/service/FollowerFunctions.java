@@ -48,16 +48,13 @@ public class FollowerFunctions implements IAllServices<Follower> {
         //Set age using DetailArrays
         int ageRoll = (int)(Math.random()*7+3);
         follower.setAge(DetailsArrays.AGE[ageRoll]);
+        follower.setOneLiner(follower.getName()+", "+follower.getGender()+" "+follower.getRace());
 
         rollFollowerDetails(follower);
     }
 
     public static void rollFollowerDetails(Follower follower){
 
-//        private int HP;
-//        private int armor;
-//        private String damage;
-//        private String tags;
         int roll = Rolls.UniversalRoll(NPCArrays.FOLLOWER_QUALITY);
         follower.setQualityString(NPCArrays.FOLLOWER_QUALITY[roll]);
         switch (follower.getQualityString()){
@@ -210,6 +207,7 @@ public class FollowerFunctions implements IAllServices<Follower> {
                     case 1 -> {
                         follower = new Follower();
                         FollowerFunctions.rollFollower(follower);
+                        followerList.add(follower);
                         System.out.println(follower);
                     }
                     case 2 ->{
@@ -226,6 +224,7 @@ public class FollowerFunctions implements IAllServices<Follower> {
                         } else {
                             FollowerFunctions.rollFollowerDetails(follower);
                         }
+                        followerList.add(follower);
                         System.out.println(follower);
                     }
                     case 4 -> follower = new ViewAll().run(dataInput, followerList, follower, Follower.class);
@@ -233,6 +232,7 @@ public class FollowerFunctions implements IAllServices<Follower> {
                         if (follower==null){
                             follower = new Follower();
                             FollowerFunctions.rollFollower(follower);
+                            followerList.add(follower);
                         }
                         GenericFunctions.exportPW(follower);
                     }
