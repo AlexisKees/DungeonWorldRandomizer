@@ -5,6 +5,18 @@ import java.util.Random;
 
 public class Rolls {
 
+    public static String rollTwice(String[] a){
+        int n = Rolls.UniversalRoll(a);
+        String s1 = a[n];
+        String s2;
+        do{
+            n=Rolls.UniversalRoll(a);
+            s2 = a[n];
+        } while (s1.equals(s2));
+
+        return s1+" + "+s2;
+    }
+
     public static int UniversalRoll(String[] a){
      return (int) (Math.random()*a.length);
     }

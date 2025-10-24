@@ -6,8 +6,6 @@ import domain.Creature;
 import domain.util.Rolls;
 import presentation.ViewAll;
 
-
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
@@ -16,49 +14,33 @@ public class CreatureFunctions implements IGenericService<Creature> {
 
     public static String rollOddity(){
         var r1 = Rolls.UniversalRoll(DetailsArrays.ODDITY);
-        String result;
-        switch (r1){
-            case 10,11 -> {
-                var r2 = Rolls.Roll1d10();
-                var r3 = Rolls.Roll1d10();
-                result = "Oddity: " + DetailsArrays.ODDITY[r2] + " , " + DetailsArrays.ODDITY[r3];
-            }
-            default -> result = "Oddity: " + DetailsArrays.ODDITY[r1];
-        }
-        return result;
+        return switch (DetailsArrays.ODDITY[r1]){
+            case "roll twice" -> Rolls.rollTwice(DetailsArrays.ODDITY);
+            default -> DetailsArrays.ODDITY[r1];
+        };
+
     }
 
     public static String rollAberrance(){
         var r1 = Rolls.UniversalRoll(DetailsArrays.ABERRANCE);
-        String result;
-        switch (r1){
-            case 2,3 -> {
-                var oddity = rollOddity();
-                result = "Anatomical "+oddity;
-            }
-            case 10,11 ->{
-                var r2 = Rolls.Roll1d10();
-                var r3 = Rolls.Roll1d10();
-                result = String.join(" ","Aberrance: " ,DetailsArrays.ABERRANCE[r2],",",DetailsArrays.ABERRANCE[r3]);
-            }
-            default -> result = "Aberrance: " + DetailsArrays.ABERRANCE[r1];
-        }
-        return result;
+        return switch(DetailsArrays.ABERRANCE[r1]){
+            case "anatomical oddity" -> "Anatomical "+ rollOddity();
+            case "roll twice" -> Rolls.rollTwice(DetailsArrays.ABERRANCE);
+            default ->  DetailsArrays.ABERRANCE[r1];
+        };
     }
 
     public static String rollElement(){
         var r1 = Rolls.UniversalRoll(DetailsArrays.ELEMENT);
-        return "Element: " + DetailsArrays.ELEMENT[r1];
+        return DetailsArrays.ELEMENT[r1];
     }
 
     public static String rollMagicType(){
         var r1 = Rolls.UniversalRoll(DetailsArrays.MAGIC_TYPE);
-        String result;
-        switch (r1){
-            case 8,9 -> result = "Magic type: " + rollElement();
-            default -> result = "Magic type: " + DetailsArrays.MAGIC_TYPE[r1];
-        }
-        return result;
+        return switch (DetailsArrays.MAGIC_TYPE[r1]){
+            case "elemental" -> rollElement();
+            default -> DetailsArrays.MAGIC_TYPE[r1];
+        };
     }
 
     public static String rollAspect(){
@@ -68,30 +50,23 @@ public class CreatureFunctions implements IGenericService<Creature> {
 
     public static String rollAbility(){
         var r1 = Rolls.UniversalRoll(DetailsArrays.ABILITY);
-        String result;
-        switch (r1){
-            case 7 -> result = "Based on " + rollAspect();
-            case 8 -> result = "Based on " + rollElement();
-            case 10 -> result = "(Magic ability) " + rollMagicType();
-            case 11 -> {
-                var r2 = Rolls.Roll1d10()+1;
-                var r3 = Rolls.Roll1d10()+1;
-                result = String.join(" ","(Abilities)",DetailsArrays.ABILITY[r2], "and", DetailsArrays.ABILITY[r3]);
-            }
-            default -> result = "(Ability)" + DetailsArrays.ABILITY[r1];
-        }
-        return result;
+        return switch (DetailsArrays.ABILITY[r1]){
+            case "based on aspect" ->  "Based on " + rollAspect();
+            case "based on element" ->  "Based on " + rollElement();
+            case "magic type" ->  "(Magic ability) " + rollMagicType();
+            case "roll twice" -> Rolls.rollTwice(DetailsArrays.ABILITY);
+            default ->  DetailsArrays.ABILITY[r1];
+        };
     }
 
     public static String rollBeast(){
         var r1 = Rolls.UniversalRoll(CreatureArrays.SUBCATEGORIES_BEAST);
         var beastSubcategory = new String[12];
 
-        beastSubcategory = switch (r1){
-                case 0, 1 -> CreatureArrays.PROMPTS_BEAST_WATER_GOING;
-                case 2, 3, 4 -> CreatureArrays.PROMPTS_BEAST_AIRBORNE;
-                case 5, 6, 7, 8, 9, 10, 11 -> CreatureArrays.PROMPTS_BEAST_EARTHBOUND;
-                default -> new String[12];
+        beastSubcategory = switch (CreatureArrays.SUBCATEGORIES_BEAST[r1]){
+                case "Water-going" -> CreatureArrays.PROMPTS_BEAST_WATER_GOING;
+                case "Airborne"-> CreatureArrays.PROMPTS_BEAST_AIRBORNE;
+                default -> CreatureArrays.PROMPTS_BEAST_EARTHBOUND;
         };
 
         var r2 = Rolls.UniversalRoll(beastSubcategory);
@@ -103,21 +78,20 @@ public class CreatureFunctions implements IGenericService<Creature> {
     public static String rollHumanoid(){
         var r1 = Rolls.UniversalRoll(CreatureArrays.SUBCATEGORIES_HUMANOID);
 
-        String[] humanoidSubcategory = switch (r1){
-            case 0 -> CreatureArrays.PROMPTS_HUMANOID_RARE;
-            case 1,2, 3, 4 -> CreatureArrays.PROMPTS_HUMANOID_UNCOMMON;
-            case 5, 6, 7, 8, 9, 10, 11 -> CreatureArrays.PROMPTS_HUMANOID_COMMON;
-            default -> new String[12];
+        String[] humanoidSubcategory = switch (CreatureArrays.SUBCATEGORIES_HUMANOID[r1]){
+            case "Rare" -> CreatureArrays.PROMPTS_HUMANOID_RARE;
+            case "Uncommon" -> CreatureArrays.PROMPTS_HUMANOID_UNCOMMON;
+            default -> CreatureArrays.PROMPTS_HUMANOID_COMMON;
         };
+
         var r2 = Rolls.UniversalRoll(humanoidSubcategory);
-        if (Arrays.equals(humanoidSubcategory, CreatureArrays.PROMPTS_HUMANOID_UNCOMMON)){
-            return switch (r2) {
-                case 0, 1, 2 -> String.join(" ", "Human", rollBeast());
+
+
+            return switch (humanoidSubcategory[r2]) {
+                case "Human+Beast" -> String.join(" ", "Human", rollBeast());
                 default -> humanoidSubcategory[r2];
             };
-        } else {
-            return humanoidSubcategory[r2];
-        }
+
 
 
     }
@@ -157,37 +131,27 @@ public class CreatureFunctions implements IGenericService<Creature> {
             case "Monster" -> creature.setSubcategoryTable(CreatureArrays.SUBCATEGORIES_MONSTER);
             case "Beast" -> creature.setSubcategoryTable(CreatureArrays.SUBCATEGORIES_BEAST);
             default -> creature.setSubcategoryTable(CreatureArrays.SUBCATEGORIES_HUMANOID);
-        };
+        }
 
     }
 
     private static void assignPromptTable(Creature creature){
-        if (Arrays.equals(creature.getSubcategoryTable(), CreatureArrays.SUBCATEGORIES_MONSTER)) {
-            switch (creature.getSubcategory()) {
-                case "Extraplanar" -> creature.setPromptTable(CreatureArrays.PROMPTS_MONSTER_EXTRAPLANAR);
-                case "Legendary" -> creature.setPromptTable(CreatureArrays.PROMPTS_MONSTER_LEGENDARY);
-                case "Undead" -> creature.setPromptTable(CreatureArrays.PROMPTS_MONSTER_UNDEAD);
-                case "Unusual" -> creature.setPromptTable(CreatureArrays.PROMPTS_MONSTER_UNUSUAL);
-                case "Beastly" -> creature.setPromptTable(CreatureArrays.PROMPTS_MONSTER_BEASTLY);
-                case "Wild humanoid" -> creature.setPromptTable(CreatureArrays.PROMPTS_MONSTER_WILD_HUMANOID);
-                default -> creature.setPromptTable(new String[12]);
-
-            }
-        } else if (Arrays.equals(creature.getSubcategoryTable(), CreatureArrays.SUBCATEGORIES_BEAST)) {
-            switch (creature.getSubcategory()) {
-                case "Water-going" -> creature.setPromptTable(CreatureArrays.PROMPTS_BEAST_WATER_GOING);
-                case "Airborne" -> creature.setPromptTable(CreatureArrays.PROMPTS_BEAST_AIRBORNE);
-                case "Earthbound" -> creature.setPromptTable(CreatureArrays.PROMPTS_BEAST_EARTHBOUND);
-                default -> creature.setPromptTable(new String[12]);
-            }
-        } else {
-            switch (creature.getSubcategory()) {
-                case "Rare" -> creature.setPromptTable(CreatureArrays.PROMPTS_HUMANOID_RARE);
-                case "Uncommon" -> creature.setPromptTable(CreatureArrays.PROMPTS_HUMANOID_UNCOMMON);
-                case "Common" -> creature.setPromptTable(CreatureArrays.PROMPTS_HUMANOID_COMMON);
-                default -> creature.setPromptTable(new String[12]);
-            }
+        switch (creature.getSubcategory()) {
+            case "Extraplanar" -> creature.setPromptTable(CreatureArrays.PROMPTS_MONSTER_EXTRAPLANAR);
+            case "Legendary" -> creature.setPromptTable(CreatureArrays.PROMPTS_MONSTER_LEGENDARY);
+            case "Undead" -> creature.setPromptTable(CreatureArrays.PROMPTS_MONSTER_UNDEAD);
+            case "Unusual" -> creature.setPromptTable(CreatureArrays.PROMPTS_MONSTER_UNUSUAL);
+            case "Beastly" -> creature.setPromptTable(CreatureArrays.PROMPTS_MONSTER_BEASTLY);
+            case "Humanoid" -> creature.setPromptTable(CreatureArrays.PROMPTS_MONSTER_WILD_HUMANOID);
+            case "Water-going" -> creature.setPromptTable(CreatureArrays.PROMPTS_BEAST_WATER_GOING);
+            case "Airborne" -> creature.setPromptTable(CreatureArrays.PROMPTS_BEAST_AIRBORNE);
+            case "Earthbound" -> creature.setPromptTable(CreatureArrays.PROMPTS_BEAST_EARTHBOUND);
+            case "Rare" -> creature.setPromptTable(CreatureArrays.PROMPTS_HUMANOID_RARE);
+            case "Uncommon" -> creature.setPromptTable(CreatureArrays.PROMPTS_HUMANOID_UNCOMMON);
+            case "Common" -> creature.setPromptTable(CreatureArrays.PROMPTS_HUMANOID_COMMON);
+            default -> creature.setPromptTable(new String[12]);
         }
+
     }
 
     public static void reRollSubcategory(Creature creature) {
@@ -202,7 +166,7 @@ public class CreatureFunctions implements IGenericService<Creature> {
             currentSubcategory = creature.getSubcategory();
         } while (Objects.equals(previousSubcategory,currentSubcategory));
 
-            if (Arrays.equals(creature.getSubcategoryTable(), CreatureArrays.SUBCATEGORIES_MONSTER)) {
+
                 switch (creature.getSubcategory()) {
                     case "Extraplanar" -> creature.setPromptTable(CreatureArrays.PROMPTS_MONSTER_EXTRAPLANAR);
                     case "Legendary" -> creature.setPromptTable(CreatureArrays.PROMPTS_MONSTER_LEGENDARY);
@@ -210,24 +174,15 @@ public class CreatureFunctions implements IGenericService<Creature> {
                     case "Unusual" -> creature.setPromptTable(CreatureArrays.PROMPTS_MONSTER_UNUSUAL);
                     case "Beastly" -> creature.setPromptTable(CreatureArrays.PROMPTS_MONSTER_BEASTLY);
                     case "Humanoid" -> creature.setPromptTable(CreatureArrays.PROMPTS_MONSTER_WILD_HUMANOID);
-                    default -> creature.setPromptTable(new String[12]);
-
-                }
-            } else if (Arrays.equals(creature.getSubcategoryTable(), CreatureArrays.SUBCATEGORIES_BEAST)) {
-                switch (creature.getSubcategory()) {
                     case "Water-going" -> creature.setPromptTable(CreatureArrays.PROMPTS_BEAST_WATER_GOING);
                     case "Airborne" -> creature.setPromptTable(CreatureArrays.PROMPTS_BEAST_AIRBORNE);
                     case "Earthbound" -> creature.setPromptTable(CreatureArrays.PROMPTS_BEAST_EARTHBOUND);
-                    default -> creature.setPromptTable(new String[12]);
-                }
-            } else {
-                switch (creature.getSubcategory()) {
                     case "Rare" -> creature.setPromptTable(CreatureArrays.PROMPTS_HUMANOID_RARE);
                     case "Uncommon" -> creature.setPromptTable(CreatureArrays.PROMPTS_HUMANOID_UNCOMMON);
                     case "Common" -> creature.setPromptTable(CreatureArrays.PROMPTS_HUMANOID_COMMON);
                     default -> creature.setPromptTable(new String[12]);
                 }
-            }
+
 
             //Se asigna prompt
             int r2 = Rolls.UniversalRoll(creature.getPromptTable());
@@ -241,7 +196,7 @@ public class CreatureFunctions implements IGenericService<Creature> {
 
     public static void reRollPrompt(Creature creature){
         String previousPrompt = creature.getPrompt();
-        String currentPrompt = creature.getPrompt();
+        String currentPrompt;
         do {
             int r1 = Rolls.UniversalRoll(creature.getPromptTable());
 
@@ -255,42 +210,21 @@ public class CreatureFunctions implements IGenericService<Creature> {
     }
 
     private static void reviseRolls(Creature creature){
-        if (Arrays.equals(creature.getPromptTable(), CreatureArrays.PROMPTS_HUMANOID_UNCOMMON)){
-            if (creature.getPrompt().equals("Human + Beast")){
-                creature.setPrompt(String.join(" ","Human", CreatureFunctions.rollBeast()));
-            }
-        }
 
-        if (Arrays.equals(creature.getSubcategoryTable(), CreatureArrays.SUBCATEGORIES_MONSTER)) {
-            if (Arrays.equals(creature.getPromptTable(), CreatureArrays.PROMPTS_MONSTER_EXTRAPLANAR)) {
-                if (creature.getPrompt().equals("Elemental")) {
-                    creature.setPrompt(CreatureFunctions.rollElement() + " elemental");
-                }
-            } else if (Arrays.equals(creature.getPromptTable(), CreatureArrays.PROMPTS_MONSTER_LEGENDARY)) {
-                switch (creature.getPrompt()) {
-                    case "Huge + oddity" -> creature.setPrompt(String.join(" ", "Huge", CreatureFunctions.rollOddity()));
-                    case "Dragon/Gian + beast" -> creature.setPrompt(String.join(" ", "Dragon/Giant", CreatureFunctions.rollBeast()));
-                    case "Huge + beast" -> creature.setPrompt(String.join(" ", "Huge", CreatureFunctions.rollBeast()));
-                    default -> creature.setPrompt(creature.getPrompt());
-                };
-
-            } else if (Arrays.equals(creature.getPromptTable(), CreatureArrays.PROMPTS_MONSTER_BEASTLY)) {
-                switch (creature.getPrompt()) {
-                    case "Beast+aberrance" -> creature.setPrompt(String.join(" ", CreatureFunctions.rollBeast(), CreatureFunctions.rollAberrance()));
-                    case "Beast+element" -> creature.setPrompt(String.join(" ", CreatureFunctions.rollElement(), CreatureFunctions.rollBeast()));
-                    case "Beast+oddity" -> creature.setPrompt(String.join(" ", CreatureFunctions.rollOddity(), CreatureFunctions.rollBeast()));
-                    case "Beast+ability" -> creature.setPrompt(String.join(" ", CreatureFunctions.rollAbility(), CreatureFunctions.rollBeast()));
-                    case "Beast+Beast" -> creature.setPrompt(String.join(" ", CreatureFunctions.rollBeast(), CreatureFunctions.rollBeast()));
-                    default -> creature.setPrompt(creature.getPrompt());
-                };
-
-            } else if (Arrays.equals(creature.getPromptTable(), CreatureArrays.PROMPTS_MONSTER_WILD_HUMANOID)) {
-                switch (creature.getPrompt()) {
-                    case "Humanoid+Oddity" -> creature.setPrompt(String.join(" ", CreatureFunctions.rollOddity(), CreatureFunctions.rollHumanoid()));
-                    case "Human+Beast" -> creature.setPrompt(String.join(" ", CreatureFunctions.rollHumanoid(), CreatureFunctions.rollBeast()));
-                    default -> creature.setPrompt(creature.getPrompt());
-                };
-            }
+        switch (creature.getPrompt()) {
+            case "Human+Beast" -> creature.setPrompt(String.join(" ","Human", CreatureFunctions.rollBeast()));
+            case "Elemental" -> creature.setPrompt(CreatureFunctions.rollElement() + " elemental");
+            case "Huge+oddity" -> creature.setPrompt(String.join(" ", "Huge", CreatureFunctions.rollOddity()));
+            case "Dragon+beast" -> creature.setPrompt(String.join(" ", "Dragon", CreatureFunctions.rollBeast()));
+            case "Giant+beast" -> creature.setPrompt(String.join(" ", "Giant", CreatureFunctions.rollBeast()));
+            case "Huge+beast" -> creature.setPrompt(String.join(" ", "Huge", CreatureFunctions.rollBeast()));
+            case "Beast+aberrance" -> creature.setPrompt(String.join(" ", CreatureFunctions.rollBeast(), CreatureFunctions.rollAberrance()));
+            case "Beast+element" -> creature.setPrompt(String.join(" ", CreatureFunctions.rollElement(), CreatureFunctions.rollBeast()));
+            case "Beast+oddity" -> creature.setPrompt(String.join(" ", CreatureFunctions.rollOddity(), CreatureFunctions.rollBeast()));
+            case "Beast+ability" -> creature.setPrompt(String.join(" ", CreatureFunctions.rollAbility(), CreatureFunctions.rollBeast()));
+            case "Beast+Beast" -> creature.setPrompt(String.join(" ", CreatureFunctions.rollBeast(), CreatureFunctions.rollBeast()));
+            case "Humanoid+Oddity" -> creature.setPrompt(String.join(" ", CreatureFunctions.rollOddity(), CreatureFunctions.rollHumanoid()));
+            case "Humanoid+Beast" -> creature.setPrompt(String.join(" ", CreatureFunctions.rollHumanoid(), CreatureFunctions.rollBeast()));
         }
     }
 
@@ -375,13 +309,12 @@ public class CreatureFunctions implements IGenericService<Creature> {
     private static void rollArmor(Creature creature){
         int r1 = Rolls.UniversalRoll(DetailsArrays.ARMOR);
         creature.setArmorType(DetailsArrays.ARMOR[r1]);
-        switch (r1){
-            case 0,1 -> creature.setArmor(0);
-            case 2,3,4,5,6 ->  creature.setArmor(1);
-            case 7,8,9 -> creature.setArmor(2);
-            case 10 -> creature.setArmor(3);
-            case 11 -> creature.setArmor(4);
-
+        switch (DetailsArrays.ARMOR[r1]){
+            case "Cloth or flesh" -> creature.setArmor(0);
+            case "Leathers or thick hides"->  creature.setArmor(1);
+            case "Mail or scales" -> creature.setArmor(2);
+            case "Plate or bone" -> creature.setArmor(3);
+            case "Magical armor" -> creature.setArmor(4);
         }
     }
     private static void rollDamageType(Creature creature){
@@ -392,34 +325,14 @@ public class CreatureFunctions implements IGenericService<Creature> {
                 String element = DetailsArrays.ELEMENT[Rolls.UniversalRoll(DetailsArrays.ELEMENT)];
                 creature.setDamageType("Elemental damage: "+element);
             }
-            case "roll 1d10 twice" -> {
-                /*
-                se vuelve a rolear el array, quitando la posibilidad de que salgan los últimos
-                 dos elementos (que son los que dicen "roll 1d10 twice")
-                 */
-                int r2;
-                do{
-                    r2 = Rolls.UniversalRoll(DetailsArrays.DAMAGE_TYPE) -2;
-                } while (r2<0);
-
-                int r3;
-                do{
-                    r3 = Rolls.UniversalRoll(DetailsArrays.DAMAGE_TYPE) -2;
-                } while (r2<0);
-
-                creature.setDamageType(DetailsArrays.DAMAGE_TYPE[r2]+", "+DetailsArrays.DAMAGE_TYPE[r3]);
-            }
+            case "roll twice" -> Rolls.rollTwice(DetailsArrays.DAMAGE_TYPE);
         }
     }
     private static void rollTags(Creature creature){
         int r1 = Rolls.UniversalRoll(DetailsArrays.TAG);
         creature.setTags(DetailsArrays.TAG[r1]);
         switch (creature.getTags()){
-            case "roll 1d10 twice" ->{
-                String tag1 = DetailsArrays.TAG[Rolls.Roll1d10()];
-                String tag2 = DetailsArrays.TAG[Rolls.Roll1d10()];
-                creature.setTags( tag1 + ", " + tag2);
-            }
+            case "roll twice" ->  creature.setTags(Rolls.rollTwice(DetailsArrays.TAG));
             default -> creature.setTags(DetailsArrays.TAG[r1]);
         }
 
@@ -437,7 +350,7 @@ public class CreatureFunctions implements IGenericService<Creature> {
 
 
     @Override
-    public void showOptions(Scanner dataInput, Creature creature, List creatureList) {
+    public void showOptions(Scanner dataInput, Creature creature, List<Creature> creatureList) {
         var option = 0;
         System.out.println("WELCOME TO THE CREATURE GENERATOR");
 
@@ -480,25 +393,21 @@ public class CreatureFunctions implements IGenericService<Creature> {
                         if (creature == null) {
                             creature = new Creature();
                             CreatureFunctions.rollAttributes(creature);
-                            creatureList.add(creature);
-                            System.out.println(creature);
                         } else {
                             CreatureFunctions.reRollPrompt(creature);
-                            creatureList.add(creature);
-                            System.out.println(creature);
                         }
+                        creatureList.add(creature);
+                        System.out.println(creature);
                     }
                     case 4 -> {
                         if (creature == null) {
                             creature = new Creature();
                             CreatureFunctions.rollAttributes(creature);
-                            creatureList.add(creature);
-                            System.out.println(creature);
                         } else {
                             CreatureFunctions.rollStats(creature);
-                            creatureList.add(creature);
-                            System.out.println(creature);
                         }
+                        creatureList.add(creature);
+                        System.out.println(creature);
                     }
                     case 5 -> {
                         if (creature == null) {

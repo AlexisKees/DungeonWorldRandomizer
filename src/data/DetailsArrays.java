@@ -201,8 +201,8 @@ public class DetailsArrays {
             "magnetic","repellant",
             "multilevel","tiered",
             "absurd","impossible",
-            "roll 1d10 twice",
-            "roll 1d10 twice"
+            "roll twice",
+            "roll twice"
     };
 
     public static final String[] DISPOSITION = {
