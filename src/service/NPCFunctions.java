@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
+import static domain.util.Rolls.PickFrom;
+
 public class NPCFunctions implements IGenericService<NPC> {
 
     public static void rollFeatures(NPC npc){
@@ -23,10 +25,10 @@ public class NPCFunctions implements IGenericService<NPC> {
             default -> npc.setRaceTable(CreatureArrays.PROMPTS_HUMANOID_COMMON);
         }
 
-        npc.setRace(npc.getRaceTable()[Rolls.UniversalRoll(npc.getRaceTable())]);
+        npc.setRace(PickFrom(npc.getRaceTable()));
         // set gender, ethnics and name
-        npc.setGender(NPCNamesArrays.GENDER[Rolls.UniversalRoll(NPCNamesArrays.GENDER)]);
-        npc.setEthnics(NPCNamesArrays.ETHNICS[Rolls.UniversalRoll(NPCNamesArrays.ETHNICS)]);
+        npc.setGender(PickFrom(NPCNamesArrays.GENDER));
+        npc.setEthnics(PickFrom(NPCNamesArrays.ETHNICS));
         switch (npc.getEthnics()){
             case "Yoruba" -> npc.setNamesTable(NPCNamesArrays.NAMES_YORUBA_BASED);
             case "Finnish" -> npc.setNamesTable(NPCNamesArrays.NAMES_FINNISH_BASED);
@@ -43,7 +45,7 @@ public class NPCFunctions implements IGenericService<NPC> {
                 int roll = (int)(Math.random() * 24 + 25);
                 npc.setName(npc.getNamesTable()[roll]);
             }
-            default -> npc.setName(npc.getNamesTable()[Rolls.UniversalRoll(npc.getNamesTable())]);
+            default -> npc.setName(PickFrom(npc.getNamesTable()));
 
         }
 
@@ -51,7 +53,7 @@ public class NPCFunctions implements IGenericService<NPC> {
         int ageRoll = (int)(Math.random()*7+3);
         npc.setAge(DetailsArrays.AGE[ageRoll]);
 
-        npc.setCategory(NPCArrays.CATEGORY[Rolls.UniversalRoll(NPCArrays.CATEGORY)]);
+        npc.setCategory(PickFrom(NPCArrays.CATEGORY));
         switch (npc.getCategory()){
             case "Outsider" -> npc.setJobList(NPCArrays.OUTSIDER);
             case "Criminal" -> npc.setJobList(NPCArrays.CRIMINAL);
@@ -64,11 +66,11 @@ public class NPCFunctions implements IGenericService<NPC> {
             default ->  npc.setJobList(NPCArrays.COMMONER);
         }
 
-        npc.setJob(npc.getJobList()[Rolls.UniversalRoll(npc.getJobList())]);
+        npc.setJob(PickFrom(npc.getJobList()));
 
-        npc.setAppearance(NPCArrays.APPEARANCE[Rolls.UniversalRoll(NPCArrays.APPEARANCE)]);
-        npc.setPersonality(NPCArrays.PERSONALITY[Rolls.UniversalRoll(NPCArrays.PERSONALITY)]);
-        npc.setQuirk(NPCArrays.QUIRK[Rolls.UniversalRoll(NPCArrays.QUIRK)]);
+        npc.setAppearance(PickFrom(NPCArrays.APPEARANCE));
+        npc.setPersonality(PickFrom(NPCArrays.PERSONALITY));
+        npc.setQuirk(PickFrom(NPCArrays.QUIRK));
 
         if (Objects.equals(npc.getAppearance(), "roll twice")){
             npc.setAppearance(Rolls.rollTwice(NPCArrays.APPEARANCE));

@@ -99,7 +99,7 @@ public class Main {
 
             } while (option != 11);
         } catch (Exception e){
-            System.out.println("Please, chose a valid option");
+            System.out.println("Please, chose a valid option. Error: "+e.getMessage());
         }
     }
 }

@@ -9,8 +9,8 @@ import java.util.Scanner;
 public class ViewAll {
 
     public <T extends IPWClass> T run(Scanner dataInput, List<T> list, T object, Class<T> type){
-        int option = 0;
-        int itemNumber=0;
+        int option;
+        int itemNumber;
         String label = type.getSimpleName();
 
         String labelPlural = switch (label){
@@ -59,7 +59,7 @@ public class ViewAll {
                             System.out.printf("""
                                 1) Export %s
                                 2) Select this %s to keep editing
-                                3) Go back 
+                                3) Go back
                                 \tOption:\s""",label.toLowerCase(),label.toLowerCase());
                             secondOption=Integer.parseInt(dataInput.nextLine());
                             System.out.println();
@@ -68,7 +68,7 @@ public class ViewAll {
                                 case 1 -> GenericFunctions.exportPW(object);
                                 case 2 -> {
                                     object = selectedItem;
-                                    System.out.printf("\n%s SUCCESFULLY LOADED\n",label.toUpperCase());
+                                    System.out.printf("\n%s SUCCESSFULLY LOADED\n",label.toUpperCase());
                                     System.out.println();
                                     return object;
                                 }
@@ -85,7 +85,7 @@ public class ViewAll {
             } while (option!=2);
 
         } catch (Exception e){
-            System.out.println("\nAn error has occurred: "+e.getMessage()+"\n");
+            System.out.println("\nPlease choose a valid option.\n");
         }
 
         return object;

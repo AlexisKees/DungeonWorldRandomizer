@@ -2,18 +2,19 @@ package service;
 
 import data.QuestArrays;
 import domain.*;
-import domain.util.Rolls;
 import presentation.ViewAll;
 
 import java.util.List;
 import java.util.Scanner;
 
+import static domain.util.Rolls.PickFrom;
+
 public class QuestFunctions {
 
     public static void rollQuest(Quest quest){
-        quest.setTask(QuestArrays.TASK[Rolls.UniversalRoll(QuestArrays.TASK)]);
-        quest.setRelevance(QuestArrays.RELEVANCE[Rolls.UniversalRoll(QuestArrays.RELEVANCE)]);
-        quest.setReward(QuestArrays.REWARD[Rolls.UniversalRoll(QuestArrays.REWARD)]);
+        quest.setTask(PickFrom(QuestArrays.TASK));
+        quest.setRelevance(PickFrom(QuestArrays.RELEVANCE));
+        quest.setReward(PickFrom(QuestArrays.REWARD));
 
         quest.setQuestGiver(new NPC());
         quest.setDungeon(new Dungeon());

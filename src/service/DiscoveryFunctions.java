@@ -9,10 +9,12 @@ import presentation.ViewAll;
 import java.util.List;
 import java.util.Scanner;
 
+import static domain.util.Rolls.PickFrom;
+
 public class DiscoveryFunctions implements IGenericService<Discovery> {
 
     public static void rollDiscovery(Discovery discovery){
-        discovery.setCategory(DiscoveryArrays.DISCOVERY_CATEGORIES[Rolls.UniversalRoll(DiscoveryArrays.DISCOVERY_CATEGORIES)]);
+        discovery.setCategory(PickFrom(DiscoveryArrays.DISCOVERY_CATEGORIES));
 //        if(discovery.getCategory()!=null) System.out.println("Category established"); else System.out.println("Failed trying to set category");
         switch (discovery.getCategory()){
              case "UNNATURAL FEATURE" -> discovery.setSubcategoriesTable(DiscoveryArrays.UNNATURAL_FEATURE_SUBCATEGORIES);
@@ -26,7 +28,7 @@ public class DiscoveryFunctions implements IGenericService<Discovery> {
              case "STRUCTURE" -> discovery.setSubcategoriesTable(DiscoveryArrays.STRUCTURE_SUBCATEGORIES);
         }
 
-        discovery.setSubcategory(discovery.getSubcategoriesTable()[Rolls.UniversalRoll(discovery.getSubcategoriesTable())]);
+        discovery.setSubcategory(PickFrom(discovery.getSubcategoriesTable()));
 //        if(discovery.getSubcategory()!=null) System.out.println("Subcategory established"); else System.out.println("Failed trying to set subcategory. Category was: "+discovery.getCategory());
 
         switch (discovery.getSubcategory()){
@@ -52,7 +54,7 @@ public class DiscoveryFunctions implements IGenericService<Discovery> {
             case "Steading" -> discovery.setPromptTable(DiscoveryArrays.STEADING_PROMPTS);
         }
 
-        discovery.setPrompt(discovery.getPromptTable()[Rolls.UniversalRoll(discovery.getPromptTable())]);
+        discovery.setPrompt(PickFrom(discovery.getPromptTable()));
 
         switch (discovery.getPrompt()){
             case "Lair RUIN" -> {
@@ -61,7 +63,7 @@ public class DiscoveryFunctions implements IGenericService<Discovery> {
                 discovery.setOneLiner(discovery.getFinalResult());
             }
             case "pocket of TERRAIN" -> {
-                String terrain = DetailsArrays.TERRAIN[Rolls.UniversalRoll(DetailsArrays.TERRAIN)];
+                String terrain = PickFrom(DetailsArrays.TERRAIN);
                 discovery.setFinalResult("Pocket of "+terrain);
                 discovery.setOneLiner(discovery.getFinalResult());
             }
@@ -85,7 +87,7 @@ public class DiscoveryFunctions implements IGenericService<Discovery> {
                 CreatureFunctions.rollAttributes(c);
                 discovery.setFinalResult(String.format("""
                         Bones of a creature:
-                        %s""", c.getPrintableBlock()));
+                        %s""", c));
                 discovery.setOneLiner("Bones of a "+c.getOneLiner());
             }
             case "CREATURE carcass" -> {
@@ -93,17 +95,17 @@ public class DiscoveryFunctions implements IGenericService<Discovery> {
                 CreatureFunctions.rollAttributes(c);
                 discovery.setFinalResult(String.format("""
                         Creature carcass:
-                        %s""", c.getPrintableBlock()));
+                        %s""", c));
                 discovery.setOneLiner("Carcass of a "+c.getOneLiner());
             }
             case "Creature" -> {
                 Creature c = new Creature();
                 CreatureFunctions.rollAttributes(c);
-                discovery.setFinalResult(c.getPrintableBlock());
+                discovery.setFinalResult(c.toString());
                 discovery.setOneLiner(c.getOneLiner());
             }
             case "treasure" -> {
-                int n1 = Rolls.UniversalRoll(DiscoveryArrays.TREASURE_TABLE);
+                int n1 = Rolls.UniversalRoll(DiscoveryArrays.TREASURE_TABLE); // números aleatorios entre 0 y length-1, promediados para que tienda al centro
                 int n2 = Rolls.UniversalRoll(DiscoveryArrays.TREASURE_TABLE);
                 int n3 = (n1 + n2) / 2;
                 discovery.setPrompt(DiscoveryArrays.TREASURE_TABLE[n3]);
@@ -181,7 +183,7 @@ public class DiscoveryFunctions implements IGenericService<Discovery> {
 
     private static String rollRuins(){
 
-        String ruin = DiscoveryArrays.RUIN_PROMPTS[Rolls.UniversalRoll(DiscoveryArrays.RUIN_PROMPTS)];
+        String ruin = PickFrom(DiscoveryArrays.RUIN_PROMPTS);
 
         switch (ruin) {
 

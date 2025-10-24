@@ -11,6 +11,8 @@ import presentation.ViewAll;
 import java.util.List;
 import java.util.Scanner;
 
+import static domain.util.Rolls.PickFrom;
+
 public class FollowerFunctions implements IGenericService<Follower> {
     public static void rollFollower(Follower follower){
         int rarity = Rolls.Roll1d12();
@@ -20,10 +22,10 @@ public class FollowerFunctions implements IGenericService<Follower> {
             default -> follower.setRaceTable(CreatureArrays.PROMPTS_HUMANOID_COMMON);
         }
 
-        follower.setRace(follower.getRaceTable()[Rolls.UniversalRoll(follower.getRaceTable())]);
+        follower.setRace(PickFrom(follower.getRaceTable()));
         // set gender, ethnics and name
-        follower.setGender(NPCNamesArrays.GENDER[Rolls.UniversalRoll(NPCNamesArrays.GENDER)]);
-        follower.setEthnics(NPCNamesArrays.ETHNICS[Rolls.UniversalRoll(NPCNamesArrays.ETHNICS)]);
+        follower.setGender(PickFrom(NPCNamesArrays.GENDER));
+        follower.setEthnics(PickFrom(NPCNamesArrays.ETHNICS));
         switch (follower.getEthnics()){
             case "Yoruba" -> follower.setNamesTable(NPCNamesArrays.NAMES_YORUBA_BASED);
             case "Finnish" -> follower.setNamesTable(NPCNamesArrays.NAMES_FINNISH_BASED);
@@ -40,7 +42,7 @@ public class FollowerFunctions implements IGenericService<Follower> {
                 int roll = (int)(Math.random() * 24 + 25);
                 follower.setName(follower.getNamesTable()[roll]);
             }
-            default -> follower.setName(follower.getNamesTable()[Rolls.UniversalRoll(follower.getNamesTable())]);
+            default -> follower.setName(PickFrom(follower.getNamesTable()));
         }
 
         //Set age using DetailArrays
@@ -52,9 +54,7 @@ public class FollowerFunctions implements IGenericService<Follower> {
     }
 
     public static void rollFollowerDetails(Follower follower){
-
-        int roll = Rolls.UniversalRoll(NPCArrays.FOLLOWER_QUALITY);
-        follower.setQualityString(NPCArrays.FOLLOWER_QUALITY[roll]);
+        follower.setQualityString(PickFrom(NPCArrays.FOLLOWER_QUALITY));
         switch (follower.getQualityString()){
             case "A liability: Quality -1, +0 tags" -> follower.setQuality(follower.getQuality()-1);
             case "Competent: Quality +0, +1 tags" -> addTag(follower);
@@ -73,25 +73,25 @@ public class FollowerFunctions implements IGenericService<Follower> {
                 }
             }
         }
-        roll = Rolls.UniversalRoll(NPCArrays.FOLLOWER_INSTINCT);
-        follower.setInstinct(NPCArrays.FOLLOWER_INSTINCT[roll]);
-        roll = Rolls.UniversalRoll(NPCArrays.FOLLOWER_LOYALTY);
-        follower.setLoyaltyString(NPCArrays.FOLLOWER_LOYALTY[roll]);
+
+        follower.setInstinct(PickFrom(NPCArrays.FOLLOWER_INSTINCT));
+
+        follower.setLoyaltyString(PickFrom(NPCArrays.FOLLOWER_LOYALTY));
         switch (follower.getLoyaltyString()){
             case "Dutiful" -> follower.setLoyalty(follower.getLoyalty()+1);
             case "Devoted to the cause" ->follower.setLoyalty(follower.getLoyalty()+2);
         }
-        roll = Rolls.UniversalRoll(NPCArrays.FOLLOWER_COST);
-        follower.setCost(NPCArrays.FOLLOWER_COST[roll]);
-        roll=Rolls.UniversalRoll(NPCArrays.FOLLOWER_HP_DAMAGE);
-        follower.setHpAndDamage(NPCArrays.FOLLOWER_HP_DAMAGE[roll]);
+
+        follower.setCost(PickFrom(NPCArrays.FOLLOWER_COST));
+
+        follower.setHpAndDamage(PickFrom(NPCArrays.FOLLOWER_HP_DAMAGE));
         follower.setHP(Integer.parseInt(follower.getHpAndDamage().substring(0,1)));
         follower.setDamage("1"+follower.getHpAndDamage().substring(6,8));
-        roll=Rolls.UniversalRoll(NPCArrays.FOLLOWER_BACKGROUND);
-        follower.setBackground(NPCArrays.FOLLOWER_BACKGROUND[roll]);
+
+        follower.setBackground(PickFrom(NPCArrays.FOLLOWER_BACKGROUND));
         reviseBackground(follower);
-        roll = Rolls.UniversalRoll(NPCArrays.FOLLOWER_ARMOR);
-        follower.setArmorString(NPCArrays.FOLLOWER_ARMOR[roll]);
+
+        follower.setArmorString(PickFrom(NPCArrays.FOLLOWER_ARMOR));
         switch (follower.getArmorString()){
                 case "None: 0 Armor" -> {
                     follower.setArmor(0);
@@ -122,12 +122,10 @@ public class FollowerFunctions implements IGenericService<Follower> {
 
 
     public static void addTag(Follower f){
-        int roll;
         String tag;
         boolean tagAlreadyExists;
         do {
-            roll = Rolls.UniversalRoll(NPCArrays.FOLLOWER_TAGS);
-            tag = NPCArrays.FOLLOWER_TAGS[roll];
+            tag = PickFrom(NPCArrays.FOLLOWER_TAGS);
             tagAlreadyExists = ((f.getTags().contains(tag))||(f.getTags().contains(tag.toLowerCase())));
         } while (tagAlreadyExists);
 

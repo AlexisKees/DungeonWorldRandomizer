@@ -18,9 +18,9 @@ public class Dungeon implements IPWClass {
     private String builder;
     private String function;
     private String causeOfRuin;
-    private List<Discovery> discoveries;
-    private List<Danger> dangers;
-    private List<Area> areas;
+    private List<Discovery> discoveries = new ArrayList<>();
+    private List<Danger> dangers = new ArrayList<>();
+    private List<Area> areas = new ArrayList<>();
     private String oneLiner;
 
     @Override
@@ -56,10 +56,6 @@ public class Dungeon implements IPWClass {
             this.areas.add(area);
             System.out.println("AREA ADDED SUCCESFULLY!");
         } else System.out.println("Cannot add area: maximum amount of areas reached!");
-    }
-
-    public void initializeAreas(int i){
-        this.areas = new ArrayList<>();
     }
 
     public void addDanger(Danger danger){

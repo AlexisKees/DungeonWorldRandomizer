@@ -3,9 +3,8 @@ package service;
 import data.BiomeArrays;
 import data.DetailsArrays;
 import domain.Biome;
-import domain.util.Rolls;
+import static domain.util.Rolls.*;
 import presentation.ViewAll;
-
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,39 +13,39 @@ public class BiomeFunctions implements IGenericService<Biome> {
 
     public static void rollBiome(Biome biome){
 //        private String biome;
-        biome.setBiome(BiomeArrays.BIOME[Rolls.UniversalRoll(BiomeArrays.BIOME)]);
+        biome.setBiome(PickFrom(BiomeArrays.BIOME));
 //        private String weather;
-        biome.setWeather(BiomeArrays.WEATHER[Rolls.UniversalRoll(BiomeArrays.WEATHER)]);
+        biome.setWeather(PickFrom(BiomeArrays.WEATHER));
 //        private String weatherIntensity;
-        biome.setWeatherIntensity(BiomeArrays.WEATHER_INTENSITY[Rolls.UniversalRoll(BiomeArrays.WEATHER_INTENSITY)]);
+        biome.setWeatherIntensity(PickFrom(BiomeArrays.WEATHER_INTENSITY));
 //        private String wildlife;
-        biome.setWildlife(BiomeArrays.WILDLIFE[Rolls.UniversalRoll(BiomeArrays.WILDLIFE)]);
+        biome.setWildlife(PickFrom(BiomeArrays.WILDLIFE));
 //        private String population;
-        biome.setPopulation(BiomeArrays.POPULATION[Rolls.UniversalRoll(BiomeArrays.POPULATION)]);
+        biome.setPopulation(PickFrom(BiomeArrays.POPULATION));
 //        private String roads;
-        biome.setRoads(BiomeArrays.ROADS[Rolls.UniversalRoll(BiomeArrays.ROADS)]);
+        biome.setRoads(PickFrom(BiomeArrays.ROADS));
 //        private String alignment;
-        biome.setAlignment(DetailsArrays.ALIGNMENT[Rolls.UniversalRoll(DetailsArrays.ALIGNMENT)]);
+        biome.setAlignment(PickFrom(DetailsArrays.ALIGNMENT));
 //        private String distance;
-        biome.setDistance(BiomeArrays.DISTANCE[Rolls.UniversalRoll(BiomeArrays.DISTANCE)]);
+        biome.setDistance(PickFrom(BiomeArrays.DISTANCE));
         biome.setOneLiner(String.format("%s %s",biome.getPopulation(),biome.getBiome()));
     }
 
     public static void reRollDetails(Biome biome){
         //        private String weather;
-        biome.setWeather(BiomeArrays.WEATHER[Rolls.UniversalRoll(BiomeArrays.WEATHER)]);
+        biome.setWeather(PickFrom(BiomeArrays.WEATHER));
 //        private String weatherIntensity;
-        biome.setWeatherIntensity(BiomeArrays.WEATHER_INTENSITY[Rolls.UniversalRoll(BiomeArrays.WEATHER_INTENSITY)]);
+        biome.setWeatherIntensity(PickFrom(BiomeArrays.WEATHER_INTENSITY));
 //        private String wildlife;
-        biome.setWildlife(BiomeArrays.WILDLIFE[Rolls.UniversalRoll(BiomeArrays.WILDLIFE)]);
+        biome.setWildlife(PickFrom(BiomeArrays.WILDLIFE));
 //        private String population;
-        biome.setPopulation(BiomeArrays.POPULATION[Rolls.UniversalRoll(BiomeArrays.POPULATION)]);
+        biome.setPopulation(PickFrom(BiomeArrays.POPULATION));
 //        private String roads;
-        biome.setRoads(BiomeArrays.ROADS[Rolls.UniversalRoll(BiomeArrays.ROADS)]);
+        biome.setRoads(PickFrom(BiomeArrays.ROADS));
 //        private String alignment;
-        biome.setAlignment(DetailsArrays.ALIGNMENT[Rolls.UniversalRoll(DetailsArrays.ALIGNMENT)]);
+        biome.setAlignment(PickFrom(DetailsArrays.ALIGNMENT));
 //        private String distance;
-        biome.setDistance(BiomeArrays.DISTANCE[Rolls.UniversalRoll(BiomeArrays.DISTANCE)]);
+        biome.setDistance(PickFrom(BiomeArrays.DISTANCE));
         biome.setOneLiner(String.format("%s %s",biome.getPopulation(),biome.getBiome()));
 
     }

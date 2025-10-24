@@ -3,20 +3,18 @@ package service;
 import data.DangerArrays;
 import data.DetailsArrays;
 import domain.*;
-import domain.util.Rolls;
 import presentation.ViewAll;
 
 import java.util.List;
 import java.util.Scanner;
 
+import static domain.util.Rolls.PickFrom;
+
 public class DangerFunctions implements IGenericService<Danger> {
 
 
     public static void rollDanger(Danger danger){
-        int roll;
-
-        roll = Rolls.UniversalRoll(DangerArrays.DANGER_CATEGORIES);
-        danger.setCategory(DangerArrays.DANGER_CATEGORIES[roll]);
+        danger.setCategory(PickFrom(DangerArrays.DANGER_CATEGORIES));
 
         switch (danger.getCategory()){
             case "UNNATURAL ENTITY" ->  danger.setSubcategoriesTable(DangerArrays.UNNATURAL_ENTITY_SUBCATEGORIES);
@@ -24,8 +22,7 @@ public class DangerFunctions implements IGenericService<Danger> {
             case "CREATURE" -> danger.setSubcategoriesTable(DangerArrays.CREATURE_SUBCATEGORIES);
         }
 
-        roll = Rolls.UniversalRoll(danger.getSubcategoriesTable());
-        danger.setSubcategory(danger.getSubcategoriesTable()[roll]);
+        danger.setSubcategory(PickFrom(danger.getSubcategoriesTable()));
 
         switch (danger.getSubcategory()){
             case "Divine" -> danger.setPromptTable(DangerArrays.DIVINE_PROMPTS);
@@ -36,8 +33,7 @@ public class DangerFunctions implements IGenericService<Danger> {
             case "Creature" -> danger.setPromptTable(DangerArrays.CREATURE_SUBCATEGORIES);
         }
 
-        roll = Rolls.UniversalRoll(danger.getPromptTable());
-        danger.setPrompt(danger.getPromptTable()[roll]);
+        danger.setPrompt(PickFrom(danger.getPromptTable()));
 
         switch (danger.getPrompt()) {
         case "lesser elemental" -> {
@@ -75,7 +71,7 @@ public class DangerFunctions implements IGenericService<Danger> {
             Creature c = new Creature();
             CreatureFunctions.rollAttributes(c);
             c.setDisposition(DetailsArrays.DISPOSITION[0]); //SET DISPOSITION TO "ATTACKING"
-            danger.setFinalResult(c.getPrintableBlock());
+            danger.setFinalResult(c.toString());
             danger.setOneLiner(c.getOneLiner());
         }
             default -> {

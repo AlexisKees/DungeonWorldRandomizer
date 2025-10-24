@@ -4,7 +4,7 @@ import data.DungeonArrays;
 import domain.Area;
 import domain.AreaDanger;
 import domain.AreaDiscovery;
-import domain.util.Rolls;
+import static domain.util.Rolls.*;
 import presentation.ViewAll;
 
 import java.util.List;
@@ -14,20 +14,19 @@ import java.util.Scanner;
 public class AreaFunctions implements IGenericService<Area> {
 
     public static void rollArea(Area area) {
-        area.setAreaType(DungeonArrays.AREA_TYPE[Rolls.UniversalRoll(DungeonArrays.AREA_TYPE)]);
+        area.setAreaType(PickFrom(DungeonArrays.AREA_TYPE));
         area.setOneLiner(area.getAreaType());
         rollAreaDetails(area);
 
     }
 
     public static void rollAreaDetails(Area area){
+        area.setRarity(PickFrom(DungeonArrays.AREA_RARITY));
 
-        int rollRarity = Rolls.UniversalRoll(DungeonArrays.AREA_RARITY);
-        area.setRarity(DungeonArrays.AREA_RARITY[rollRarity]);
-
+        int rollRarity = UniversalRoll(DungeonArrays.AREA_RARITY);
         switch (rollRarity){
             case 0 ->{
-                area.setDangersAmount(Rolls.Roll1d4());
+                area.setDangersAmount(Roll1d4());
                 area.setDiscoveriesAmount(0);
             }
             case 1,2 ->{
@@ -43,7 +42,7 @@ public class AreaFunctions implements IGenericService<Area> {
                 area.setDiscoveriesAmount(1);
             }
             case 7->{
-                area.setDangersAmount(Rolls.Roll1d4());
+                area.setDangersAmount(Roll1d4());
                 area.setDiscoveriesAmount(1);
             }
             case 8->{
@@ -51,28 +50,25 @@ public class AreaFunctions implements IGenericService<Area> {
                 area.setDiscoveriesAmount(1);
             }
             case 9->{
-                area.setDangersAmount(Rolls.Roll1d4());
-                area.setDiscoveriesAmount(Rolls.Roll1d4());
+                area.setDangersAmount(Roll1d4());
+                area.setDiscoveriesAmount(Roll1d4());
             }
             case 10->{
                 area.setDangersAmount(1);
-                area.setDiscoveriesAmount(Rolls.Roll1d4());
+                area.setDiscoveriesAmount(Roll1d4());
             }
             case 11->{
                 area.setDangersAmount(0);
-                area.setDiscoveriesAmount(Rolls.Roll1d4());
+                area.setDiscoveriesAmount(Roll1d4());
             }
 
         }
 
-        area.initializeDiscoveriesList(area.getDiscoveriesAmount());
-        area.initializeDangersList(area.getDangersAmount());
-
         area.setRarity(DungeonArrays.AREA_RARITY[rollRarity]);
 
-        area.setAreaDressing(DungeonArrays.AREA_DRESSING[Rolls.UniversalRoll(DungeonArrays.AREA_DRESSING)]);
+        area.setAreaDressing(PickFrom(DungeonArrays.AREA_DRESSING));
         if (Objects.equals(area.getAreaDressing(),"roll 1d10 twice, combine")){
-            area.setAreaDressing(DungeonArrays.AREA_DRESSING[Rolls.Roll1d10()]+" and "+DungeonArrays.AREA_DRESSING[Rolls.Roll1d10()]);
+            area.setAreaDressing(DungeonArrays.AREA_DRESSING[Roll1d10()]+" and "+DungeonArrays.AREA_DRESSING[Roll1d10()]);
         }
 
         int i;

@@ -8,9 +8,9 @@ public class Area implements IPWClass {
     private String areaType;
     private String areaDressing;
     private int discoveriesAmount;
-    private List<AreaDiscovery> discoveries;
+    private List<AreaDiscovery> discoveries = new ArrayList<>();
     private int dangersAmount;
-    private List<AreaDanger> dangers;
+    private List<AreaDanger> dangers = new ArrayList<>();
     private String oneLiner;
 
     public String getOneLiner(){
@@ -29,7 +29,7 @@ public class Area implements IPWClass {
         this.areaDressing = areaDressing;
     }
 
-   public void initializeDiscoveriesList(int i){
+   public void initializeDiscoveriesList(){
         this.discoveries = new ArrayList<>();
    }
 
@@ -38,7 +38,7 @@ public class Area implements IPWClass {
         else System.out.println("Cannot add discovery: maximum amount of discoveries reached!");
    }
 
-    public void initializeDangersList(int i){
+    public void initializeDangersList(){
         this.dangers = new ArrayList<>();
     }
 

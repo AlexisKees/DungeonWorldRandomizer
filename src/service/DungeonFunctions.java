@@ -12,19 +12,21 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
+import static domain.util.Rolls.PickFrom;
+
 public class DungeonFunctions {
     public static void rollDungeon(Dungeon dungeon){
 
         //set name template and name
-        dungeon.setNameTemplate(DungeonArrays.DUNGEON_NAME_TEMPLATES[Rolls.UniversalRoll(DungeonArrays.DUNGEON_NAME_TEMPLATES)]);
-        String adjective = DungeonArrays.DUNGEON_ADJECTIVES[Rolls.UniversalRoll(DungeonArrays.DUNGEON_ADJECTIVES)];
-        String noun = DungeonArrays.DUNGEON_NOUNS[Rolls.UniversalRoll(DungeonArrays.DUNGEON_NOUNS)];
-        String place = DungeonArrays.DUNGEON_PLACES[Rolls.UniversalRoll(DungeonArrays.DUNGEON_PLACES)];
+        dungeon.setNameTemplate(PickFrom(DungeonArrays.DUNGEON_NAME_TEMPLATES));
+        String adjective = PickFrom(DungeonArrays.DUNGEON_ADJECTIVES);
+        String noun = PickFrom(DungeonArrays.DUNGEON_NOUNS);
+        String place = PickFrom(DungeonArrays.DUNGEON_PLACES);
 
         dungeon.setName(dungeon.getNameTemplate().replace("[PLACE]",place).replace("[NOUN]",noun).replace("[ADJECTIVE]",adjective));
 
         //set overview: size, themes, form, situation, builder, function, cause of ruin
-        dungeon.setSize(DungeonArrays.DUNGEON_SIZE[Rolls.UniversalRoll(DungeonArrays.DUNGEON_SIZE)]);
+        dungeon.setSize(PickFrom(DungeonArrays.DUNGEON_SIZE));
         //based on size, set the amount of rooms and themes
         switch (dungeon.getSize()){
             case "medium" -> {
@@ -49,18 +51,16 @@ public class DungeonFunctions {
             }
         }
 
-        dungeon.initializeAreas(dungeon.getRooms());
-
         dungeon.initializeThemes(dungeon.getThemesAmount());
         int i;
         for (i = 1; i<=dungeon.getThemesAmount(); i++ ){
-          String themeCategory = DungeonArrays.DUNGEON_THEME_CATEGORIES[Rolls.UniversalRoll(DungeonArrays.DUNGEON_THEME_CATEGORIES)];
+          String themeCategory = PickFrom(DungeonArrays.DUNGEON_THEME_CATEGORIES);
           String theme;
           switch (themeCategory){
-              case "HOPEFUL" -> theme =  DungeonArrays.HOPEFUL_PROMPTS[Rolls.UniversalRoll(DungeonArrays.HOPEFUL_PROMPTS)];
-              case "MYSTERIOUS" -> theme =  DungeonArrays.MYSTERIOUS_PROMPTS[Rolls.UniversalRoll(DungeonArrays.MYSTERIOUS_PROMPTS)];
-              case "GRIM" -> theme =  DungeonArrays.GRIM_PROMPTS[Rolls.UniversalRoll(DungeonArrays.GRIM_PROMPTS)];
-              default -> theme =  DungeonArrays.GONZO_PROMPTS[Rolls.UniversalRoll(DungeonArrays.GONZO_PROMPTS)];
+              case "HOPEFUL" -> theme =  PickFrom(DungeonArrays.HOPEFUL_PROMPTS);
+              case "MYSTERIOUS" -> theme =  PickFrom(DungeonArrays.MYSTERIOUS_PROMPTS);
+              case "GRIM" -> theme =  PickFrom(DungeonArrays.GRIM_PROMPTS);
+              default -> theme = PickFrom(DungeonArrays.GONZO_PROMPTS);
           }
           if (Objects.equals(theme,"element")){
               theme = CreatureFunctions.rollElement();
@@ -74,7 +74,7 @@ public class DungeonFunctions {
           dungeon.addTheme(theme);
         }
 
-        dungeon.setForm(DungeonArrays.DUNGEON_FORM[Rolls.UniversalRoll(DungeonArrays.DUNGEON_FORM)]);
+        dungeon.setForm(PickFrom(DungeonArrays.DUNGEON_FORM));
         switch (dungeon.getForm()){
          case "ruins of (roll again)" -> dungeon.setForm("Ruins of a "+DungeonArrays.DUNGEON_FORM[Rolls.CustomRoll(17)]);
          case "roll again, add oddity" ->dungeon.setForm(DungeonArrays.DUNGEON_FORM[Rolls.CustomRoll(17)]+" + "+ CreatureFunctions.rollOddity());
@@ -86,15 +86,15 @@ public class DungeonFunctions {
             default -> dungeon.setForm(dungeon.getForm());
         }
 
-        dungeon.setSituation(DungeonArrays.DUNGEON_SITUATION[Rolls.UniversalRoll(DungeonArrays.DUNGEON_SITUATION)]);
-        dungeon.setBuilder(DungeonArrays.DUNGEON_BUILDER[Rolls.UniversalRoll(DungeonArrays.DUNGEON_BUILDER)]);
-        dungeon.setFunction(DungeonArrays.DUNGEON_FUNCTION[Rolls.UniversalRoll(DungeonArrays.DUNGEON_FUNCTION)]);
+        dungeon.setSituation(PickFrom(DungeonArrays.DUNGEON_SITUATION));
+        dungeon.setBuilder(PickFrom(DungeonArrays.DUNGEON_BUILDER));
+        dungeon.setFunction(PickFrom(DungeonArrays.DUNGEON_FUNCTION));
         if (Objects.equals(dungeon.getFunction(),"roll twice")) Rolls.rollTwice(DungeonArrays.DUNGEON_FUNCTION);
 
-        dungeon.setCauseOfRuin(DungeonArrays.DUNGEON_CAUSE_OF_RUIN[Rolls.UniversalRoll(DungeonArrays.DUNGEON_CAUSE_OF_RUIN)]);
-        dungeon.setAccessibility(DungeonArrays.DUNGEON_ACCESSIBILITY[Rolls.UniversalRoll(DungeonArrays.DUNGEON_ACCESSIBILITY)]);
+        dungeon.setCauseOfRuin(PickFrom(DungeonArrays.DUNGEON_CAUSE_OF_RUIN));
+        dungeon.setAccessibility(PickFrom(DungeonArrays.DUNGEON_ACCESSIBILITY));
 
-        dungeon.setExits(DungeonArrays.AREA_EXITS_NUMBER[Rolls.UniversalRoll(DungeonArrays.AREA_EXITS_NUMBER)]);
+        dungeon.setExits(PickFrom(DungeonArrays.AREA_EXITS_NUMBER));
 
         dungeon.setOneLiner(dungeon.getName());
 

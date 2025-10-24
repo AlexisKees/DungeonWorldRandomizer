@@ -4,27 +4,23 @@ import data.DetailsArrays;
 import data.DungeonArrays;
 import domain.Creature;
 import domain.AreaDanger;
-import domain.util.Rolls;
 
 import java.util.List;
 import java.util.Scanner;
 
+import static domain.util.Rolls.PickFrom;
+
 public class DungeonDangerFunctions implements IGenericService<AreaDanger> {
 
     public static void rollDungeonDanger(AreaDanger danger){
-        int roll;
-
-        roll = Rolls.UniversalRoll(DungeonArrays.DUNGEON_DANGER_CATEGORIES);
-        danger.setCategory(DungeonArrays.DUNGEON_DANGER_CATEGORIES[roll]);
+        danger.setCategory(PickFrom(DungeonArrays.DUNGEON_DANGER_CATEGORIES));
 
         switch (danger.getCategory()){
             case "Trap" ->  danger.setPromptTable(DungeonArrays.DUNGEON_DANGER_TRAP_PROMPTS);
             case "Creature" -> danger.setPromptTable(DungeonArrays.DUNGEON_DANGER_CREATURE_PROMPTS);
         }
 
-        roll = Rolls.UniversalRoll(danger.getPromptTable());
-        danger.setPrompt(danger.getPromptTable()[roll]);
-
+        danger.setPrompt(PickFrom(danger.getPromptTable()));
         switch (danger.getPrompt()) {
             case "based on Element" -> {
                 String element = CreatureFunctions.rollElement();
@@ -43,7 +39,7 @@ public class DungeonDangerFunctions implements IGenericService<AreaDanger> {
                 CreatureFunctions.rollAttributes(c);
                 CreatureFunctions.setGroupSize(c,"solitary (1)");
                 c.setDisposition(DetailsArrays.DISPOSITION[0]); //SET DISPOSITION TO "ATTACKING"
-                danger.setFinalResult("CREATURE LEADER:\n"+c.getPrintableBlock());
+                danger.setFinalResult("CREATURE LEADER:\n"+c);
                 danger.setOneLiner(c.getOneLiner()+" leader");
             }
             case "Creature lord (with minions)" ->{
@@ -51,8 +47,8 @@ public class DungeonDangerFunctions implements IGenericService<AreaDanger> {
                 CreatureFunctions.rollAttributes(c);
                 c.setDisposition(DetailsArrays.DISPOSITION[0]); //SET DISPOSITION TO "ATTACKING"
                 CreatureFunctions.setGroupSize(c,"solitary (1)");
-                danger.setFinalResult("CREATURE LORD:\n"+c.getPrintableBlock());
-                danger.setFinalResult(c.getPrintableBlock());
+                danger.setFinalResult("CREATURE LORD:\n"+c);
+                danger.setFinalResult(c.toString());
                 danger.setOneLiner(c.getOneLiner()+" lord");
             }
             case "Creature" -> {

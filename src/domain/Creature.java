@@ -11,7 +11,6 @@ public class Creature implements IPWClass {
     private String[] categoryTable;
     private String[] subcategoryTable;
     private String[] promptTable;
-    private String printableBlock;
     private String size;
     private String groupSize;
     private int hitPoints;
@@ -23,7 +22,6 @@ public class Creature implements IPWClass {
     private String alignment;
     private String disposition;
     private String armorType;
-    private String printableStats;
     private String oneLiner;
 
     public String getOneLiner(){
@@ -36,13 +34,20 @@ public class Creature implements IPWClass {
 
     @Override
     public String toString(){
-        return printableBlock;
+        return String.format("""
+                    Creature category: %s
+                    Creature subcategory: %s
+                    Creature prompt: %s
+                    Group size: %s
+                    Individual size: %s
+                    %dHP (%d armor: %s)
+                    %s damage (%s, %s)
+                    Tags: %s
+                    Alignment: %s
+                    Disposition: %s
+                        """, this.getCategory(), this.getSubcategory(), this.getPrompt(),this.getGroupSize(),this.getSize(),this.getHitPoints(),this.getArmor(),this.getArmorType(),
+                this.getDamage(),this.getReach(),this.getDamageType(),this.getTags(),this.getAlignment(),this.getDisposition());
     }
-
-    public void printMonster(){
-        System.out.println(Objects.requireNonNullElse(this.printableBlock, "Please roll a creature first.\n"));
-    }
-
 
     public String getCategory() {
         return category;
@@ -86,26 +91,6 @@ public class Creature implements IPWClass {
 
     public void setPromptTable(String[] promptTable) {
         this.promptTable = promptTable;
-    }
-
-    public String getPrintableBlock() {
-        return printableBlock;
-    }
-
-    public void setPrintableBlock() {
-        this.printableBlock =String.format("""
-                    Creature category: %s
-                    Creature subcategory: %s
-                    Creature prompt: %s
-                    Group size: %s
-                    Individual size: %s
-                    %dHP (%d armor: %s)
-                    %s damage (%s, %s)
-                    Tags: %s
-                    Alignment: %s
-                    Disposition: %s
-                        """, this.getCategory(), this.getSubcategory(), this.getPrompt(),this.getGroupSize(),this.getSize(),this.getHitPoints(),this.getArmor(),this.getArmorType(),
-                this.getDamage(),this.getReach(),this.getDamageType(),this.getTags(),this.getAlignment(),this.getDisposition());
     }
 
     public String getSize() {
@@ -194,14 +179,6 @@ public class Creature implements IPWClass {
 
     public void setArmorType(String armorType) {
         this.armorType = armorType;
-    }
-
-    public String getPrintableStats() {
-        return printableStats;
-    }
-
-    public void setPrintableStats(String printableStats) {
-        this.printableStats = printableStats;
     }
 
     public Creature() {}
