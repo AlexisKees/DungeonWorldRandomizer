@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class NPCFunctions implements IAllServices<NPC> {
+public class NPCFunctions implements IGenericService<NPC> {
 
     public static void rollFeatures(NPC npc){
         //set race rarity, races array and race

@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class AreaFunctions implements IAllServices<Area> {
+public class AreaFunctions implements IGenericService<Area> {
 
     public static void rollArea(Area area) {
         area.setAreaType(DungeonArrays.AREA_TYPE[Rolls.UniversalRoll(DungeonArrays.AREA_TYPE)]);

@@ -7,7 +7,7 @@ import domain.util.Rolls;
 import java.util.List;
 import java.util.Scanner;
 
-public class DungeonDiscoveryFunctions implements IAllServices<AreaDiscovery>{
+public class DungeonDiscoveryFunctions implements IGenericService<AreaDiscovery> {
 
     public static void rollDungeonDiscovery(AreaDiscovery discovery){
         int roll;

@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class CreatureFunctions implements IAllServices<Creature> {
+public class CreatureFunctions implements IGenericService<Creature> {
 
     public static String rollOddity(){
         var r1 = Rolls.UniversalRoll(DetailsArrays.ODDITY);

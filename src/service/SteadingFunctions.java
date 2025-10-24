@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class SteadingFunctions implements IAllServices<Steading> {
+public class SteadingFunctions implements IGenericService<Steading> {
 
     public static void rollSteading(Steading steading){
         steading.setSize(SteadingArrays.SETTLEMENT_SIZE[Rolls.UniversalRoll(SteadingArrays.SETTLEMENT_SIZE)]);

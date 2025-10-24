@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class BiomeFunctions implements IAllServices<Biome> {
+public class BiomeFunctions implements IGenericService<Biome> {
 
     public static void rollBiome(Biome biome){
 //        private String biome;

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
-public class DiscoveryFunctions implements IAllServices<Discovery> {
+public class DiscoveryFunctions implements IGenericService<Discovery> {
 
     public static void rollDiscovery(Discovery discovery){
         discovery.setCategory(DiscoveryArrays.DISCOVERY_CATEGORIES[Rolls.UniversalRoll(DiscoveryArrays.DISCOVERY_CATEGORIES)]);

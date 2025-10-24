@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ClassIdentifier {
-    private static final Map<Class<?>, IAllServices<?>> map = new HashMap<>();
+    private static final Map<Class<?>, IGenericService<?>> map = new HashMap<>();
 
     static {
         map.put(Area.class,new AreaFunctions());
@@ -23,8 +23,8 @@ public class ClassIdentifier {
     }
 
     @SuppressWarnings("unchecked")
-    public static <T extends IPWClass> IAllServices<T> getServiceFile(Class<T> c) {
-        return (IAllServices<T>) map.get(c);
+    public static <T extends IPWClass> IGenericService<T> getServiceFile(Class<T> c) {
+        return (IGenericService<T>) map.get(c);
     }
 }
 

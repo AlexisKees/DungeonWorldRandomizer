@@ -11,7 +11,7 @@ import presentation.ViewAll;
 import java.util.List;
 import java.util.Scanner;
 
-public class FollowerFunctions implements IAllServices<Follower> {
+public class FollowerFunctions implements IGenericService<Follower> {
     public static void rollFollower(Follower follower){
         int rarity = Rolls.Roll1d12();
         switch (rarity) {

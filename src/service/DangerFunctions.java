@@ -9,7 +9,7 @@ import presentation.ViewAll;
 import java.util.List;
 import java.util.Scanner;
 
-public class DangerFunctions implements IAllServices<Danger> {
+public class DangerFunctions implements IGenericService<Danger> {
 
 
     public static void rollDanger(Danger danger){

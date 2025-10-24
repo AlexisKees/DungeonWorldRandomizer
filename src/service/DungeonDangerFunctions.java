@@ -9,7 +9,7 @@ import domain.util.Rolls;
 import java.util.List;
 import java.util.Scanner;
 
-public class DungeonDangerFunctions implements IAllServices<AreaDanger> {
+public class DungeonDangerFunctions implements IGenericService<AreaDanger> {
 
     public static void rollDungeonDanger(AreaDanger danger){
         int roll;
