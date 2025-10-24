@@ -7,7 +7,6 @@ import domain.util.Rolls;
 import presentation.ViewAll;
 
 import java.util.List;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class DiscoveryFunctions implements IGenericService<Discovery> {
@@ -38,11 +37,13 @@ public class DiscoveryFunctions implements IGenericService<Discovery> {
             case "Terrain Change" -> discovery.setPromptTable(DiscoveryArrays.TERRAIN_CHANGE_PROMPTS);
             case "Water Feature" -> discovery.setPromptTable(DiscoveryArrays.WATER_FEATURE_PROMPTS);
             case "Landmark" -> discovery.setPromptTable(DiscoveryArrays.LANDMARK_PROMPTS);
-            case "Flora/Fauna" -> discovery.setPromptTable(DiscoveryArrays.FLORA_FAUNA_PROMPTS);
+            case "Flora" -> discovery.setPromptTable(DiscoveryArrays.FLORA_PROMPTS);
+            case "Fauna" -> discovery.setPromptTable(DiscoveryArrays.FAUNA_PROMPTS);
             case "Resource" -> discovery.setPromptTable(DiscoveryArrays.RESOURCE_PROMPTS);
-            case "Tracks/Spoor" -> discovery.setPromptTable(DiscoveryArrays.TRACKS_SPOOR_PROMPTS);
-            case "Remains/Debris" -> discovery.setPromptTable(DiscoveryArrays.REMAINS_DEBRIS_PROMPTS);
-            case "Stash/Cache" -> discovery.setPromptTable(DiscoveryArrays.STASH_CACHE_PROMPTS);
+            case "Tracks" -> discovery.setPromptTable(DiscoveryArrays.TRACKS_PROMPTS);
+            case "Remains" -> discovery.setPromptTable(DiscoveryArrays.REMAINS_PROMPTS);
+            case "Debris" -> discovery.setPromptTable(DiscoveryArrays.DEBRIS_PROMPTS);
+            case "Stash" -> discovery.setPromptTable(DiscoveryArrays.STASH_PROMPTS);
             case "Enigmatic" -> discovery.setPromptTable(DiscoveryArrays.ENIGMATIC_PROMPTS);
             case "Infrastructure" -> discovery.setPromptTable(DiscoveryArrays.INFRASTRUCTURE_PROMPTS);
             case "Dwelling" -> discovery.setPromptTable(DiscoveryArrays.DWELLING_PROMPTS);
@@ -55,7 +56,7 @@ public class DiscoveryFunctions implements IGenericService<Discovery> {
 
         switch (discovery.getPrompt()){
             case "Lair RUIN" -> {
-                String ruin = rollRuins().toLowerCase(Locale.ROOT);
+                String ruin = rollRuins().toLowerCase();
                 discovery.setFinalResult("A lair in a "+ruin);
                 discovery.setOneLiner(discovery.getFinalResult());
             }

@@ -210,17 +210,20 @@ public class DiscoveryArrays {
     };
 
     /* ---- NATURAL FEATURE → FLORA/FAUNA ---- */
-    public static final String[] FLORA_FAUNA_PROMPTS = {
+    public static final String[] FLORA_PROMPTS = {
             "notable plant","notable flower",
             "notable plant","notable flower",
             "notable plant","notable flower",
             "notable tree","notable brush",
             "notable tree","notable brush",
-            "notable BEAST",
-            "notable BEAST",
-            "notable BEAST",
             "useful plant","useful herb","useful root",
             "useful plant","useful herb","useful root",
+    };
+
+    public static final String[] FAUNA_PROMPTS = {
+            "notable BEAST",
+            "notable BEAST",
+            "notable BEAST",
             "useful BEAST",
             "useful BEAST"
     };
@@ -242,7 +245,7 @@ public class DiscoveryArrays {
     };
 
     /* ---- EVIDENCE → TRACKS/SPOOR ---- */
-    public static final String[] TRACKS_SPOOR_PROMPTS = {
+    public static final String[] TRACKS_PROMPTS = {
             "trail of blood","trail of fluid",
             "trail of blood","trail of fluid",
             "signs of violence",
@@ -258,14 +261,17 @@ public class DiscoveryArrays {
     };
 
     /* ---- EVIDENCE → REMAINS/DEBRIS ---- */
-    public static final String[] REMAINS_DEBRIS_PROMPTS = {
+    public static final String[] REMAINS_PROMPTS = {
             "bones of CREATURE",
             "bones of CREATURE",
             "bones of CREATURE",
             "bones of CREATURE",
             "CREATURE carcass",
             "CREATURE carcass",
-            "CREATURE carcass",
+            "CREATURE carcass"
+    };
+
+    public static final String[] DEBRIS_PROMPTS = {
             "junk","refuse",
             "junk","refuse",
             "junk","refuse",
@@ -273,8 +279,9 @@ public class DiscoveryArrays {
             "tools","weapons","armor"
     };
 
+
     /* ---- EVIDENCE → STASH/CACHE ---- */
-    public static final String[] STASH_CACHE_PROMPTS = {
+    public static final String[] STASH_PROMPTS = {
             "trinkets","coins",
             "trinkets","coins",
             "trinkets","coins",
