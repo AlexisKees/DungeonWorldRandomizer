@@ -40,25 +40,21 @@ public class DangerFunctions implements IGenericService<Danger> {
         danger.setPrompt(danger.getPromptTable()[roll]);
 
         switch (danger.getPrompt()) {
-        case "lesser demon/elemental" -> {
+        case "lesser elemental" -> {
             String element = CreatureFunctions.rollElement();
-            danger.setFinalResult("lesser demon/ "+element+" elemental");
-            danger.setOneLiner(danger.getFinalResult());
+            danger.setFinalResult("lesser "+element+" elemental");
         }
-        case "demon/elemental" -> {
+        case "elemental" ->{
             String element = CreatureFunctions.rollElement();
-            danger.setFinalResult("demon/ "+element+" elemental");
-            danger.setOneLiner(danger.getFinalResult());
+            danger.setFinalResult(element+" elemental");
         }
-        case "greater demon/elemental" -> {
+        case "greater elemental" -> {
             String element = CreatureFunctions.rollElement();
-            danger.setFinalResult("Greater demon/ "+element+" elemental");
-            danger.setOneLiner(danger.getFinalResult());
+            danger.setFinalResult("greater "+element+" elemental");
         }
-        case "devil/elemental lord" -> {
+        case "elemental lord" -> {
             String element = CreatureFunctions.rollElement();
-            danger.setFinalResult("Demon / "+element+" elemental Lord");
-            danger.setOneLiner(danger.getFinalResult());
+            danger.setFinalResult(element+" elemental lord");
         }
         case "magical: natural + MAGIC TYPE" -> {
             String magicType = CreatureFunctions.rollMagicType();
