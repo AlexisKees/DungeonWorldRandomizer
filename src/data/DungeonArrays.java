@@ -58,11 +58,11 @@ public class DungeonArrays {
     /* ================== DUNGEON SIZE (1 nivel) ================== */
 
     public static final String[] DUNGEON_SIZE = {
-            "small","small","small",       // 1–3
-            "medium","medium","medium",    // 4–6
-            "large","large","large",       // 7–9
-            "huge","huge",                 // 10–11
-            "megadungeon"                  // 12
+            "small","small","small",
+            "medium","medium","medium",
+            "large","large","large",
+            "huge","huge",
+            "megadungeon"
     };
 
 
@@ -70,23 +70,23 @@ public class DungeonArrays {
 
     /* Categorías (según tirada 1d12 → 0..11) */
     public static final String[] DUNGEON_THEME_CATEGORIES = {
-            "HOPEFUL","HOPEFUL",   // 1–2
-            "MYSTERIOUS","MYSTERIOUS","MYSTERIOUS", // 3–5
-            "GRIM","GRIM","GRIM","GRIM","GRIM","GRIM", // 6–11
-            "GONZO" // 12
+            "HOPEFUL","HOPEFUL",
+            "MYSTERIOUS","MYSTERIOUS","MYSTERIOUS",
+            "GRIM","GRIM","GRIM","GRIM","GRIM","GRIM",
+            "GONZO"
     };
 
     /* ---- HOPEFUL PROMPTS ---- */
     public static final String[] HOPEFUL_PROMPTS = {
-            "nature/growth",
-            "law/order",
-            "beauty/wonder",
-            "healing/recovery",
-            "protection/defense",
+            "nature","growth",
+            "law","order",
+            "beauty","wonder",
+            "healing","recovery",
+            "protection","defense",
             "completion",
-            "inheritance/legacy",
-            "balance/harmony",
-            "light/life",
+            "inheritance","legacy",
+            "balance","harmony",
+            "light","life",
             "prophecy",
             "divine influence",
             "transcendence"
@@ -94,39 +94,39 @@ public class DungeonArrays {
 
     /* ---- MYSTERIOUS PROMPTS ---- */
     public static final String[] MYSTERIOUS_PROMPTS = {
-            "burglary/theft",
-            "desire/obsession",
-            "secrets/deception",
-            "imitation/mimicry",
-            "inversion/reversal",
+            "burglary","theft",
+            "desire","obsession",
+            "secrets","deception",
+            "imitation","mimicry",
+            "inversion","reversal",
             "element",
             "transformation",
-            "shadow/spirits",
+            "shadow","spirits",
             "cryptic knowledge",
-            "divination/scrying",
+            "divination","scrying",
             "madness",
             "magic type"
     };
 
     /* ---- GRIM PROMPTS ---- */
     public static final String[] GRIM_PROMPTS = {
-            "pride/hubris",
-            "hunger/gluttony",
-            "greed/avarice",
-            "wildness/savagery",
-            "devotion/sacrifice",
+            "pride","hubris",
+            "hunger","gluttony",
+            "greed","avarice",
+            "wildness","savagery",
+            "devotion","sacrifice",
             "forbidden knowledge",
-            "control/dominance",
-            "pain/torture",
-            "wrath/war",
-            "tragedy/loss",
-            "chaos/corruption",
-            "darkness/death"
+            "control","dominance",
+            "pain","torture",
+            "wrath","war",
+            "tragedy","loss",
+            "chaos","corruption",
+            "darkness","death"
     };
 
     /* ---- GONZO PROMPTS ---- */
     public static final String[] GONZO_PROMPTS = {
-            "constructs/robots",
+            "constructs","robots",
             "unexpected sentience",
             "space/time travel",
             "advanced technology",
@@ -134,27 +134,27 @@ public class DungeonArrays {
             "alien life",
             "cosmic alignment",
             "other planes",
-            "demons/devils",
+            "demons","devils",
             "unspeakable horrors",
             "elder gods",
-            "roll 1d10 twice, combine"
+            "roll twice"
     };
 
 
     /* ================== DUNGEON FORM (1 nivel) ================== */
 
     public static final String[] DUNGEON_FORM = {
-            "cave/cavern",
+            "cave","cavern",
             "ruins of 1d8+3",
             "ruins of 1d8+3",
             "mine",
             "prison",
-            "crypt/tomb/catacombs",
-            "crypt/tomb/catacombs",
-            "stronghold/fortress/citadel",
-            "temple/sanctuary",
-            "tower/spire",
-            "roll 1d10, add oddity",
+            "crypt","tomb","catacombs",
+            "crypt","tomb","catacombs",
+            "stronghold","fortress","citadel",
+            "temple","sanctuary",
+            "tower","spire",
+            "roll again, add oddity",
             "ruins of steading",
     };
 
@@ -162,10 +162,10 @@ public class DungeonArrays {
     /* ================== DUNGEON SITUATION (1 nivel) ================== */
 
     public static final String[] DUNGEON_SITUATION = {
-            "aboveground","aboveground", // 1–2
-            "part aboveground, part below","part aboveground, part below", // 3–4
-            "belowground","belowground","belowground","belowground","belowground","belowground","belowground", // 5–11
-            "extraordinary (floating, ephemeral, etc.)" // 12
+            "aboveground","aboveground",
+            "part aboveground, part below","part aboveground, part below",
+            "belowground","belowground","belowground","belowground","belowground","belowground","belowground",
+            "extraordinary (floating, ephemeral, etc.)"
     };
 
 
@@ -190,30 +190,30 @@ public class DungeonArrays {
     /* ================== DUNGEON BUILDER (1 nivel) ================== */
 
     public static final String[] DUNGEON_BUILDER = {
-            "demigod/demon/alien",
+            "demigod","demon","alien",
             "natural (caves, etc.)","natural (caves, etc.)",
-            "religious order/cult","religious order/cult",
+            "religious order","religious cult","religious order","religious cult",
             "humanoid society","humanoid society","humanoid society","humanoid society","humanoid society",
-            "wizard/lunatic",
-            "monarch/warlord"
+            "wizard","lunatic",
+            "monarch","warlord"
     };
 
 
     /* ================== DUNGEON FUNCTION (1 nivel) ================== */
 
     public static final String[] DUNGEON_FUNCTION = {
-            "indiscernible/mysterious",
-            "concealment/camouflage",
-            "extraction/production",
-            "confinement/containment",
-            "lair/den/hideout",
-            "archive/library/laboratory",
-            "commemoration/funerary",
-            "worship/devotion",
-            "defense/protection",
-            "observation/divination",
-            "empowerment/intensification",
-            "roll 1d10+1 twice, combine"
+            "indiscernible","mysterious",
+            "concealment","camouflage",
+            "extraction","production",
+            "confinement","containment",
+            "lair","den","hideout",
+            "archive","library","laboratory",
+            "commemoration","funerary",
+            "worship","devotion",
+            "defense","protection",
+            "observation","divination",
+            "empowerment","intensification",
+            "roll twice"
     };
 
 
@@ -221,12 +221,12 @@ public class DungeonArrays {
 
     public static final String[] DUNGEON_CAUSE_OF_RUIN = {
             "arcane disaster",
-            "damnation/curse",
+            "damnation","curse",
             "natural disaster (earthquake, etc.)","natural disaster (earthquake, etc.)",
-            "plague/famine/drought","plague/famine/drought",
+            "plague","famine","drought","plague","famine","drought",
             "overrun by monsters","overrun by monsters",
             "hubris","hubris",
-            "war/invasion","war/invasion",
+            "war","invasion","war","invasion",
             "depleted resources",
             "better prospects elsewhere"
     };
@@ -234,18 +234,17 @@ public class DungeonArrays {
     /* ================== AREA DRESSING ================== */
 
     public static final String[] AREA_DRESSING = {
-            "breeze/sound/echo",                   // 1
-            "smell/odor/stench",                   // 2
-            "lichen/mold/moss/fungus",             // 3
-            "drip/seep/puddle/stream",             // 4
-            "tracks/marks/scratches",              // 5
-            "sign of activity/struggle/battle",    // 6
-            "bones/remains of creature [p53]",     // 7
-            "junk/debris/refuse/waste",            // 8
-            "broken structure/furniture",          // 9
-            "inscription/ornamentation",           // 10
-            "roll 1d10 twice, combine",            // 11
-            "roll 1d10 twice, combine"             // 12 (repite la regla)
+            "breeze","sound","echo",
+            "smell","odor","stench",
+            "lichen","mold","moss","fungus",
+            "drip","seep","puddle","stream",
+            "tracks","marks","scratches",
+            "sign of activity","struggle","battle",
+            "bones","remains of creature",
+            "junk","debris","refuse","waste",
+            "broken structure","furniture",
+            "inscription","ornamentation",
+            "roll twice",
     };
 
 
@@ -253,124 +252,124 @@ public class DungeonArrays {
     /* En este caso hay dos columnas: NUMBER y DIRECTION */
 
     public static final String[] AREA_EXITS_NUMBER = {
-            "0","0",     // 1–2
-            "1",         // 3
-            "1","1",     // 4–5
-            "1",         // 6
-            "2",         // 7
-            "2","2",     // 8–9
-            "3",         // 10
-            "4",         // 11
-            "1d6+1"      // 12
+            "0","0",
+            "1",
+            "1","1",
+            "1",
+            "2",
+            "2","2",
+            "3",
+            "4",
+            "1d6+1"
     };
 
     public static final String[] AREA_EXITS_DIRECTION = {
-            "down",      // 1–2
-            "back",      // 3
-            "forward","forward","forward", // 4–6
-            "forward",   // 7
-            "left","left", // 8–9
-            "right",     // 10
-            "right",     // 11
-            "up"         // 12
+            "down",
+            "back",
+            "forward","forward","forward",
+            "forward",
+            "left","left",
+            "right",
+            "right",
+            "up"
     };
 
 
     /* ================== DUNGEON DISCOVERY ================== */
 
-    // Categorías (1–8 = Feature, 9–12 = Find)
+
     public static final String[] DUNGEON_DISCOVERY_CATEGORIES = {
             "Feature", "Feature", "Feature", "Feature", "Feature", "Feature", "Feature", "Feature",
             "Find", "Find", "Find", "Find"
     };
 
-    // Prompts - Feature (12 elementos)
+
     public static final String[] DUNGEON_DISCOVERY_FEATURE_PROMPTS = {
-            "cave-in/collapse/obstacle",   // 1
-            "blocked/locked exit",         // 2
-            "pit/shaft/chasm",             // 3
-            "pillars/columns",             // 4
-            "alcoves/niches",              // 5
-            "bridge/stairs/ramp",          // 6
-            "well/pool/fountain",          // 7
-            "puzzle",                      // 8
-            "altar/dais/platform",         // 9
-            "statue/idol",                 // 10
-            "multi-level/ledges/tiers",    // 11
-            "hidden/secret exit"           // 12
+            "cave-in","collapse","obstacle",
+            "blocked","locked exit",
+            "pit","shaft","chasm",
+            "pillars","columns",
+            "alcoves","niches",
+            "bridge","stairs","ramp",
+            "well","pool","fountain",
+            "puzzle",
+            "altar","dais","platform",
+            "statue","idol",
+            "multi-level","ledges","tiers",
+            "hidden","secret exit"
     };
 
-    // Prompts - Find (12 elementos)
+
     public static final String[] DUNGEON_DISCOVERY_FIND_PROMPTS = {
-            "trinkets/clothing",                  // 1
-            "supplies/tools/gear",                // 2
-            "light source/fuel/ammo",             // 3
-            "key/clue/map",                       // 4
-            "weapons/armor",                      // 5
-            "poison/antidote/potion",             // 6
-            "adventurer/captive",                 // 7
-            "books/scrolls",                      // 8
-            "coins/gems/jewelry",                 // 9
-            "roll 1d8, add magic type",     // 10
-            "roll feature, add magic type", // 11
-            "roll 1d10 twice, combine"            // 12
+            "trinkets","clothing",
+            "supplies","tools","gear",
+            "light source","fuel","ammo",
+            "key","clue","map",
+            "weapons","armor",
+            "poison","antidote","potion",
+            "adventurer","captive",
+            "books","scrolls",
+            "coins","gems","jewelry",
+            "roll 1d8, add magic type",
+            "roll feature, add magic type",
+            "roll 1d10 twice, combine"
     };
 
 
     /* ================== DUNGEON DANGER ================== */
 
-    // Categorías (1–4 = Trap, 5–12 = Creature)
+
     public static final String[] DUNGEON_DANGER_CATEGORIES = {
             "Trap", "Trap", "Trap", "Trap",
             "Creature", "Creature", "Creature", "Creature",
             "Creature", "Creature", "Creature", "Creature"
     };
 
-    // Prompts - Trap (12 elementos)
+
     public static final String[] DUNGEON_DANGER_TRAP_PROMPTS = {
-            "alarm",                   // 1
-            "pit",                     // 2
-            "ensnaring/paralyzing",    // 3
-            "crushing/smashing",       // 4
-            "piercing/puncturing",     // 5
-            "chopping/slashing/slicing", // 6
-            "confusing (maze, etc.)",  // 7
-            "gas (poison, etc.)",      // 8
-            "ambush",                  // 9
-            "based on Element",  // 10
-            "based on Magic Type", // 11
-            "based on Oddity"    // 12
+            "alarm",
+            "pit",
+            "ensnaring","paralyzing",
+            "crushing","smashing",
+            "piercing","puncturing",
+            "chopping","slashing","slicing",
+            "confusing (maze, etc.)",
+            "gas (poison, etc.)",
+            "ambush",
+            "based on Element",
+            "based on Magic Type",
+            "based on Oddity"
     };
 
-    // Prompts - Creature (12 elementos)
+
     public static final String[] DUNGEON_DANGER_CREATURE_PROMPTS = {
-            "Creature leader/lord (with minions)", // 1
-            "Creature", // 2
-            "Creature", // 3
-            "Creature", // 4
-            "Creature", // 5
-            "Creature", // 6
-            "Creature", // 7
-            "Creature", // 8
-            "Creature", // 9
-            "Beast vermin (rats, bats, etc.)", // 10
-            "Beast vermin (rats, bats, etc.)", // 11
-            "Beast vermin (rats, bats, etc.)"  // 12
+            "Creature leader (with minions)","Creature lord (with minions)",
+            "Creature",
+            "Creature",
+            "Creature",
+            "Creature",
+            "Creature",
+            "Creature",
+            "Creature",
+            "Creature",
+            "Beast vermin (rats, bats, etc.)",
+            "Beast vermin (rats, bats, etc.)",
+            "Beast vermin (rats, bats, etc.)"
     };
 
     public static final String[] AREA_RARITY = {
-            "common", // 1
-            "common", // 2
-            "common", // 3
-            "common", // 4
-            "common", // 5
-            "common", // 6
-            "common", // 7
-            "common", // 8
-            "common", // 9
-            "unique", // 10
-            "unique", // 11
-            "unique"  // 12
+            "common",
+            "common",
+            "common",
+            "common",
+            "common",
+            "common",
+            "common",
+            "common",
+            "common",
+            "unique",
+            "unique",
+            "unique"
     };
 
     public static final String[] AREA_TYPE = {
