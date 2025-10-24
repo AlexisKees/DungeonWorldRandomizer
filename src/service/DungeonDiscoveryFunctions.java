@@ -25,8 +25,8 @@ public class DungeonDiscoveryFunctions implements IGenericService<AreaDiscovery>
 
         switch (discovery.getPrompt()) {
 
-            case "roll 1d8, add magic type" -> {
-                roll = Rolls.Roll1d8();
+            case "roll again, add magic type" -> {
+                roll = Rolls.CustomRoll(23); //hardcodes number to remove elements that require rerolling
                 String magicType = CreatureFunctions.rollMagicType();
                 discovery.setFinalResult(discovery.getPromptTable()[roll]+". "+magicType);
             }
@@ -36,13 +36,7 @@ public class DungeonDiscoveryFunctions implements IGenericService<AreaDiscovery>
                 String magicType = CreatureFunctions.rollMagicType();
                 discovery.setFinalResult(feature+". "+magicType);
             }
-            case "roll 1d10 twice, combine" -> {
-                roll = Rolls.Roll1d10();
-                String find1 = discovery.getPromptTable()[roll];
-                roll = Rolls.Roll1d10();
-                String find2 = discovery.getPromptTable()[roll];
-                discovery.setFinalResult(find1+" + "+find2);
-            }
+            case "roll twice" -> Rolls.rollTwice(DungeonArrays.DUNGEON_DISCOVERY_FIND_PROMPTS,23); //hardcodes number to remove elements that require rerolling
             default -> discovery.setFinalResult(discovery.getPrompt());
         }
 

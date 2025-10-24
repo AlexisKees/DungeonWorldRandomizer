@@ -6,19 +6,52 @@ import java.util.Random;
 public class Rolls {
 
     public static String rollTwice(String[] a){
-        int n = Rolls.UniversalRoll(a);
-        String s1 = a[n];
+        int n;
+        String s1;
         String s2;
+        do{
+            n = Rolls.UniversalRoll(a);
+            s1 = a[n];
+        } while (s1.equals("roll twice"));
+
         do{
             n=Rolls.UniversalRoll(a);
             s2 = a[n];
-        } while (s1.equals(s2));
+        } while (s1.equals(s2) || s2.equals("roll twice"));
 
         return s1+" + "+s2;
     }
 
+    public static String rollTwice(String[] a,int i){
+        int n;
+        String s1;
+        String s2;
+
+        do{
+            n = Rolls.CustomRoll(i);
+            s1 = a[n];
+        } while (s1.equals("roll twice"));
+
+        do{
+            n=Rolls.CustomRoll(i);
+            s2 = a[n];
+        } while (s1.equals(s2) || s2.equals("roll twice"));
+
+        return s1+" + "+s2;
+    }
+
+    public static int CustomRoll(int i){
+        Random azar = new Random();
+        int resultado = azar.nextInt(i);
+        return resultado;
+    }
+
     public static int UniversalRoll(String[] a){
      return (int) (Math.random()*a.length);
+    }
+
+    public static String PickFrom(String[] a){
+        return a[Rolls.UniversalRoll(a)];
     }
 
     public static boolean rollBoolean(){

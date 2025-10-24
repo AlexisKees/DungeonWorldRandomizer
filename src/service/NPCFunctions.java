@@ -17,9 +17,9 @@ public class NPCFunctions implements IGenericService<NPC> {
     public static void rollFeatures(NPC npc){
         //set race rarity, races array and race
         int rarity = Rolls.Roll1d12();
-        switch (rarity) {
-            case 6,7,8,9 -> npc.setRaceTable(CreatureArrays.PROMPTS_HUMANOID_UNCOMMON);
-            case 10,11 -> npc.setRaceTable(CreatureArrays.PROMPTS_HUMANOID_RARE);
+        switch (CreatureArrays.SUBCATEGORIES_HUMANOID[rarity]) {
+            case "Uncommon" -> npc.setRaceTable(CreatureArrays.PROMPTS_HUMANOID_UNCOMMON);
+            case "Rare" -> npc.setRaceTable(CreatureArrays.PROMPTS_HUMANOID_RARE);
             default -> npc.setRaceTable(CreatureArrays.PROMPTS_HUMANOID_COMMON);
         }
 
@@ -70,19 +70,19 @@ public class NPCFunctions implements IGenericService<NPC> {
         npc.setPersonality(NPCArrays.PERSONALITY[Rolls.UniversalRoll(NPCArrays.PERSONALITY)]);
         npc.setQuirk(NPCArrays.QUIRK[Rolls.UniversalRoll(NPCArrays.QUIRK)]);
 
-        if (Objects.equals(npc.getAppearance(), "roll twice, reroll any 12 result")){
-            npc.setAppearance(NPCArrays.APPEARANCE[(int)Math.random()*(NPCArrays.APPEARANCE.length-1)]+" and "+NPCArrays.APPEARANCE[(int)Math.random()*(NPCArrays.APPEARANCE.length-1)]);
+        if (Objects.equals(npc.getAppearance(), "roll twice")){
+            npc.setAppearance(Rolls.rollTwice(NPCArrays.APPEARANCE));
         }
 
-        if (Objects.equals(npc.getPersonality(), "roll twice, reroll any 12 result")){
-            npc.setPersonality(NPCArrays.PERSONALITY[(int)Math.random()*(NPCArrays.PERSONALITY.length-1)]+" and "+NPCArrays.PERSONALITY[(int)Math.random()*(NPCArrays.PERSONALITY.length-1)]);
+        if (Objects.equals(npc.getPersonality(), "roll twice")){
+            npc.setPersonality(Rolls.rollTwice(NPCArrays.PERSONALITY));
         }
 
-        if (Objects.equals(npc.getQuirk(), "roll twice, reroll any 12 result")){
-            npc.setQuirk(NPCArrays.QUIRK[(int)Math.random()*(NPCArrays.QUIRK.length-1)]+" and "+NPCArrays.QUIRK[(int)Math.random()*(NPCArrays.QUIRK.length-1)]);
+        if (Objects.equals(npc.getQuirk(), "roll twice")){
+            npc.setQuirk(Rolls.rollTwice(NPCArrays.QUIRK));
         }
 
-        npc.setOneLiner(String.format("%s, the %s %s", npc.getName(), npc.getRace(), npc.getJob()));
+        npc.setOneLiner(String.format("%s, the %s %s %s", npc.getName(), npc.getQuirk(),npc.getRace(), npc.getJob()));
     }
 
     public static void printNPC(NPC npc){

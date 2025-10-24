@@ -3,6 +3,7 @@ package service;
 import data.DungeonArrays;
 import domain.Area;
 import domain.Dungeon;
+import domain.Steading;
 import domain.util.Rolls;
 import presentation.SubMenu;
 import presentation.ViewAll;
@@ -26,25 +27,25 @@ public class DungeonFunctions {
         dungeon.setSize(DungeonArrays.DUNGEON_SIZE[Rolls.UniversalRoll(DungeonArrays.DUNGEON_SIZE)]);
         //based on size, set the amount of rooms and themes
         switch (dungeon.getSize()){
-            default ->{
-                dungeon.setRooms((int)Math.random()*6+1+1);
-                dungeon.setThemesAmount(2);
-            }
             case "medium" -> {
-                dungeon.setRooms((int)Math.random()*8+1+7);
+                dungeon.setRooms((int)(Math.random()*8)+1+7);
                 dungeon.setThemesAmount(3);
             }
             case "large" ->{
-                dungeon.setRooms((int)Math.random()*10+1+15);
+                dungeon.setRooms((int)(Math.random()*10)+1+15);
                 dungeon.setThemesAmount(4);
             }
             case "huge" -> {
-                dungeon.setRooms((int)Math.random()*12+1+25);
+                dungeon.setRooms((int)(Math.random()*12)+1+25);
                 dungeon.setThemesAmount(5);
             }
             case "megadungeon" ->{
-                dungeon.setRooms((int)Math.random()*20+1+50);
+                dungeon.setRooms((int)(Math.random()*20)+1+50);
                 dungeon.setThemesAmount(10);
+            }
+            default ->{
+                dungeon.setRooms((int)(Math.random()*6)+1+1);
+                dungeon.setThemesAmount(2);
             }
         }
 
@@ -75,14 +76,12 @@ public class DungeonFunctions {
 
         dungeon.setForm(DungeonArrays.DUNGEON_FORM[Rolls.UniversalRoll(DungeonArrays.DUNGEON_FORM)]);
         switch (dungeon.getForm()){
-         case "ruins of 1d8+3" -> {
-             dungeon.setForm("Ruins of a "+DungeonArrays.DUNGEON_FORM[(int)Math.random()*8+4]);
-         }
-         case "roll 1d10, add oddity [p55]" ->{
-             dungeon.setForm(DungeonArrays.DUNGEON_FORM[(int)Math.random()*10+1]+" + "+ CreatureFunctions.rollOddity());
-         }
-         case "ruins of steading [p50]" ->{ //VOLVER A HACER CUANDO TENGA STEADING HECHOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-
+         case "ruins of (roll again)" -> dungeon.setForm("Ruins of a "+DungeonArrays.DUNGEON_FORM[Rolls.CustomRoll(17)]);
+         case "roll again, add oddity" ->dungeon.setForm(DungeonArrays.DUNGEON_FORM[Rolls.CustomRoll(17)]+" + "+ CreatureFunctions.rollOddity());
+         case "ruins of steading" ->{
+            Steading s = new Steading();
+            SteadingFunctions.rollSteading(s);
+            dungeon.setForm("Ruins of "+s.getOneLiner());
          }
             default -> dungeon.setForm(dungeon.getForm());
         }
@@ -90,9 +89,7 @@ public class DungeonFunctions {
         dungeon.setSituation(DungeonArrays.DUNGEON_SITUATION[Rolls.UniversalRoll(DungeonArrays.DUNGEON_SITUATION)]);
         dungeon.setBuilder(DungeonArrays.DUNGEON_BUILDER[Rolls.UniversalRoll(DungeonArrays.DUNGEON_BUILDER)]);
         dungeon.setFunction(DungeonArrays.DUNGEON_FUNCTION[Rolls.UniversalRoll(DungeonArrays.DUNGEON_FUNCTION)]);
-        if (Objects.equals(dungeon.getFunction(),"roll 1d10+1 twice, combine")){
-                dungeon.setFunction(DungeonArrays.DUNGEON_FUNCTION[Rolls.UniversalRoll(DungeonArrays.DUNGEON_FUNCTION)] +" and "+DungeonArrays.DUNGEON_FUNCTION[Rolls.UniversalRoll(DungeonArrays.DUNGEON_FUNCTION)]);
-        }
+        if (Objects.equals(dungeon.getFunction(),"roll twice")) Rolls.rollTwice(DungeonArrays.DUNGEON_FUNCTION);
 
         dungeon.setCauseOfRuin(DungeonArrays.DUNGEON_CAUSE_OF_RUIN[Rolls.UniversalRoll(DungeonArrays.DUNGEON_CAUSE_OF_RUIN)]);
         dungeon.setAccessibility(DungeonArrays.DUNGEON_ACCESSIBILITY[Rolls.UniversalRoll(DungeonArrays.DUNGEON_ACCESSIBILITY)]);

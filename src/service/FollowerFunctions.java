@@ -14,11 +14,11 @@ import java.util.Scanner;
 public class FollowerFunctions implements IGenericService<Follower> {
     public static void rollFollower(Follower follower){
         int rarity = Rolls.Roll1d12();
-        switch (rarity) {
-            case 6,7,8,9 -> follower.setRaceTable(CreatureArrays.PROMPTS_HUMANOID_UNCOMMON);
-            case 10,11 -> follower.setRaceTable(CreatureArrays.PROMPTS_HUMANOID_RARE);
+        switch (CreatureArrays.SUBCATEGORIES_HUMANOID[rarity]) {
+            case "Uncommon" -> follower.setRaceTable(CreatureArrays.PROMPTS_HUMANOID_UNCOMMON);
+            case "Rare" -> follower.setRaceTable(CreatureArrays.PROMPTS_HUMANOID_RARE);
             default -> follower.setRaceTable(CreatureArrays.PROMPTS_HUMANOID_COMMON);
-        };
+        }
 
         follower.setRace(follower.getRaceTable()[Rolls.UniversalRoll(follower.getRaceTable())]);
         // set gender, ethnics and name
@@ -40,9 +40,7 @@ public class FollowerFunctions implements IGenericService<Follower> {
                 int roll = (int)(Math.random() * 24 + 25);
                 follower.setName(follower.getNamesTable()[roll]);
             }
-            default -> {
-                follower.setName(follower.getNamesTable()[Rolls.UniversalRoll(follower.getNamesTable())]);
-            }
+            default -> follower.setName(follower.getNamesTable()[Rolls.UniversalRoll(follower.getNamesTable())]);
         }
 
         //Set age using DetailArrays
@@ -130,20 +128,20 @@ public class FollowerFunctions implements IGenericService<Follower> {
     public static void addTag(Follower f){
         int roll;
         String tag = "";
-        boolean tagAlreadyExists = ((f.getTags().indexOf(tag)!=-1)||(f.getTags().indexOf(tag.toLowerCase())!=-1));
+        boolean tagAlreadyExists = ((f.getTags().contains(tag))||(f.getTags().contains(tag.toLowerCase())));
         do {
             roll = Rolls.UniversalRoll(NPCArrays.FOLLOWER_TAGS);
             tag = NPCArrays.FOLLOWER_TAGS[roll];
-            tagAlreadyExists = ((f.getTags().indexOf(tag)!=-1)||(f.getTags().indexOf(tag.toLowerCase())!=-1));
+            tagAlreadyExists = ((f.getTags().contains(tag))||(f.getTags().contains(tag.toLowerCase())));
         } while (tagAlreadyExists);
 
-        if (f.getTags().length()==0) f.setTags(tag);
+        if (f.getTags().isEmpty()) f.setTags(tag);
         else f.setTags(f.getTags()+", "+tag.toLowerCase());
     }
     public static void addTag(Follower f, String tag){
-        boolean tagAlreadyExists = ((f.getTags().indexOf(tag)!=-1)||(f.getTags().indexOf(tag.toLowerCase())!=-1));
+        boolean tagAlreadyExists = ((f.getTags().contains(tag))||(f.getTags().contains(tag.toLowerCase())));
 
-        if (f.getTags().length()==0) f.setTags(tag);
+        if (f.getTags().isEmpty()) f.setTags(tag);
         else if (!tagAlreadyExists) f.setTags(f.getTags()+", "+tag.toLowerCase());
     }
 
@@ -172,7 +170,7 @@ public class FollowerFunctions implements IGenericService<Follower> {
 
     public static void removeTag(Follower follower){
         String str;
-        if (follower.getTags().indexOf(",")==-1) follower.setTags("");
+        if (!follower.getTags().contains(",")) follower.setTags("");
         else {
             str = follower.getTags().substring(0,follower.getTags().indexOf(", "));
             follower.setTags(follower.getTags().replace(str,""));

@@ -144,18 +144,27 @@ public class DungeonArrays {
     /* ================== DUNGEON FORM (1 nivel) ================== */
 
     public static final String[] DUNGEON_FORM = {
-            "cave","cavern",
-            "ruins of 1d8+3",
-            "ruins of 1d8+3",
-            "mine",
-            "prison",
-            "crypt","tomb","catacombs",
-            "crypt","tomb","catacombs",
-            "stronghold","fortress","citadel",
-            "temple","sanctuary",
-            "tower","spire",
-            "roll again, add oddity",
+            "cave",                     // 0
+            "cavern",                       // 1
+            "mine",                     // 2
+            "prison",                        //3
+            "crypt",                        //4
+            "crypt",                        //5
+            "tomb",                     // 6
+            "tomb",                     //7
+            "catacombs",                        //8
+            "catacombs",                        //9
+            "stronghold",                       //10
+            "fortress",                     //11
+            "citadel",                      //12
+            "temple",                       //13
+            "sanctuary",                        //14
+            "tower",                        //15
+            "spire",                        //16
             "ruins of steading",
+            "roll again, add oddity",
+            "ruins of (roll again)",
+            "ruins of (roll again)",
     };
 
 
@@ -310,9 +319,9 @@ public class DungeonArrays {
             "adventurer","captive",
             "books","scrolls",
             "coins","gems","jewelry",
-            "roll 1d8, add magic type",
+            "roll again, add magic type",
             "roll feature, add magic type",
-            "roll 1d10 twice, combine"
+            "roll twice"
     };
 
 
