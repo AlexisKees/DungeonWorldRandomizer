@@ -53,7 +53,7 @@ public class BiomeFunctions implements IGenericService<Biome> {
 
     @Override
     public void showOptions(Scanner dataInput, Biome biome, List<Biome> biomeList) {
-        int option = 0;
+        int option;
         System.out.println("WELCOME TO THE BIOME GENERATOR\n");
 
         try{
@@ -111,7 +111,7 @@ public class BiomeFunctions implements IGenericService<Biome> {
                 }
             }while (option !=6);
         }catch (Exception e){
-            System.out.println("An error occurred: "+e.getMessage());
+            System.out.println("\nPlease choose a valid option.\n");
         }
     }
 

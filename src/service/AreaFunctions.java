@@ -96,7 +96,7 @@ public class AreaFunctions implements IGenericService<Area> {
 
     @Override
     public void showOptions(Scanner dataInput, Area area, List<Area> areaList) {
-        int option = 0;
+        int option;
         System.out.println("WELCOME TO THE AREA GENERATOR\n");
 
         try{
@@ -156,7 +156,7 @@ public class AreaFunctions implements IGenericService<Area> {
 
 
         }catch (Exception e){
-            System.out.println("There has been a problem during DUNGEON AREA GENERATOR excecution: "+e.getMessage());
+            System.out.println("\nPlease choose a valid option.\n");
         }
     }
 }

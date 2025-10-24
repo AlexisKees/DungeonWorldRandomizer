@@ -75,7 +75,7 @@ public class QuestFunctions {
                             biomeList.add(quest.getBiome());
                             System.out.println(quest);
                         }
-                        System.out.println("QUEST GUIVER:\n\n"+quest.getQuestGiver());
+                        System.out.println("QUEST GIVER:\n\n"+quest.getQuestGiver());
                     }
                     case 3 -> {
                         if(quest==null){
@@ -88,7 +88,7 @@ public class QuestFunctions {
                             System.out.println(quest);
                         }
                         System.out.println("QUEST LOCATION - BIOME:\n\n"+quest.getBiome());
-                        System.out.println("QUEST LOCATION - DUNGEION:\n\n"+quest.getDungeon());
+                        System.out.println("QUEST LOCATION - DUNGEON:\n\n"+quest.getDungeon());
                     }
                     case 4 -> quest = new ViewAll().run(dataInput,questList,quest, Quest.class);
                     case 5 -> {
@@ -112,7 +112,7 @@ public class QuestFunctions {
                     default -> System.out.print("\nInvalid number!\n\n");
                 }
             } catch (Exception e) {
-                System.out.println("\nPlease choose a valid option.\nError: "+e.getMessage());
+                System.out.println("\nPlease choose a valid option.\n");
             }
         }
         while (option != 6);

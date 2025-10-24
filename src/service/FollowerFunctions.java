@@ -29,7 +29,7 @@ public class FollowerFunctions implements IGenericService<Follower> {
             case "Finnish" -> follower.setNamesTable(NPCNamesArrays.NAMES_FINNISH_BASED);
             case "Indonesian" -> follower.setNamesTable(NPCNamesArrays.NAMES_INDONESIAN_BASED);
             default -> follower.setNamesTable(NPCNamesArrays.NAMES_HUNGARIAN_BASED);
-        };
+        }
         //Male names use the first half of each 50 elements array, while female names use the second half
         switch (follower.getGender()){
             case "Male" ->{
@@ -56,12 +56,8 @@ public class FollowerFunctions implements IGenericService<Follower> {
         int roll = Rolls.UniversalRoll(NPCArrays.FOLLOWER_QUALITY);
         follower.setQualityString(NPCArrays.FOLLOWER_QUALITY[roll]);
         switch (follower.getQualityString()){
-            case "A liability: Quality -1, +0 tags" -> {
-                follower.setQuality(follower.getQuality()-1);
-            }
-            case "Competent: Quality +0, +1 tags" -> {
-                addTag(follower);
-            }
+            case "A liability: Quality -1, +0 tags" -> follower.setQuality(follower.getQuality()-1);
+            case "Competent: Quality +0, +1 tags" -> addTag(follower);
             case "Fully capable: Quality +1, +2 tags" -> {
                 follower.setQuality(follower.getQuality()+1);
                 int i;
@@ -127,8 +123,8 @@ public class FollowerFunctions implements IGenericService<Follower> {
 
     public static void addTag(Follower f){
         int roll;
-        String tag = "";
-        boolean tagAlreadyExists = ((f.getTags().contains(tag))||(f.getTags().contains(tag.toLowerCase())));
+        String tag;
+        boolean tagAlreadyExists;
         do {
             roll = Rolls.UniversalRoll(NPCArrays.FOLLOWER_TAGS);
             tag = NPCArrays.FOLLOWER_TAGS[roll];
@@ -181,7 +177,7 @@ public class FollowerFunctions implements IGenericService<Follower> {
 
     @Override
     public void showOptions(Scanner dataInput, Follower follower, List<Follower> followerList) {
-        int option = 0;
+        int option;
         System.out.println("WELCOME TO THE FOLLOWER GENERATOR\n");
 
         try{
@@ -240,7 +236,7 @@ public class FollowerFunctions implements IGenericService<Follower> {
 
 
         }catch (Exception e){
-            System.out.println("There has been a problem during FOLLOWER GENERATOR excecution: "+e.getMessage());
+            System.out.println("\nPlease choose a valid option.\n");
         }
     }
 }

@@ -104,17 +104,17 @@ public class CreatureFunctions implements IGenericService<Creature> {
         // Se extrae el elemento string del array de categorías para impresión
         creature.setCategory(creature.getCategoryTable()[r1]);
 
-        //Se asigna tabla de subcategoría en base a subcategoría obtenida en roll anterior
+        //Se asigna tabla de subcategoría con base en subcategoría obtenida en roll anterior
         assignSubcategoryTable(creature);
 
-        //Se saca número aleatorio en base al largo de la tabla de subcategorías y se asigna String de subcategoría
+        //Se saca número aleatorio basándonos en el largo de la tabla de subcategorías y se asigna String de subcategoría
         int r2 = Rolls.UniversalRoll(creature.getSubcategoryTable());
         creature.setSubcategory(creature.getSubcategoryTable()[r2]);
 
         //Se asigna tabla de Prompts
         assignPromptTable(creature);
 
-        //Se saca número aleatorio en base al largo de la tabla de prompts y se asigna prompt
+        //Se saca número aleatorio basándonos en el largo de la tabla de prompts y se asigna prompt
         int r3 = Rolls.UniversalRoll(creature.getPromptTable());
         creature.setPrompt(creature.getPromptTable()[r3]);
 
@@ -430,7 +430,7 @@ public class CreatureFunctions implements IGenericService<Creature> {
                     default -> System.out.print("\nInvalid number!\n\n");
                 }
             } catch (Exception e) {
-                System.out.println("\nAn error occurred!\n");
+                System.out.println("\nPlease choose a valid option.\n");
             }
         }
         while (option != 8);

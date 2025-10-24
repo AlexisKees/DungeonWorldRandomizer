@@ -55,7 +55,7 @@ public class SteadingFunctions implements IGenericService<Steading> {
 
     @Override
     public void showOptions(Scanner dataInput, Steading steading, List<Steading> steadingList) {
-        int option = 0;
+        int option;
         System.out.println("WELCOME TO THE STEADING GENERATOR\n");
 
         try {
@@ -64,9 +64,9 @@ public class SteadingFunctions implements IGenericService<Steading> {
                         Please select an option:
                         1) Create new random steading
                         2) View current
-                        3) View list of generated steadings 
-                        4) Export current 
-                        5) Main menu                        
+                        3) View list of generated steadings
+                        4) Export current
+                        5) Main menu
                         
                         \tOption:\s""");
                 option = Integer.parseInt(dataInput.nextLine());
@@ -104,7 +104,7 @@ public class SteadingFunctions implements IGenericService<Steading> {
 
             } while (option != 5);
         } catch (Exception e) {
-            System.out.println("An error ocurred: " + e.getMessage());
+            System.out.println("\nPlease choose a valid option.\n");
         }
     }
 }

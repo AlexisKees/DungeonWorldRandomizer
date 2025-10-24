@@ -91,7 +91,7 @@ public class DangerFunctions implements IGenericService<Danger> {
 
     @Override
     public void showOptions(Scanner dataInput, Danger danger, List<Danger> dangerList) {
-        int option = 0;
+        int option;
         System.out.println("WELCOME TO THE DANGER GENERATOR\n");
 
         try{
@@ -137,7 +137,7 @@ public class DangerFunctions implements IGenericService<Danger> {
                 }
             }while (option !=5);
         }catch (Exception e){
-            System.out.println("An error occurred: "+e.getMessage());
+            System.out.println("\nPlease choose a valid option.\n");
         }
     }
 }

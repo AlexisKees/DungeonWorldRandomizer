@@ -267,7 +267,7 @@ public class DiscoveryFunctions implements IGenericService<Discovery> {
                 }
             }while (option !=5);
         }catch (Exception e){
-            System.out.println("An error occurred: "+e.getMessage());
+            System.out.println("\nPlease choose a valid option.\n");
         }
     }
 
