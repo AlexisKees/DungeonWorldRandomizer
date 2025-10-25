@@ -199,7 +199,7 @@ public class FollowerFunctions implements IGenericService<Follower> {
                     case 1 -> {
                         follower = new Follower();
                         FollowerFunctions.rollFollower(follower);
-                        followerList.add(follower);
+                        followerList.add(follower.clone());
                         System.out.println(follower);
                     }
                     case 2 ->{
@@ -216,7 +216,7 @@ public class FollowerFunctions implements IGenericService<Follower> {
                         } else {
                             FollowerFunctions.rollFollowerDetails(follower);
                         }
-                        followerList.add(follower);
+                        followerList.add(follower.clone());
                         System.out.println(follower);
                     }
                     case 4 -> follower = new ViewAll().run(dataInput, followerList, follower, Follower.class);
@@ -224,7 +224,7 @@ public class FollowerFunctions implements IGenericService<Follower> {
                         if (follower==null){
                             follower = new Follower();
                             FollowerFunctions.rollFollower(follower);
-                            followerList.add(follower);
+                            followerList.add(follower.clone());
                         }
                         GenericFunctions.exportPW(follower);
                     }

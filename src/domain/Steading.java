@@ -22,6 +22,16 @@ public class Steading implements IPWClass {
         this.oneLiner = oneLiner;
     }
 
+    @Override
+    public Steading clone() {
+        try {
+            return (Steading) super.clone();
+        } catch (Exception e){
+            System.out.println("Error cloning object: "+e.getMessage());
+            return null;
+        }
+    }
+
     public String getName(){
         return name;
     }

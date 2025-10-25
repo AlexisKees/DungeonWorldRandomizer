@@ -21,6 +21,16 @@ public class Area implements IPWClass {
         this.oneLiner = oneLiner;
     }
 
+    @Override
+    public Area clone() {
+        try {
+            return (Area) super.clone();
+        } catch (Exception e){
+            System.out.println("Error cloning object: "+e.getMessage());
+            return null;
+        }
+    }
+
     public String getAreaDressing() {
         return areaDressing;
     }
@@ -29,18 +39,13 @@ public class Area implements IPWClass {
         this.areaDressing = areaDressing;
     }
 
-   public void initializeDiscoveriesList(){
-        this.discoveries = new ArrayList<>();
-   }
+
 
    public void addDiscovery(AreaDiscovery discovery){
         if(this.discoveries.size()<this.discoveriesAmount) this.discoveries.add(discovery);
         else System.out.println("Cannot add discovery: maximum amount of discoveries reached!");
    }
 
-    public void initializeDangersList(){
-        this.dangers = new ArrayList<>();
-    }
 
     public void addDanger(AreaDanger danger){
         if (this.dangers.size()<this.dangersAmount) this.dangers.add(danger);

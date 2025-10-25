@@ -108,7 +108,7 @@ public class DangerFunctions implements IGenericService<Danger> {
                     case 1 ->{
                         danger = new Danger();
                         DangerFunctions.rollDanger(danger);
-                        dangerList.add(danger);
+                        dangerList.add(danger.clone());
                         System.out.println(danger);
                     }
                     case 2 -> {
@@ -116,7 +116,7 @@ public class DangerFunctions implements IGenericService<Danger> {
                             danger = new Danger();
                             DangerFunctions.rollDanger(danger);
                         }
-                        dangerList.add(danger);
+                        dangerList.add(danger.clone());
                         System.out.println(danger);
                     }
                     case 3 -> danger = new ViewAll().run(dataInput,dangerList,danger, Danger.class);
@@ -124,7 +124,7 @@ public class DangerFunctions implements IGenericService<Danger> {
                         if (danger == null){
                             danger = new Danger();
                             DangerFunctions.rollDanger(danger);
-                            dangerList.add(danger);
+                            dangerList.add(danger.clone());
                         }
                         GenericFunctions.exportPW(danger);
                     }

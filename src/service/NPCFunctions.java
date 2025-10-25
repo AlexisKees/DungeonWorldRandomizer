@@ -116,14 +116,14 @@ public class NPCFunctions implements IGenericService<NPC> {
                         npc = new NPC();
                         NPCFunctions.rollFeatures(npc);
                         NPCFunctions.printNPC(npc);
-                        npcList.add(npc);
+                        npcList.add(npc.clone());
                     }
                     case 2 -> {
                         if (npc==null) {
                             npc = new NPC();
                             NPCFunctions.rollFeatures(npc);
                             NPCFunctions.printNPC(npc);
-                            npcList.add(npc);
+                            npcList.add(npc.clone());
                         }
                         System.out.println(npc);
                     }

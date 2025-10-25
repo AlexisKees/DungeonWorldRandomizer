@@ -116,13 +116,13 @@ public class AreaFunctions implements IGenericService<Area> {
                     case 1 -> {
                         area = new Area();
                         AreaFunctions.rollArea(area);
-                        areaList.add(area);
+                        areaList.add(area.clone());
                         System.out.println(area);
                     }
                     case 2 ->{
                         if (area==null){
                             area = new Area();
-                            areaList.add(area);
+                            areaList.add(area.clone());
                             AreaFunctions.rollArea(area);
                         }
                         System.out.println(area);
@@ -131,10 +131,10 @@ public class AreaFunctions implements IGenericService<Area> {
                         if (area==null){
                             area = new Area();
                             AreaFunctions.rollArea(area);
-                            areaList.add(area);
+                            areaList.add(area.clone());
                         } else {
                             AreaFunctions.rollAreaDetails(area);
-                            areaList.add(area);
+                            areaList.add(area.clone());
                         }
                         System.out.println(area);
                     }

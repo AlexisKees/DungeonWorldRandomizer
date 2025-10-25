@@ -35,7 +35,7 @@ public class DungeonAreaFunctions {
                     case 1 -> {
                         area = new Area();
                         AreaFunctions.rollArea(area);
-                        areaList.add(area);
+                        areaList.add(area.clone());
                         System.out.println(area);
                     }
                     case 2 ->{
@@ -52,7 +52,7 @@ public class DungeonAreaFunctions {
                         } else {
                             AreaFunctions.rollAreaDetails(area);
                         }
-                        areaList.add(area);
+                        areaList.add(area.clone());
                         System.out.println(area);
                     }
                     case 4 -> area = new ViewAll().run(dataInput, dungeon.getAreas(), area, Area.class);
@@ -61,7 +61,7 @@ public class DungeonAreaFunctions {
                             area = new Area();
                             AreaFunctions.rollArea(area);
                         }
-                        dungeon.addArea(area);
+                        dungeon.addArea(area.clone());
                     }
                     case 6 -> System.out.println("Going back to DUNGEON GENERATOR");
                 }

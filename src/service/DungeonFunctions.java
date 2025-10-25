@@ -125,7 +125,7 @@ public class DungeonFunctions {
                     case 1 -> {
                         dungeon = new Dungeon();
                         DungeonFunctions.rollDungeon(dungeon);
-                        dungeonList.add(dungeon);
+                        dungeonList.add(dungeon.clone());
                         System.out.println(dungeon);
                     }
                     case 2 -> {
@@ -138,7 +138,7 @@ public class DungeonFunctions {
                             System.out.println("\nGenerating dungeon...\n");
                             dungeon = new Dungeon();
                             DungeonFunctions.rollDungeon(dungeon);
-                            dungeonList.add(dungeon);
+                            dungeonList.add(dungeon.clone());
                         }
                         System.out.println(dungeon);
                     }
@@ -146,7 +146,7 @@ public class DungeonFunctions {
                         if (dungeon == null) {
                             dungeon = new Dungeon();
                             DungeonFunctions.rollDungeon(dungeon);
-                            dungeonList.add(dungeon);
+                            dungeonList.add(dungeon.clone());
                         }
                         GenericFunctions.exportPW(dungeon);
                     }

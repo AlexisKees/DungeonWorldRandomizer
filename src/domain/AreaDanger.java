@@ -18,6 +18,16 @@ public class AreaDanger implements IPWClass {
     }
 
     @Override
+    public AreaDanger clone() {
+        try {
+            return (AreaDanger) super.clone();
+        } catch (Exception e){
+            System.out.println("Error cloning object: "+e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
     public String toString(){
         String str = "DUNGEON DANGER: "+this.category+" -> "+this.prompt+"\n";
         if (!Objects.equals(this.prompt,this.finalResult)){

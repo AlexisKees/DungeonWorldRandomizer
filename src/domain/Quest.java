@@ -20,6 +20,16 @@ public class Quest implements IPWClass {
         this.oneLiner = oneLiner;
     }
 
+    @Override
+    public Quest clone() {
+        try {
+            return (Quest) super.clone();
+        } catch (Exception e){
+            System.out.println("Error cloning object: "+e.getMessage());
+            return null;
+        }
+    }
+
 
     public String getTask() {
         return task;

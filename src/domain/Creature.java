@@ -33,6 +33,16 @@ public class Creature implements IPWClass {
     }
 
     @Override
+    public Creature clone() {
+        try {
+            return (Creature) super.clone();
+        } catch (Exception e){
+            System.out.println("Error cloning object: "+e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
     public String toString(){
         return String.format("""
                     Creature category: %s

@@ -54,6 +54,16 @@ public class Follower implements IPWClass {
         this.oneLiner = oneLiner;
     }
 
+    @Override
+    public Follower clone() {
+        try {
+            return (Follower) super.clone();
+        } catch (Exception e){
+            System.out.println("Error cloning object: "+e.getMessage());
+            return null;
+        }
+    }
+
     public String[] getRaceTable() {
         return raceTable;
     }

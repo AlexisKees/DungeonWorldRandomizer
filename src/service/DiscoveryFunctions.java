@@ -243,14 +243,14 @@ public class DiscoveryFunctions implements IGenericService<Discovery> {
                     case 1 ->{
                         discovery = new Discovery();
                         DiscoveryFunctions.rollDiscovery(discovery);
-                        discoveryList.add(discovery);
+                        discoveryList.add(discovery.clone());
                         System.out.println(discovery);
                     }
                     case 2 -> {
                         if(discovery==null){
                             discovery = new Discovery();
                             DiscoveryFunctions.rollDiscovery(discovery);
-                            discoveryList.add(discovery);
+                            discoveryList.add(discovery.clone());
                         }
                         System.out.println(discovery);
                         System.out.println("\n");
@@ -260,7 +260,7 @@ public class DiscoveryFunctions implements IGenericService<Discovery> {
                         if(discovery==null){
                             discovery = new Discovery();
                             DiscoveryFunctions.rollDiscovery(discovery);
-                            discoveryList.add(discovery);
+                            discoveryList.add(discovery.clone());
                         }
                         GenericFunctions.exportPW(discovery);
                     }

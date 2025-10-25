@@ -27,6 +27,16 @@ public class NPC implements IPWClass {
         this.oneLiner = oneLiner;
     }
 
+    @Override
+    public NPC clone() {
+        try {
+            return (NPC) super.clone();
+        } catch (Exception e){
+            System.out.println("Error cloning object: "+e.getMessage());
+            return null;
+        }
+    }
+
     private void NPCClass(){
     };
 

@@ -60,20 +60,20 @@ public class QuestFunctions {
                     case 1 -> {
                         quest = new Quest();
                         QuestFunctions.rollQuest(quest);
-                        questList.add(quest);
-                        npcList.add(quest.getQuestGiver());
-                        dungeonList.add(quest.getDungeon());
-                        biomeList.add(quest.getBiome());
+                        questList.add(quest.clone());
+                        npcList.add(quest.getQuestGiver().clone());
+                        dungeonList.add(quest.getDungeon().clone());
+                        biomeList.add(quest.getBiome().clone());
                         System.out.print(quest.getBrief());
                     }
                     case 2 -> {
                         if(quest==null){
                             quest = new Quest();
                             QuestFunctions.rollQuest(quest);
-                            questList.add(quest);
-                            npcList.add(quest.getQuestGiver());
-                            dungeonList.add(quest.getDungeon());
-                            biomeList.add(quest.getBiome());
+                            questList.add(quest.clone());
+                            npcList.add(quest.getQuestGiver().clone());
+                            dungeonList.add(quest.getDungeon().clone());
+                            biomeList.add(quest.getBiome().clone());
                             System.out.println(quest);
                         }
                         System.out.println("QUEST GIVER:\n\n"+quest.getQuestGiver());
@@ -82,10 +82,10 @@ public class QuestFunctions {
                         if(quest==null){
                             quest = new Quest();
                             QuestFunctions.rollQuest(quest);
-                            questList.add(quest);
-                            npcList.add(quest.getQuestGiver());
-                            dungeonList.add(quest.getDungeon());
-                            biomeList.add(quest.getBiome());
+                            questList.add(quest.clone());
+                            npcList.add(quest.getQuestGiver().clone());
+                            dungeonList.add(quest.getDungeon().clone());
+                            biomeList.add(quest.getBiome().clone());
                             System.out.println(quest);
                         }
                         System.out.println("QUEST LOCATION - BIOME:\n\n"+quest.getBiome());
@@ -102,10 +102,10 @@ public class QuestFunctions {
                             DungeonFunctions.rollDungeon(quest.getDungeon());
                             NPCFunctions.rollFeatures(quest.getQuestGiver());
                             BiomeFunctions.rollBiome(quest.getBiome());
-                            questList.add(quest);
-                            npcList.add(quest.getQuestGiver());
-                            dungeonList.add(quest.getDungeon());
-                            biomeList.add(quest.getBiome());
+                            questList.add(quest.clone());
+                            npcList.add(quest.getQuestGiver().clone());
+                            dungeonList.add(quest.getDungeon().clone());
+                            biomeList.add(quest.getBiome().clone());
                         }
                         GenericFunctions.exportPW(quest);
                     }

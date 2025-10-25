@@ -21,6 +21,16 @@ public class Biome implements IPWClass {
     }
 
     @Override
+    public Biome clone() {
+        try {
+            return (Biome) super.clone();
+        } catch (Exception e){
+            System.out.println("Error cloning object: "+e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
     public String toString(){
 
         return String.format("""

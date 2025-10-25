@@ -32,6 +32,16 @@ public class Dungeon implements IPWClass {
         this.oneLiner = oneLiner;
     }
 
+    @Override
+    public Dungeon clone() {
+        try {
+            return (Dungeon) super.clone();
+        } catch (Exception e){
+            System.out.println("Error cloning object: "+e.getMessage());
+            return null;
+        }
+    }
+
     public void addDiscovery(Discovery discovery){
         discoveries.add(discovery);
     }

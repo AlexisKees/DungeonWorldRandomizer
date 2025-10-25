@@ -20,6 +20,16 @@ public class Discovery implements IPWClass {
         this.oneLiner = oneLiner;
     }
 
+    @Override
+    public Discovery clone() {
+        try {
+            return (Discovery) super.clone();
+        } catch (Exception e){
+            System.out.println("Error cloning object: "+e.getMessage());
+            return null;
+        }
+    }
+
 
     public String[] getPromptTable() {
         return promptTable;

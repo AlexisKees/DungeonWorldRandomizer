@@ -20,6 +20,16 @@ public class Danger implements IPWClass {
     }
 
     @Override
+    public Danger clone() {
+        try {
+            return (Danger) super.clone();
+        } catch (Exception e){
+            System.out.println("Error cloning object: "+e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
     public String toString(){
         String str = "DANGER: "+this.category+" -> "+this.subcategory+" -> "+this.prompt+"\n";
         if (!Objects.equals(this.prompt,this.finalResult)){

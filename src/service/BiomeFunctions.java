@@ -75,13 +75,13 @@ public class BiomeFunctions implements IGenericService<Biome> {
                         biome = new Biome();
                         BiomeFunctions.rollBiome(biome);
                         System.out.println(biome);
-                        biomeList.add(biome);
+                        biomeList.add(biome.clone());
                     }
                     case 2 -> {
                         if(biome==null){
                             biome = new Biome();
                             BiomeFunctions.rollBiome(biome);
-                            biomeList.add(biome);
+                            biomeList.add(biome.clone());
                         }
                         System.out.println(biome);
                     }
@@ -89,10 +89,10 @@ public class BiomeFunctions implements IGenericService<Biome> {
                         if(biome==null){
                             biome = new Biome();
                             BiomeFunctions.rollBiome(biome);
-                            biomeList.add(biome);
+                            biomeList.add(biome.clone());
                         } else {
                             BiomeFunctions.reRollDetails(biome);
-                            biomeList.add(biome);
+                            biomeList.add(biome.clone());
                         }
                         System.out.println(biome);
                     }
@@ -101,7 +101,7 @@ public class BiomeFunctions implements IGenericService<Biome> {
                         if(biome==null){
                             biome = new Biome();
                             BiomeFunctions.rollBiome(biome);
-                            biomeList.add(biome);
+                            biomeList.add(biome.clone());
                         }
                         GenericFunctions.exportPW(biome);
                     }

@@ -19,6 +19,16 @@ public class AreaDiscovery implements IPWClass {
     }
 
     @Override
+    public AreaDiscovery clone() {
+        try {
+            return (AreaDiscovery) super.clone();
+        } catch (Exception e){
+            System.out.println("Error cloning object: "+e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
     public String toString(){
         String str = "DUNGEON DISCOVERY: "+this.category+" -> "+this.prompt+"\n";
         if (!Objects.equals(this.prompt,this.finalResult)){

@@ -227,7 +227,7 @@ public class CreatureFunctions implements IGenericService<Creature> {
                 creature.setDamage("1d6");
                 creature.setHitPoints(3);
             }
-            case "group (1d6+2)" -> {
+            case "group (1d6+2 per wave)" -> {
                 creature.setDamage("1d8");
                 creature.setHitPoints(6);
             }
@@ -246,7 +246,7 @@ public class CreatureFunctions implements IGenericService<Creature> {
                 creature.setDamage("1d6");
                 creature.setHitPoints(3);
             }
-            case "group (1d6+2)" -> {
+            case "group (1d6+2 per wave)" -> {
                 creature.setDamage("1d8");
                 creature.setHitPoints(6);
             }
@@ -347,17 +347,17 @@ public class CreatureFunctions implements IGenericService<Creature> {
                     case 1 -> {
                         creature = new Creature();
                         CreatureFunctions.rollAttributes(creature);
-                        creatureList.add(creature);
+                        creatureList.add(creature.clone());
                         System.out.println(creature);
                     }
                     case 2 -> {
                         if (creature == null) {
                             creature = new Creature();
                             CreatureFunctions.rollAttributes(creature);
-                            creatureList.add(creature);
+                            creatureList.add(creature.clone());
                         } else {
                             CreatureFunctions.reRollSubcategory(creature);
-                            creatureList.add(creature);
+                            creatureList.add(creature.clone());
                             System.out.println(creature);
                         }
                     }
@@ -368,7 +368,7 @@ public class CreatureFunctions implements IGenericService<Creature> {
                         } else {
                             CreatureFunctions.reRollPrompt(creature);
                         }
-                        creatureList.add(creature);
+                        creatureList.add(creature.clone());
                         System.out.println(creature);
                     }
                     case 4 -> {
@@ -378,14 +378,14 @@ public class CreatureFunctions implements IGenericService<Creature> {
                         } else {
                             CreatureFunctions.rollStats(creature);
                         }
-                        creatureList.add(creature);
+                        creatureList.add(creature.clone());
                         System.out.println(creature);
                     }
                     case 5 -> {
                         if (creature == null) {
                             creature = new Creature();
                             CreatureFunctions.rollAttributes(creature);
-                            creatureList.add(creature);
+                            creatureList.add(creature.clone());
                         }
                         System.out.println(creature);
                     }
@@ -394,7 +394,7 @@ public class CreatureFunctions implements IGenericService<Creature> {
                         if (creature == null) {
                             creature = new Creature();
                             CreatureFunctions.rollAttributes(creature);
-                            creatureList.add(creature);
+                            creatureList.add(creature.clone());
                         }
                         GenericFunctions.exportPW(creature);
                     }
