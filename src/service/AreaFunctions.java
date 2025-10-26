@@ -67,24 +67,10 @@ public class AreaFunctions implements IGenericService<Area> {
         area.setRarity(DungeonArrays.AREA_RARITY[rollRarity]);
 
         area.setAreaDressing(PickFrom(DungeonArrays.AREA_DRESSING));
-        if (Objects.equals(area.getAreaDressing(),"roll twice")) rollTwice(DungeonArrays.AREA_DRESSING);
+        if (Objects.equals(area.getAreaDressing(),"roll twice") || Objects.equals(area.getAreaDressing(),"ROLL TWICE")) rollTwice(DungeonArrays.AREA_DRESSING);
 
-        int i;
-        if (area.getDangersAmount()>0) {
-            for (i = 1; i <= area.getDangersAmount(); i++) {
-                AreaDanger danger = new AreaDanger();
-                AreaDangerFunctions.rollAreaDanger(danger);
-                area.addDanger(danger.clone());
-            }
-        }
-
-        if (area.getDiscoveriesAmount()>0){
-            for(i=1; i<=area.getDiscoveriesAmount();i++) {
-                AreaDiscovery discovery = new AreaDiscovery();
-                AreaDiscoveryFunctions.rollAreaDiscovery(discovery);
-                area.addDiscovery(discovery.clone());
-            }
-        }
+        area.addDangers();
+        area.addDiscoveries();
     }
 
 

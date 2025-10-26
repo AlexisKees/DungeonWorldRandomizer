@@ -1,5 +1,8 @@
 package domain;
 
+import service.AreaDangerFunctions;
+import service.AreaDiscoveryFunctions;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,15 +44,34 @@ public class Area implements IPWClass {
 
 
 
-   public void addDiscovery(AreaDiscovery discovery){
-        if(this.discoveries.size()<this.discoveriesAmount) this.discoveries.add(discovery);
-        else System.out.println("Cannot add discovery: maximum amount of discoveries reached!");
+   public void addDiscoveries(){
+       List<AreaDiscovery> list = new ArrayList<>();
+
+       if (this.getDiscoveriesAmount()>0) {
+           int i;
+           for (i = 1; i <= this.getDiscoveriesAmount(); i++) {
+               AreaDiscovery d = new AreaDiscovery();
+               AreaDiscoveryFunctions.rollAreaDiscovery(d);
+               list.add(d.clone());
+           }
+           this.setDiscoveries(list);
+       }
+
    }
 
 
-    public void addDanger(AreaDanger danger){
-        if (this.dangers.size()<this.dangersAmount) this.dangers.add(danger);
-        else System.out.println("Cannot add danger: maximum amount of dangers reached!");
+    public void addDangers(){
+        List<AreaDanger> list = new ArrayList<>();
+
+        if (this.getDangersAmount()>0) {
+            int i;
+            for (i = 1; i <= this.getDangersAmount(); i++) {
+                AreaDanger d = new AreaDanger();
+                AreaDangerFunctions.rollAreaDanger(d);
+                list.add(d.clone());
+            }
+        }
+        this.setDangers(list);
     }
 
 

@@ -33,7 +33,7 @@ public class AreaDiscoveryFunctions implements IGenericService<AreaDiscovery> {
                 String magicType = CreatureFunctions.rollMagicType();
                 discovery.setFinalResult(feature+". "+magicType);
             }
-            case "roll twice" -> Rolls.rollTwice(DungeonArrays.DUNGEON_DISCOVERY_FIND_PROMPTS,23); //hardcodes number to remove elements that require rerolling
+            case "roll twice", "ROLL TWICE" -> Rolls.rollTwice(DungeonArrays.DUNGEON_DISCOVERY_FIND_PROMPTS,23); //hardcodes number to remove elements that require rerolling
             default -> discovery.setFinalResult(discovery.getPrompt());
         }
 

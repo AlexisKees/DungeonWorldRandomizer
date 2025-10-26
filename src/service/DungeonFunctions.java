@@ -89,7 +89,7 @@ public class DungeonFunctions {
         dungeon.setSituation(PickFrom(DungeonArrays.DUNGEON_SITUATION));
         dungeon.setBuilder(PickFrom(DungeonArrays.DUNGEON_BUILDER));
         dungeon.setFunction(PickFrom(DungeonArrays.DUNGEON_FUNCTION));
-        if (Objects.equals(dungeon.getFunction(),"roll twice")) Rolls.rollTwice(DungeonArrays.DUNGEON_FUNCTION);
+        if (Objects.equals(dungeon.getFunction(),"roll twice")||Objects.equals(dungeon.getFunction(),"ROLL TWICE")) Rolls.rollTwice(DungeonArrays.DUNGEON_FUNCTION);
 
         dungeon.setCauseOfRuin(PickFrom(DungeonArrays.DUNGEON_CAUSE_OF_RUIN));
         dungeon.setAccessibility(PickFrom(DungeonArrays.DUNGEON_ACCESSIBILITY));

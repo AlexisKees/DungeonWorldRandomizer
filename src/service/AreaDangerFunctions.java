@@ -58,11 +58,13 @@ public class AreaDangerFunctions implements IGenericService<AreaDanger> {
                 Creature c = new Creature();
                 CreatureFunctions.rollAttributes(c);
                 c.setDisposition(DetailsArrays.DISPOSITION[0]); //SET DISPOSITION TO "ATTACKING"
-                danger.setFinalResult(c.toString());
+                danger.setFinalResult("CREATURE:\n"+c);
                 danger.setOneLiner(c.getOneLiner());
             }
             default -> {
-                danger.setFinalResult(danger.getPrompt());
+                if (danger.getCategory().equals("Trap")) danger.setFinalResult(danger.getPrompt()+" trap.");
+                else danger.setFinalResult(danger.getPrompt());
+
                 danger.setOneLiner(danger.getFinalResult());
             }
         }

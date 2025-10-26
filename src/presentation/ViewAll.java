@@ -42,7 +42,7 @@ public class ViewAll {
                 switch (option){
                     case 1 ->{
 
-                        System.out.printf("\tPlease insert %s number:\s",label.toLowerCase());
+                        System.out.printf("\nPlease insert %s number:\s",label.toLowerCase());
                         itemNumber=Integer.parseInt(dataInput.nextLine());
                         System.out.println();
                         T selectedItem=list.get(itemNumber-1);
@@ -50,13 +50,16 @@ public class ViewAll {
                             System.out.println("Please insert a valid number");
                             continue;
                         } else {
-                            System.out.printf("TAKE A LOOK AT YOUR CHOSEN %s:\n\n", label.toUpperCase());
-                            System.out.println(selectedItem);
+                            System.out.println("______________________________________");
+                            System.out.printf("TAKE A LOOK AT YOUR CHOSEN %s:%n%n", label.toUpperCase());
+                            System.out.println(selectedItem+"\n");
+                            System.out.println("______________________________________\n");
                         }
 
                         int secondOption;
                         do {
                             System.out.printf("""
+                                Please choose an option:
                                 1) Export %s
                                 2) Select this %s to keep editing
                                 3) Go back

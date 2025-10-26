@@ -30,12 +30,12 @@ public class Rolls {
         do{
             n = Rolls.CustomRoll(i);
             s1 = a[n];
-        } while (s1.equals("roll twice"));
+        } while (s1.equals("roll twice")||s1.equals("ROLL TWICE"));
 
         do{
             n=Rolls.CustomRoll(i);
             s2 = a[n];
-        } while (s1.equals(s2) || s2.equals("roll twice"));
+        } while (s1.equals(s2) || s2.equals("roll twice")||s2.equals("ROLL TWICE"));
 
         return s1+" + "+s2;
     }

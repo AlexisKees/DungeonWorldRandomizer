@@ -17,7 +17,7 @@ public class CreatureFunctions implements IGenericService<Creature> {
         String odd = PickFrom(DetailsArrays.ODDITY);
 
         return switch (odd){
-            case "roll twice" -> rollTwice(DetailsArrays.ODDITY);
+            case "roll twice", "ROLL TWICE" -> rollTwice(DetailsArrays.ODDITY);
             default -> odd;
         };
 
@@ -27,7 +27,7 @@ public class CreatureFunctions implements IGenericService<Creature> {
         String ab = PickFrom(DetailsArrays.ABERRANCE);
         return switch(ab){
             case "anatomical oddity" -> "Anatomical "+ rollOddity();
-            case "roll twice" -> rollTwice(DetailsArrays.ABERRANCE);
+            case "roll twice", "ROLL TWICE" -> rollTwice(DetailsArrays.ABERRANCE);
             default ->  ab;
         };
     }
@@ -55,7 +55,7 @@ public class CreatureFunctions implements IGenericService<Creature> {
             case "based on aspect" ->  "Based on " + rollAspect();
             case "based on element" ->  "Based on " + rollElement();
             case "magic type" ->  "(Magic ability) " + rollMagicType();
-            case "roll twice" -> rollTwice(DetailsArrays.ABILITY);
+            case "roll twice", "ROLL TWICE" -> rollTwice(DetailsArrays.ABILITY);
             default ->  abi;
         };
     }
@@ -132,7 +132,7 @@ public class CreatureFunctions implements IGenericService<Creature> {
             case "Undead" -> creature.setPromptTable(CreatureArrays.PROMPTS_MONSTER_UNDEAD);
             case "Unusual" -> creature.setPromptTable(CreatureArrays.PROMPTS_MONSTER_UNUSUAL);
             case "Beastly" -> creature.setPromptTable(CreatureArrays.PROMPTS_MONSTER_BEASTLY);
-            case "Humanoid" -> creature.setPromptTable(CreatureArrays.PROMPTS_MONSTER_WILD_HUMANOID);
+            case "Wild humanoid" -> creature.setPromptTable(CreatureArrays.PROMPTS_MONSTER_WILD_HUMANOID);
             case "Water-going" -> creature.setPromptTable(CreatureArrays.PROMPTS_BEAST_WATER_GOING);
             case "Airborne" -> creature.setPromptTable(CreatureArrays.PROMPTS_BEAST_AIRBORNE);
             case "Earthbound" -> creature.setPromptTable(CreatureArrays.PROMPTS_BEAST_EARTHBOUND);
@@ -171,8 +171,8 @@ public class CreatureFunctions implements IGenericService<Creature> {
 
             //Se asigna prompt
             creature.setPrompt(PickFrom(creature.getPromptTable()));
-        reviseRolls(creature);
 
+        reviseRolls(creature);
         creature.setOneLiner(creature.getPrompt());
     }
 
@@ -299,17 +299,14 @@ public class CreatureFunctions implements IGenericService<Creature> {
                 String element = DetailsArrays.ELEMENT[UniversalRoll(DetailsArrays.ELEMENT)];
                 creature.setDamageType("Elemental damage: "+element);
             }
-            case "roll twice" -> rollTwice(DetailsArrays.DAMAGE_TYPE);
+            case "roll twice", "ROLL TWICE" -> rollTwice(DetailsArrays.DAMAGE_TYPE);
         }
     }
     private static void rollTags(Creature creature){
-        int r1 = UniversalRoll(DetailsArrays.TAG);
-        creature.setTags(PickFrom(DetailsArrays.TAG));
-        switch (creature.getTags()){
-            case "roll twice" ->  creature.setTags(rollTwice(DetailsArrays.TAG));
-            default -> creature.setTags(DetailsArrays.TAG[r1]);
-        }
+        String tag = PickFrom(DetailsArrays.TAG);
+        if (tag.equals("roll twice")||tag.equals("ROLL TWICE")) tag = rollTwice(DetailsArrays.TAG);
 
+        creature.setTags(tag);
     }
 
     private static void rollAlignment(Creature creature) {

@@ -72,15 +72,15 @@ public class NPCFunctions implements IGenericService<NPC> {
         npc.setPersonality(PickFrom(NPCArrays.PERSONALITY));
         npc.setQuirk(PickFrom(NPCArrays.QUIRK));
 
-        if (Objects.equals(npc.getAppearance(), "roll twice")){
+        if (Objects.equals(npc.getAppearance(), "roll twice")||Objects.equals(npc.getAppearance(), "ROLL TWICE")){
             npc.setAppearance(Rolls.rollTwice(NPCArrays.APPEARANCE));
         }
 
-        if (Objects.equals(npc.getPersonality(), "roll twice")){
+        if (Objects.equals(npc.getPersonality(), "roll twice")||Objects.equals(npc.getPersonality(), "ROLL TWICE")){
             npc.setPersonality(Rolls.rollTwice(NPCArrays.PERSONALITY));
         }
 
-        if (Objects.equals(npc.getQuirk(), "roll twice")){
+        if (Objects.equals(npc.getQuirk(), "roll twice")||Objects.equals(npc.getQuirk(), "ROLL TWICE")){
             npc.setQuirk(Rolls.rollTwice(NPCArrays.QUIRK));
         }
 
