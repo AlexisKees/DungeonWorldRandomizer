@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import static domain.util.Rolls.PickFrom;
+import static service.GenericFunctions.printWithFlair;
 
 public class DiscoveryFunctions implements IGenericService<Discovery> {
 
@@ -244,7 +245,7 @@ public class DiscoveryFunctions implements IGenericService<Discovery> {
                         discovery = new Discovery();
                         DiscoveryFunctions.rollDiscovery(discovery);
                         discoveryList.add(discovery.clone());
-                        System.out.println(discovery);
+                        printWithFlair(discovery);
                     }
                     case 2 -> {
                         if(discovery==null){
@@ -252,7 +253,7 @@ public class DiscoveryFunctions implements IGenericService<Discovery> {
                             DiscoveryFunctions.rollDiscovery(discovery);
                             discoveryList.add(discovery.clone());
                         }
-                        System.out.println(discovery);
+                        printWithFlair(discovery);
                         System.out.println("\n");
                     }
                     case 3 -> discovery = new ViewAll().run(dataInput,discoveryList,discovery, Discovery.class);

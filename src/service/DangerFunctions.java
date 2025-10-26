@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import static domain.util.Rolls.PickFrom;
+import static service.GenericFunctions.printWithFlair;
 
 public class DangerFunctions implements IGenericService<Danger> {
 
@@ -109,7 +110,7 @@ public class DangerFunctions implements IGenericService<Danger> {
                         danger = new Danger();
                         DangerFunctions.rollDanger(danger);
                         dangerList.add(danger.clone());
-                        System.out.println(danger);
+                        printWithFlair(danger);
                     }
                     case 2 -> {
                         if (danger == null){
@@ -117,7 +118,7 @@ public class DangerFunctions implements IGenericService<Danger> {
                             DangerFunctions.rollDanger(danger);
                         }
                         dangerList.add(danger.clone());
-                        System.out.println(danger);
+                        printWithFlair(danger);
                     }
                     case 3 -> danger = new ViewAll().run(dataInput,dangerList,danger, Danger.class);
                     case 4 -> {

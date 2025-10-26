@@ -13,6 +13,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 import static domain.util.Rolls.PickFrom;
+import static service.GenericFunctions.printWithFlair;
 
 public class NPCFunctions implements IGenericService<NPC> {
 
@@ -87,11 +88,6 @@ public class NPCFunctions implements IGenericService<NPC> {
         npc.setOneLiner(String.format("%s, the %s %s %s", npc.getName(), npc.getQuirk(),npc.getRace(), npc.getJob()));
     }
 
-    public static void printNPC(NPC npc){
-        System.out.println(npc);
-    }
-
-
     @Override
     public void showOptions(Scanner dataInput, NPC npc, List<NPC> npcList) {
         var option = 0;
@@ -115,14 +111,14 @@ public class NPCFunctions implements IGenericService<NPC> {
                     case 1 -> {
                         npc = new NPC();
                         NPCFunctions.rollFeatures(npc);
-                        NPCFunctions.printNPC(npc);
+                        printWithFlair(npc);
                         npcList.add(npc.clone());
                     }
                     case 2 -> {
                         if (npc==null) {
                             npc = new NPC();
                             NPCFunctions.rollFeatures(npc);
-                            NPCFunctions.printNPC(npc);
+                            printWithFlair(npc);
                             npcList.add(npc.clone());
                         }
                         System.out.println(npc);

@@ -2,8 +2,7 @@ package service;
 
 import data.DungeonArrays;
 import domain.Area;
-import domain.AreaDanger;
-import domain.AreaDiscovery;
+import static service.GenericFunctions.printWithFlair;
 import static domain.util.Rolls.*;
 import presentation.ViewAll;
 
@@ -101,7 +100,7 @@ public class AreaFunctions implements IGenericService<Area> {
                         area = new Area();
                         AreaFunctions.rollArea(area);
                         areaList.add(area.clone());
-                        System.out.println(area);
+                        printWithFlair(area);
                     }
                     case 2 ->{
                         if (area==null){
@@ -109,7 +108,7 @@ public class AreaFunctions implements IGenericService<Area> {
                             areaList.add(area.clone());
                             AreaFunctions.rollArea(area);
                         }
-                        System.out.println(area);
+                        printWithFlair(area);
                     }
                     case 3 ->{
                         if (area==null){
@@ -120,7 +119,7 @@ public class AreaFunctions implements IGenericService<Area> {
                             AreaFunctions.rollAreaDetails(area);
                             areaList.add(area.clone());
                         }
-                        System.out.println(area);
+                        printWithFlair(area);
                     }
                     case 4 -> area = new ViewAll().run(dataInput, areaList, area, Area.class);
                     case 5 -> {

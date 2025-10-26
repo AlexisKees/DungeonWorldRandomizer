@@ -13,6 +13,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 import static domain.util.Rolls.PickFrom;
+import static service.GenericFunctions.printWithFlair;
 
 public class DungeonFunctions {
     public static void rollDungeon(Dungeon dungeon){
@@ -126,7 +127,7 @@ public class DungeonFunctions {
                         dungeon = new Dungeon();
                         DungeonFunctions.rollDungeon(dungeon);
                         dungeonList.add(dungeon.clone());
-                        System.out.println(dungeon);
+                        printWithFlair(dungeon);
                     }
                     case 2 -> {
                         Area area = null;
@@ -140,7 +141,7 @@ public class DungeonFunctions {
                             DungeonFunctions.rollDungeon(dungeon);
                             dungeonList.add(dungeon.clone());
                         }
-                        System.out.println(dungeon);
+                        printWithFlair(dungeon);
                     }
                     case 5 -> {
                         if (dungeon == null) {

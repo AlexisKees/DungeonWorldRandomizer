@@ -4,6 +4,7 @@ import data.CreatureArrays;
 import data.DetailsArrays;
 import domain.Creature;
 import static domain.util.Rolls.*;
+import static service.GenericFunctions.printWithFlair;
 import presentation.ViewAll;
 
 import java.util.List;
@@ -345,7 +346,7 @@ public class CreatureFunctions implements IGenericService<Creature> {
                         creature = new Creature();
                         CreatureFunctions.rollAttributes(creature);
                         creatureList.add(creature.clone());
-                        System.out.println(creature);
+                        printWithFlair(creature);
                     }
                     case 2 -> {
                         if (creature == null) {
@@ -355,7 +356,7 @@ public class CreatureFunctions implements IGenericService<Creature> {
                         } else {
                             CreatureFunctions.reRollSubcategory(creature);
                             creatureList.add(creature.clone());
-                            System.out.println(creature);
+                            printWithFlair(creature);
                         }
                     }
                     case 3 -> {
@@ -366,7 +367,7 @@ public class CreatureFunctions implements IGenericService<Creature> {
                             CreatureFunctions.reRollPrompt(creature);
                         }
                         creatureList.add(creature.clone());
-                        System.out.println(creature);
+                        printWithFlair(creature);
                     }
                     case 4 -> {
                         if (creature == null) {
@@ -376,7 +377,7 @@ public class CreatureFunctions implements IGenericService<Creature> {
                             CreatureFunctions.rollStats(creature);
                         }
                         creatureList.add(creature.clone());
-                        System.out.println(creature);
+                        printWithFlair(creature);
                     }
                     case 5 -> {
                         if (creature == null) {
@@ -384,7 +385,7 @@ public class CreatureFunctions implements IGenericService<Creature> {
                             CreatureFunctions.rollAttributes(creature);
                             creatureList.add(creature.clone());
                         }
-                        System.out.println(creature);
+                        printWithFlair(creature);
                     }
                     case 6 -> creature = new ViewAll().run(dataInput,creatureList,creature, Creature.class);
                     case 7 -> {

@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import static domain.util.Rolls.PickFrom;
+import static service.GenericFunctions.printWithFlair;
 
 
 public class SteadingFunctions implements IGenericService<Steading> {
@@ -78,16 +79,15 @@ public class SteadingFunctions implements IGenericService<Steading> {
                         steading = new Steading();
                         SteadingFunctions.rollSteading(steading);
                         steadingList.add(steading);
-                        System.out.println(steading);
+                        printWithFlair(steading);
                     }
                     case 2 -> {
                         if (steading == null) {
                             steading = new Steading();
                             SteadingFunctions.rollSteading(steading);
-                            System.out.println(steading);
                             steadingList.add(steading);
                         }
-                        System.out.println(steading);
+                        printWithFlair(steading);
                     }
                     case 3 -> steading = new ViewAll().run(dataInput, steadingList, steading, Steading.class);
                     case 4 -> {
@@ -95,7 +95,6 @@ public class SteadingFunctions implements IGenericService<Steading> {
                             steading = new Steading();
                             SteadingFunctions.rollSteading(steading);
                             steadingList.add(steading);
-                            System.out.println(steading);
                         }
                         GenericFunctions.exportPW(steading);
                     }

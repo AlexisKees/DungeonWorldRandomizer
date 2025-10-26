@@ -38,4 +38,16 @@ public class GenericFunctions {
             System.out.println("Couldn't print file: "+e.getMessage());
         }
     }
+
+    public static <T extends IPWClass> void printWithFlair(T o){
+        System.out.println("______________________________________");
+        System.out.println(o);
+        System.out.println("______________________________________\n");
+    }
+
+    public static void printWithFlair(String o){
+        System.out.println("______________________________________");
+        System.out.println(o);
+        System.out.println("______________________________________\n");
+    }
 }

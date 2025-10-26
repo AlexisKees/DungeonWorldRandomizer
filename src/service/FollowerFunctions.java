@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import static domain.util.Rolls.PickFrom;
+import static service.GenericFunctions.printWithFlair;
 
 public class FollowerFunctions implements IGenericService<Follower> {
     public static void rollFollower(Follower follower){
@@ -200,14 +201,14 @@ public class FollowerFunctions implements IGenericService<Follower> {
                         follower = new Follower();
                         FollowerFunctions.rollFollower(follower);
                         followerList.add(follower.clone());
-                        System.out.println(follower);
+                        printWithFlair(follower);
                     }
                     case 2 ->{
                         if (follower==null){
                             follower = new Follower();
                             FollowerFunctions.rollFollower(follower);
                         }
-                        System.out.println(follower);
+                        printWithFlair(follower);
                     }
                     case 3 ->{
                         if (follower==null){
@@ -217,7 +218,7 @@ public class FollowerFunctions implements IGenericService<Follower> {
                             FollowerFunctions.rollFollowerDetails(follower);
                         }
                         followerList.add(follower.clone());
-                        System.out.println(follower);
+                        printWithFlair(follower);
                     }
                     case 4 -> follower = new ViewAll().run(dataInput, followerList, follower, Follower.class);
                     case 5 -> {

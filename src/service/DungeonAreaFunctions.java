@@ -7,6 +7,8 @@ import presentation.ViewAll;
 import java.util.List;
 import java.util.Scanner;
 
+import static service.GenericFunctions.printWithFlair;
+
 
 public class DungeonAreaFunctions {
 
@@ -36,14 +38,14 @@ public class DungeonAreaFunctions {
                         area = new Area();
                         AreaFunctions.rollArea(area);
                         areaList.add(area.clone());
-                        System.out.println(area);
+                        printWithFlair(area);
                     }
                     case 2 ->{
                         if (area==null){
                             area = new Area();
                             AreaFunctions.rollArea(area);
                         }
-                        System.out.println(area);
+                        printWithFlair(area);
                     }
                     case 3 ->{
                         if (area==null){
@@ -53,7 +55,7 @@ public class DungeonAreaFunctions {
                             AreaFunctions.rollAreaDetails(area);
                         }
                         areaList.add(area.clone());
-                        System.out.println(area);
+                        printWithFlair(area);
                     }
                     case 4 -> area = new ViewAll().run(dataInput, dungeon.getAreas(), area, Area.class);
                     case 5 -> {

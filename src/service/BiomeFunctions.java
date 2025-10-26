@@ -4,6 +4,7 @@ import data.BiomeArrays;
 import data.DetailsArrays;
 import domain.Biome;
 import static domain.util.Rolls.*;
+import static service.GenericFunctions.printWithFlair;
 import presentation.ViewAll;
 import java.util.List;
 import java.util.Scanner;
@@ -74,8 +75,8 @@ public class BiomeFunctions implements IGenericService<Biome> {
                     case 1 ->{
                         biome = new Biome();
                         BiomeFunctions.rollBiome(biome);
-                        System.out.println(biome);
                         biomeList.add(biome.clone());
+                        printWithFlair(biome);
                     }
                     case 2 -> {
                         if(biome==null){

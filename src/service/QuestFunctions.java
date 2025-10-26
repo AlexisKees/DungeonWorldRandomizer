@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import static domain.util.Rolls.PickFrom;
+import static service.GenericFunctions.printWithFlair;
 
 public class QuestFunctions {
 
@@ -64,7 +65,7 @@ public class QuestFunctions {
                         npcList.add(quest.getQuestGiver().clone());
                         dungeonList.add(quest.getDungeon().clone());
                         biomeList.add(quest.getBiome().clone());
-                        System.out.print(quest.getBrief());
+                        printWithFlair(quest.getBrief());
                     }
                     case 2 -> {
                         if(quest==null){
@@ -74,7 +75,7 @@ public class QuestFunctions {
                             npcList.add(quest.getQuestGiver().clone());
                             dungeonList.add(quest.getDungeon().clone());
                             biomeList.add(quest.getBiome().clone());
-                            System.out.println(quest);
+                            printWithFlair(quest);
                         }
                         System.out.println("QUEST GIVER:\n\n"+quest.getQuestGiver());
                     }
@@ -86,7 +87,7 @@ public class QuestFunctions {
                             npcList.add(quest.getQuestGiver().clone());
                             dungeonList.add(quest.getDungeon().clone());
                             biomeList.add(quest.getBiome().clone());
-                            System.out.println(quest);
+                            printWithFlair(quest);
                         }
                         System.out.println("QUEST LOCATION - BIOME:\n\n"+quest.getBiome());
                         System.out.println("QUEST LOCATION - DUNGEON:\n\n"+quest.getDungeon());
