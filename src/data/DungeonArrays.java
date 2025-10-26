@@ -253,7 +253,7 @@ public class DungeonArrays {
             "junk","debris","refuse","waste",
             "broken structure","furniture",
             "inscription","ornamentation",
-            "roll twice",
+            "roll twice"
     };
 
 

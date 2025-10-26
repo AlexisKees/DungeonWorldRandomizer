@@ -26,7 +26,7 @@ public class AreaFunctions implements IGenericService<Area> {
         int rollRarity = UniversalRoll(DungeonArrays.AREA_RARITY);
         switch (rollRarity){
             case 0 ->{
-                area.setDangersAmount(Roll1d4());
+                area.setDangersAmount(Roll1d4()+1);
                 area.setDiscoveriesAmount(0);
             }
             case 1,2 ->{
@@ -42,7 +42,7 @@ public class AreaFunctions implements IGenericService<Area> {
                 area.setDiscoveriesAmount(1);
             }
             case 7->{
-                area.setDangersAmount(Roll1d4());
+                area.setDangersAmount(Roll1d4()+1);
                 area.setDiscoveriesAmount(1);
             }
             case 8->{
@@ -50,16 +50,16 @@ public class AreaFunctions implements IGenericService<Area> {
                 area.setDiscoveriesAmount(1);
             }
             case 9->{
-                area.setDangersAmount(Roll1d4());
-                area.setDiscoveriesAmount(Roll1d4());
+                area.setDangersAmount(Roll1d4()+1);
+                area.setDiscoveriesAmount(Roll1d4()+1);
             }
             case 10->{
                 area.setDangersAmount(1);
-                area.setDiscoveriesAmount(Roll1d4());
+                area.setDiscoveriesAmount(Roll1d4()+1);
             }
             case 11->{
                 area.setDangersAmount(0);
-                area.setDiscoveriesAmount(Roll1d4());
+                area.setDiscoveriesAmount(Roll1d4()+1);
             }
 
         }
@@ -67,24 +67,22 @@ public class AreaFunctions implements IGenericService<Area> {
         area.setRarity(DungeonArrays.AREA_RARITY[rollRarity]);
 
         area.setAreaDressing(PickFrom(DungeonArrays.AREA_DRESSING));
-        if (Objects.equals(area.getAreaDressing(),"roll 1d10 twice, combine")){
-            area.setAreaDressing(DungeonArrays.AREA_DRESSING[Roll1d10()]+" and "+DungeonArrays.AREA_DRESSING[Roll1d10()]);
-        }
+        if (Objects.equals(area.getAreaDressing(),"roll twice")) rollTwice(DungeonArrays.AREA_DRESSING);
 
         int i;
         if (area.getDangersAmount()>0) {
             for (i = 1; i <= area.getDangersAmount(); i++) {
                 AreaDanger danger = new AreaDanger();
-                DungeonDangerFunctions.rollDungeonDanger(danger);
-                area.addDanger(danger);
+                AreaDangerFunctions.rollAreaDanger(danger);
+                area.addDanger(danger.clone());
             }
         }
 
         if (area.getDiscoveriesAmount()>0){
             for(i=1; i<=area.getDiscoveriesAmount();i++) {
                 AreaDiscovery discovery = new AreaDiscovery();
-                DungeonDiscoveryFunctions.rollDungeonDiscovery(discovery);
-                area.addDiscovery(discovery);
+                AreaDiscoveryFunctions.rollAreaDiscovery(discovery);
+                area.addDiscovery(discovery.clone());
             }
         }
     }

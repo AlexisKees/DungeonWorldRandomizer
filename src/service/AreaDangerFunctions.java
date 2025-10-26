@@ -10,9 +10,9 @@ import java.util.Scanner;
 
 import static domain.util.Rolls.PickFrom;
 
-public class DungeonDangerFunctions implements IGenericService<AreaDanger> {
+public class AreaDangerFunctions implements IGenericService<AreaDanger> {
 
-    public static void rollDungeonDanger(AreaDanger danger){
+    public static void rollAreaDanger(AreaDanger danger){
         danger.setCategory(PickFrom(DungeonArrays.DUNGEON_DANGER_CATEGORIES));
 
         switch (danger.getCategory()){
@@ -25,14 +25,17 @@ public class DungeonDangerFunctions implements IGenericService<AreaDanger> {
             case "based on Element" -> {
                 String element = CreatureFunctions.rollElement();
                 danger.setFinalResult(element+"trap");
+                danger.setOneLiner(danger.getFinalResult());
             }
             case "based on Magic Type" -> {
                 String magicType = CreatureFunctions.rollMagicType();
                 danger.setFinalResult("Magic "+magicType+" trap");
+                danger.setOneLiner(danger.getFinalResult());
             }
             case "based on Oddity" -> {
                 String oddity = CreatureFunctions.rollOddity();
                 danger.setFinalResult(oddity+" trap");
+                danger.setOneLiner(danger.getFinalResult());
             }
             case "Creature leader (with minions)" -> {
                 Creature c = new Creature();
@@ -55,6 +58,7 @@ public class DungeonDangerFunctions implements IGenericService<AreaDanger> {
                 Creature c = new Creature();
                 CreatureFunctions.rollAttributes(c);
                 c.setDisposition(DetailsArrays.DISPOSITION[0]); //SET DISPOSITION TO "ATTACKING"
+                danger.setFinalResult(c.toString());
                 danger.setOneLiner(c.getOneLiner());
             }
             default -> {

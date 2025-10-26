@@ -9,9 +9,9 @@ import java.util.Scanner;
 
 import static domain.util.Rolls.PickFrom;
 
-public class DungeonDiscoveryFunctions implements IGenericService<AreaDiscovery> {
+public class AreaDiscoveryFunctions implements IGenericService<AreaDiscovery> {
 
-    public static void rollDungeonDiscovery(AreaDiscovery discovery){
+    public static void rollAreaDiscovery(AreaDiscovery discovery){
         discovery.setCategory(PickFrom(DungeonArrays.DUNGEON_DISCOVERY_CATEGORIES));
 
         switch (discovery.getCategory()){

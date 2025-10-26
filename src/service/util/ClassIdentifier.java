@@ -15,8 +15,8 @@ public class ClassIdentifier {
         map.put(Creature.class,new CreatureFunctions());
         map.put(Danger.class,new DangerFunctions());
         map.put(Discovery.class,new DiscoveryFunctions());
-        map.put(AreaDanger.class,new DungeonDangerFunctions());
-        map.put(AreaDiscovery.class,new DungeonDiscoveryFunctions());
+        map.put(AreaDanger.class,new AreaDangerFunctions());
+        map.put(AreaDiscovery.class,new AreaDiscoveryFunctions());
         map.put(Follower.class,new FollowerFunctions());
         map.put(NPC.class,new NPCFunctions());
         map.put(Steading.class,new SteadingFunctions());
