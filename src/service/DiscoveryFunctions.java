@@ -61,9 +61,7 @@ public class DiscoveryFunctions implements IGenericService<Discovery> {
         discovery.setPrompt(PickFrom(discovery.getPromptTable()));
 
         switch (discovery.getPrompt()){
-            case "Lair RUIN" -> {
-                rollRuins(discovery);
-            }
+            case "Lair RUIN" -> rollRuins(discovery);
             case "pocket of TERRAIN" -> {
                 String terrain = PickFrom(DetailsArrays.TERRAIN);
                 discovery.setFinalResult("Pocket of "+terrain);

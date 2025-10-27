@@ -1,7 +1,6 @@
 package domain.util;
 
 
-import data.DetailsArrays;
 
 import java.util.Random;
 
@@ -48,8 +47,7 @@ public class Rolls {
 
     public static int CustomRoll(int i){
         Random azar = new Random();
-        int resultado = azar.nextInt(i);
-        return resultado;
+        return azar.nextInt(i);
     }
 
     public static int UniversalRoll(String[] a){
@@ -62,43 +60,34 @@ public class Rolls {
 
     public static boolean rollBoolean(){
         return java.util.concurrent.ThreadLocalRandom.current().nextBoolean();
-    };
+    }
 
     public static int Roll1d2() {
         Random azar = new Random();
-        int resultado = azar.nextInt(2);
-        return resultado;
+        return azar.nextInt(2);
     }
 
     public static int Roll1d4() {
         Random azar = new Random();
-        int resultado = azar.nextInt(4);
-        return resultado;
+        return azar.nextInt(4);
     }
     public static int Roll1d6() {
         Random azar = new Random();
-        int resultado = azar.nextInt(6);
-        return resultado;
+        return azar.nextInt(6);
     }
 
     public static int Roll1d8() {
         Random azar = new Random();
-        int resultado = azar.nextInt(8);
-        return resultado;
+        return azar.nextInt(8);
     }
 
     public static int Roll1d12() {
         Random azar = new Random();
-        int resultado = azar.nextInt(12);
-        return resultado;
+        return azar.nextInt(12);
     }
 
     public static int Roll1d10(){
         Random azar = new Random();
-        int resultado = azar.nextInt(10);
-        return resultado;
+        return azar.nextInt(10);
     }
-
-
-
 }

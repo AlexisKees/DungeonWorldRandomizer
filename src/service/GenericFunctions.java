@@ -11,8 +11,6 @@ public class GenericFunctions {
 
     public static <T extends IPWClass> void exportPW(T pw) throws IOException {
         try {
-
-
             Class<?> c = pw.getClass();
             String prefix = c.getSimpleName().replaceFirst("Class", "") + "_";
             int number = 1;
