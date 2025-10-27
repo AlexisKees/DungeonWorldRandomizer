@@ -1,10 +1,7 @@
 package domain;
 
-import java.util.Objects;
-
 public class Creature implements IPWClass {
 
-//    private Boolean wasRolled = false;
     private String category;
     private String subcategory;
     private String prompt;
