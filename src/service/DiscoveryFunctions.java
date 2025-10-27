@@ -29,10 +29,13 @@ public class DiscoveryFunctions implements IGenericService<Discovery> {
              case "STRUCTURE" -> discovery.setSubcategoriesTable(DiscoveryArrays.STRUCTURE_SUBCATEGORIES);
         }
 
+
+
         discovery.setSubcategory(PickFrom(discovery.getSubcategoriesTable()));
 //        if(discovery.getSubcategory()!=null) System.out.println("Subcategory established"); else System.out.println("Failed trying to set subcategory. Category was: "+discovery.getCategory());
 
         switch (discovery.getSubcategory()){
+
             case "Divine" -> discovery.setPromptTable(DiscoveryArrays.DIVINE_PROMPTS);
             case "Planar" -> discovery.setPromptTable(DiscoveryArrays.PLANAR_PROMPTS);
             case "Arcane" -> discovery.setPromptTable(DiscoveryArrays.ARCANE_PROMPTS);
@@ -59,9 +62,7 @@ public class DiscoveryFunctions implements IGenericService<Discovery> {
 
         switch (discovery.getPrompt()){
             case "Lair RUIN" -> {
-                String ruin = rollRuins().toLowerCase();
-                discovery.setFinalResult("A lair in a "+ruin);
-                discovery.setOneLiner(discovery.getFinalResult());
+                rollRuins(discovery);
             }
             case "pocket of TERRAIN" -> {
                 String terrain = PickFrom(DetailsArrays.TERRAIN);
@@ -121,13 +122,13 @@ public class DiscoveryFunctions implements IGenericService<Discovery> {
                 Dungeon d = new Dungeon();
                 DungeonFunctions.rollDungeon(d);
                 discovery.setFinalResult("Dungeon in ruins:\n"+d);
-                discovery.setOneLiner("Dungeon in ruins: "+d.getName());
+                discovery.setOneLiner("Dungeon in ruins: "+d.getOneLiner());
             }
             case "STEADING" -> {
                 Steading s = new Steading();
                 SteadingFunctions.rollSteading(s);
                 discovery.setFinalResult("Steading in ruins:\n"+s);
-                discovery.setOneLiner("Steading in ruins: "+s.getName());
+                discovery.setOneLiner("Steading in ruins: "+s.getOneLiner());
             }
             case "religious" -> {
                 int roll = Rolls.Roll1d8()+4;
@@ -151,25 +152,25 @@ public class DiscoveryFunctions implements IGenericService<Discovery> {
                 Steading s = new Steading();
                 SteadingFunctions.rollSteading(s,"VILLAGE");
                 discovery.setFinalResult(s.toString());
-                discovery.setOneLiner("Village: "+s.getName());
+                discovery.setOneLiner("Village: "+s.getOneLiner());
             }
             case "town" -> {
                 Steading s = new Steading();
                 SteadingFunctions.rollSteading(s,"TOWN");
                 discovery.setFinalResult(s.toString());
-                discovery.setOneLiner("Town: "+s.getName());
+                discovery.setOneLiner("Town: "+s.getOneLiner());
             }
             case "keep" -> {
                 Steading s = new Steading();
                 SteadingFunctions.rollSteading(s,"KEEP");
                 discovery.setFinalResult(s.toString());
-                discovery.setOneLiner("Keep: "+s.getName());
+                discovery.setOneLiner("Keep: "+s.getOneLiner());
             }
             case "city" -> {
                 Steading s = new Steading();
                 SteadingFunctions.rollSteading(s,"CITY");
                 discovery.setFinalResult(s.toString());
-                discovery.setOneLiner("City: "+s.getName());
+                discovery.setOneLiner("City: "+s.getOneLiner());
             }
             default -> {
                 discovery.setFinalResult(discovery.getPrompt());
@@ -182,8 +183,7 @@ public class DiscoveryFunctions implements IGenericService<Discovery> {
     }
 
 
-    private static String rollRuins(){
-
+    private static void rollRuins(Discovery discovery){
         String ruin = PickFrom(DiscoveryArrays.RUIN_PROMPTS);
 
         switch (ruin) {
@@ -191,32 +191,35 @@ public class DiscoveryFunctions implements IGenericService<Discovery> {
             case "DUNGEON" -> {
                 Dungeon d = new Dungeon();
                 DungeonFunctions.rollDungeon(d);
-                return String.format("Dungeon in ruins:\n" + d);
+                discovery.setFinalResult("A lair in a Dungeon in ruins:\n"+d);
+                discovery.setOneLiner("A lair in a Dungeon in ruins: "+d.getOneLiner());
             }
             case "STEADING" -> {
                 Steading s = new Steading();
                 SteadingFunctions.rollSteading(s);
-                return String.format("Steading in ruins:\n" + s);
+                discovery.setFinalResult("A lair in a "+s.getSize().toLowerCase()+" in ruins:\n"+s);
+                discovery.setOneLiner("A lair in a "+s.getSize().toLowerCase()+" in ruins:\n"+s.getOneLiner());
             }
             case "religious" -> {
                 int roll = Rolls.Roll1d8() + 4;
                 String structure = DiscoveryArrays.RELIGIOUS_PROMPTS[roll];
-                return String.format(structure + " in ruins");
+                discovery.setFinalResult(structure + " in ruins");
+                discovery.setOneLiner(discovery.getFinalResult());
             }
             case "dwelling" -> {
                 int roll = Rolls.Roll1d8() + 4;
                 String structure = DiscoveryArrays.DWELLING_PROMPTS[roll];
-                return String.format(structure + " in ruins");
+                discovery.setFinalResult(structure + " in ruins");
+                discovery.setOneLiner(discovery.getFinalResult());
             }
             case "infrastructure" -> {
                 int roll = Rolls.Roll1d8() + 4;
                 String structure = DiscoveryArrays.INFRASTRUCTURE_PROMPTS[roll];
-                return String.format(structure + " in ruins");
+                discovery.setFinalResult(structure + " in ruins");
+                discovery.setOneLiner(discovery.getFinalResult());
             }
+            default -> {}
         }
-
-        return ruin;
-
     }
 
 

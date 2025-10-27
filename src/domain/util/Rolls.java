@@ -1,6 +1,8 @@
 package domain.util;
 
 
+import data.DetailsArrays;
+
 import java.util.Random;
 
 public class Rolls {
@@ -23,21 +25,25 @@ public class Rolls {
     }
 
     public static String rollTwice(String[] a,int i){
-        int n;
-        String s1;
-        String s2;
+        try {
+            int n;
+            String s1;
+            String s2;
 
-        do{
-            n = Rolls.CustomRoll(i);
-            s1 = a[n];
-        } while (s1.equals("roll twice")||s1.equals("ROLL TWICE"));
+            do {
+                n = Rolls.CustomRoll(i);
+                s1 = a[n];
+            } while (s1.equals("roll twice") || s1.equals("ROLL TWICE"));
 
-        do{
-            n=Rolls.CustomRoll(i);
-            s2 = a[n];
-        } while (s1.equals(s2) || s2.equals("roll twice")||s2.equals("ROLL TWICE"));
+            do {
+                n = Rolls.CustomRoll(i);
+                s2 = a[n];
+            } while (s1.equals(s2) || s2.equals("roll twice") || s2.equals("ROLL TWICE"));
 
-        return s1+" + "+s2;
+            return s1 + " + " + s2;
+        } catch (Exception e) {
+            return e.getMessage();
+        }
     }
 
     public static int CustomRoll(int i){
@@ -92,6 +98,7 @@ public class Rolls {
         int resultado = azar.nextInt(10);
         return resultado;
     }
+
 
 
 }

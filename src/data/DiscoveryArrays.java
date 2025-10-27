@@ -55,18 +55,18 @@ public class DiscoveryArrays {
 
     /* ---- EVIDENCE ---- */
     public static final String[] EVIDENCE_SUBCATEGORIES = {
-            "Tracks","Spoor",
-            "Tracks","Spoor",
-            "Tracks","Spoor",
-            "Tracks","Spoor",
-            "Tracks","Spoor",
-            "Tracks","Spoor",
+            "Tracks","Tracks",
+            "Tracks","Tracks",
+            "Tracks","Tracks",
+            "Tracks","Tracks",
+            "Tracks","Tracks",
+            "Tracks","Tracks",
             "Remains","Debris",
             "Remains","Debris",
             "Remains","Debris",
             "Remains","Debris",
-            "Stash","Cache",
-            "Stash","Cache"
+            "Stash","Stash",
+            "Stash","Stash"
     };
 
     /* ---- CREATURE ----

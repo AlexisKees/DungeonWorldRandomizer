@@ -118,10 +118,9 @@ public class NPCFunctions implements IGenericService<NPC> {
                         if (npc==null) {
                             npc = new NPC();
                             NPCFunctions.rollFeatures(npc);
-                            printWithFlair(npc);
                             npcList.add(npc.clone());
                         }
-                        System.out.println(npc);
+                        printWithFlair(npc);
                     }
                     case 3 -> npc = new ViewAll().run(dataInput,npcList,npc, NPC.class);
                     case 4 -> GenericFunctions.exportPW(npc);

@@ -54,8 +54,7 @@ public class Creature implements IPWClass {
                     %s damage (%s, %s)
                     Tags: %s
                     Alignment: %s
-                    Disposition: %s
-                        """, this.getCategory(), this.getSubcategory(), this.getPrompt(),this.getGroupSize(),this.getSize(),this.getHitPoints(),this.getArmor(),this.getArmorType(),
+                    Disposition: %s""", this.getCategory(), this.getSubcategory(), this.getPrompt(),this.getGroupSize(),this.getSize(),this.getHitPoints(),this.getArmor(),this.getArmorType(),
                 this.getDamage(),this.getReach(),this.getDamageType(),this.getTags(),this.getAlignment(),this.getDisposition());
     }
 

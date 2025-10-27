@@ -40,14 +40,14 @@ public class GenericFunctions {
     }
 
     public static <T extends IPWClass> void printWithFlair(T o){
-        System.out.println("______________________________________");
+        System.out.println("_________________________________________");
         System.out.println(o);
-        System.out.println("______________________________________\n");
+        System.out.println("_________________________________________\n");
     }
 
     public static void printWithFlair(String o){
-        System.out.println("______________________________________");
+        System.out.println("_________________________________________");
         System.out.println(o);
-        System.out.println("______________________________________\n");
+        System.out.println("_________________________________________\n");
     }
 }

@@ -298,10 +298,12 @@ public class CreatureFunctions implements IGenericService<Creature> {
         switch (creature.getDamageType()){
             case "element" -> {
                 String element = DetailsArrays.ELEMENT[UniversalRoll(DetailsArrays.ELEMENT)];
-                creature.setDamageType("Elemental damage: "+element);
+                creature.setDamageType("Element: "+element);
             }
-            case "roll twice", "ROLL TWICE" -> rollTwice(DetailsArrays.DAMAGE_TYPE);
+            case "roll twice", "ROLL TWICE" -> creature.setDamageType(rollTwice(DetailsArrays.DAMAGE_TYPE).replace("element", "Element: "+CreatureFunctions.rollElement()));
         }
+
+
     }
     private static void rollTags(Creature creature){
         String tag = PickFrom(DetailsArrays.TAG);

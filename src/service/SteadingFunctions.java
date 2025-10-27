@@ -52,7 +52,7 @@ public class SteadingFunctions implements IGenericService<Steading> {
         steading.setRaceOfBuilders(CreatureFunctions.rollHumanoid());
         steading.setAlignment(PickFrom(DetailsArrays.ALIGNMENT));
         steading.setDangerLevel(PickFrom(SteadingArrays.DANGER_LEVEL));
-        steading.setOneLiner(steading.getName()+", "+steading.getRaceOfBuilders()+" "+steading.getSize());
+        steading.setOneLiner(steading.getName()+", "+steading.getRaceOfBuilders()+" "+steading.getSize().toLowerCase());
     }
 
     @Override

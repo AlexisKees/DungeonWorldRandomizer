@@ -57,7 +57,7 @@ public class DungeonAreaFunctions {
                         areaList.add(area.clone());
                         printWithFlair(area);
                     }
-                    case 4 -> area = new ViewAll().run(dataInput, dungeon.getAreas(), area, Area.class);
+                    case 4 -> area = new ViewAll().run(dataInput, areaList, area, Area.class);
                     case 5 -> {
                         if (area==null){
                             area = new Area();
