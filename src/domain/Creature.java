@@ -1,6 +1,6 @@
 package domain;
 
-public class Creature implements IPWClass {
+public class Creature implements IPWClass<Creature> {
 
     private String category;
     private String subcategory;
