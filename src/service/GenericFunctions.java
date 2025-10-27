@@ -9,10 +9,10 @@ import java.io.PrintWriter;
 
 public class GenericFunctions {
 
-    public static <T extends IPWClass> void exportPW(T pw) throws IOException {
+    public static <T extends IPWClass<T>> void exportPW(T pw) throws IOException {
         try {
             Class<?> c = pw.getClass();
-            String prefix = c.getSimpleName().replaceFirst("Class", "") + "_";
+            String prefix = c.getSimpleName()+ "_";
             int number = 1;
             String fileName = String.format(prefix + "%04d.txt", number);
             File file = new File(fileName);
@@ -37,7 +37,7 @@ public class GenericFunctions {
         }
     }
 
-    public static <T extends IPWClass> void printWithFlair(T o){
+    public static <T extends IPWClass<T>> void printWithFlair(T o){
         System.out.println("_________________________________________");
         System.out.println(o);
         System.out.println("_________________________________________\n");
