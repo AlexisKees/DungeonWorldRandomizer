@@ -85,6 +85,8 @@ public class NPCFunctions implements IGenericService<NPC> {
             npc.setQuirk(Rolls.rollTwice(NPCArrays.QUIRK));
         }
 
+        npc.setActivity(PickFrom(DetailsArrays.ACTIVITY));
+
         npc.setOneLiner(String.format("%s, the %s %s %s", npc.getName(), npc.getQuirk(),npc.getRace(), npc.getJob()));
     }
 

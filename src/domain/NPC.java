@@ -16,6 +16,7 @@ public class NPC implements IPWClass {
     private String personality;
     private String quirk;
     private String oneLiner;
+    private Object activity;
 
 
     public String getOneLiner(){
@@ -60,7 +61,8 @@ public class NPC implements IPWClass {
                Age: %s
                Appearance: %s
                Personality: %s
-               Quirk: %s""", this.name, this.race, this.job, this.gender, this.age, this.appearance,this.personality, this.quirk);
+               Quirk: %s
+               Activity: %s""", this.name, this.race, this.job, this.gender, this.age, this.appearance,this.personality, this.quirk,this.activity);
     }
 
     public String[] getRaceTable() {
@@ -155,5 +157,11 @@ public class NPC implements IPWClass {
         this.quirk = quirk;
     }
 
+    public Object getActivity() {
+        return activity;
+    }
 
+    public void setActivity(Object activity) {
+        this.activity = activity;
+    }
 }
