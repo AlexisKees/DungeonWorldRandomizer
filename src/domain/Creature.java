@@ -17,6 +17,7 @@ public class Creature implements IPWClass<Creature> {
     private String reach;
     private String tags;
     private String alignment;
+    private String activity;
     private String disposition;
     private String armorType;
     private String oneLiner;
@@ -41,7 +42,8 @@ public class Creature implements IPWClass<Creature> {
 
     @Override
     public String toString(){
-        return String.format("""
+        if(this.activity==null)
+            return String.format("""
                     Creature category: %s
                     Creature subcategory: %s
                     Creature prompt: %s
@@ -51,8 +53,22 @@ public class Creature implements IPWClass<Creature> {
                     %s damage (%s, %s)
                     Tags: %s
                     Alignment: %s
-                    Disposition: %s""", this.getCategory(), this.getSubcategory(), this.getPrompt(),this.getGroupSize(),this.getSize(),this.getHitPoints(),this.getArmor(),this.getArmorType(),
-                this.getDamage(),this.getReach(),this.getDamageType(),this.getTags(),this.getAlignment(),this.getDisposition());
+                    Disposition: %s""", this.category, this.subcategory, this.prompt,this.groupSize,this.size,this.hitPoints,this.armor,this.armorType,
+                this.damage,this.reach,this.damageType,this.tags,this.alignment,this.disposition);
+        else
+            return String.format("""
+                    Creature category: %s
+                    Creature subcategory: %s
+                    Creature prompt: %s
+                    Group size: %s
+                    Individual size: %s
+                    %dHP (%d armor: %s)
+                    %s damage (%s, %s)
+                    Tags: %s
+                    Alignment: %s
+                    Activity: %s
+                    Disposition: %s""", this.category, this.subcategory, this.prompt,this.groupSize,this.size,this.hitPoints,this.armor,this.armorType,
+                    this.damage,this.reach,this.damageType,this.tags,this.alignment,this.activity,this.disposition);
     }
 
     public String getCategory() {
@@ -191,6 +207,14 @@ public class Creature implements IPWClass<Creature> {
 
     public String getPrompt() {
         return prompt;
+    }
+
+    public String getActivity() {
+        return activity;
+    }
+
+    public void setActivity(String activity) {
+        this.activity = activity;
     }
 }
 
