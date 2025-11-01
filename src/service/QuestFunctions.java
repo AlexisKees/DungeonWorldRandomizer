@@ -49,9 +49,10 @@ public class QuestFunctions {
                         1) Create new random quest
                         2) Quest giver details
                         3) Quest location details
-                        4) See previously generated quests
-                        5) Print quest
-                        6) Main menu
+                        4) See current quest
+                        5) See previously generated quests
+                        6) Print quest
+                        7) Main menu
                         
                         \tOption:\s""");
                 option = Integer.parseInt(dataInput.nextLine());
@@ -68,41 +69,43 @@ public class QuestFunctions {
                         printWithFlair(quest.getBrief());
                     }
                     case 2 -> {
-                        if(quest==null){
+                        if(quest.getTask()==null){
                             quest = new Quest();
                             QuestFunctions.rollQuest(quest);
                             questList.add(quest.clone());
                             npcList.add(quest.getQuestGiver().clone());
                             dungeonList.add(quest.getDungeon().clone());
                             biomeList.add(quest.getBiome().clone());
-                            printWithFlair(quest);
                         }
-                        System.out.println("QUEST GIVER:\n\n"+quest.getQuestGiver());
+                        printWithFlair("QUEST GIVER:\n\n"+quest.getQuestGiver());
                     }
                     case 3 -> {
-                        if(quest==null){
+                        if(quest.getTask()==null){
                             quest = new Quest();
                             QuestFunctions.rollQuest(quest);
                             questList.add(quest.clone());
                             npcList.add(quest.getQuestGiver().clone());
                             dungeonList.add(quest.getDungeon().clone());
                             biomeList.add(quest.getBiome().clone());
-                            printWithFlair(quest);
                         }
-                        System.out.println("QUEST LOCATION - BIOME:\n\n"+quest.getBiome());
-                        System.out.println("QUEST LOCATION - DUNGEON:\n\n"+quest.getDungeon());
+                        printWithFlair("QUEST LOCATION - BIOME:\n\n"+quest.getBiome()+"\n\n"+"QUEST LOCATION - DUNGEON:\n\n"+quest.getDungeon());
                     }
-                    case 4 -> quest = new ViewAll().run(dataInput,questList,quest, Quest.class);
-                    case 5 -> {
-                        if (quest == null) {
+                    case 4 -> {
+                        if(quest.getTask()==null){
                             quest = new Quest();
                             QuestFunctions.rollQuest(quest);
-                            quest.setQuestGiver(new NPC());
-                            quest.setDungeon(new Dungeon());
-                            quest.setBiome(new Biome());
-                            DungeonFunctions.rollDungeon(quest.getDungeon());
-                            NPCFunctions.rollFeatures(quest.getQuestGiver());
-                            BiomeFunctions.rollBiome(quest.getBiome());
+                            questList.add(quest.clone());
+                            npcList.add(quest.getQuestGiver().clone());
+                            dungeonList.add(quest.getDungeon().clone());
+                            biomeList.add(quest.getBiome().clone());
+                        }
+                        printWithFlair(quest);
+                    }
+                    case 5-> quest = new ViewAll().run(dataInput,questList,quest, Quest.class);
+                    case 6 -> {
+                        if(quest.getTask() == null) {
+                            quest = new Quest();
+                            QuestFunctions.rollQuest(quest);
                             questList.add(quest.clone());
                             npcList.add(quest.getQuestGiver().clone());
                             dungeonList.add(quest.getDungeon().clone());
@@ -110,14 +113,14 @@ public class QuestFunctions {
                         }
                         GenericFunctions.exportPW(quest);
                     }
-                    case 6 -> System.out.println("\nReturning to main menu...\n");
+                    case 7 -> System.out.println("\nReturning to main menu...\n");
                     default -> System.out.print("\nInvalid number!\n\n");
                 }
             } catch (Exception e) {
                 System.out.println("\nPlease choose a valid option.\n");
             }
         }
-        while (option != 6);
+        while (option != 7);
     }
 
 

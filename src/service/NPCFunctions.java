@@ -68,6 +68,7 @@ public class NPCFunctions implements IGenericService<NPC> {
         }
 
         npc.setJob(PickFrom(npc.getJobList()));
+        if (npc.getCategory().equals("Merchant")) npc.setJob(npc.getJob()+" merchant");
 
         npc.setAppearance(PickFrom(NPCArrays.APPEARANCE));
         npc.setPersonality(PickFrom(NPCArrays.PERSONALITY));
