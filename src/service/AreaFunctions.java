@@ -66,7 +66,7 @@ public class AreaFunctions implements IGenericService<Area> {
         area.setRarity(DungeonArrays.AREA_RARITY[rollRarity]);
 
         area.setAreaDressing(PickFrom(DungeonArrays.AREA_DRESSING));
-        if (Objects.equals(area.getAreaDressing(),"roll twice") || Objects.equals(area.getAreaDressing(),"ROLL TWICE")) rollTwice(DungeonArrays.AREA_DRESSING);
+        if (Objects.equals(area.getAreaDressing(),"roll twice") || Objects.equals(area.getAreaDressing(),"ROLL TWICE")) area.setAreaDressing(rollTwice(DungeonArrays.AREA_DRESSING));
 
         area.addDangers();
         area.addDiscoveries();
@@ -86,7 +86,7 @@ public class AreaFunctions implements IGenericService<Area> {
                         1) Create new random area
                         2) View current area
                         3) Reroll this area
-                        4) View list of generated area
+                        4) View list of generated areas
                         5) Export current area
                         6) Main menu
                         
